@@ -1,0 +1,66 @@
+h1 {
+  font-size: 50px;
+  color: rgb(144, 144, 144);
+  text-align: right;
+}
+
+#create {
+  width: 90%;
+  margin: 0 auto;
+}
+#create .main_title {
+  font-size: 50px;
+}
+#create .content_wrap {
+  margin-top: 20px;
+  align-items: center;
+}
+#create .content_wrap .content_title {
+  position: relative;
+  font-size: 30px;
+}
+#create .content_wrap > p {
+  margin-left: 30px;
+  font-size: 20px;
+}
+#create .content_wrap .input_area {
+  position: relative;
+  border: 1px solid #000;
+  border-radius: 3px;
+  text-align: center;
+  margin-left: 30px;
+  height: 30px;
+  padding: 10px;
+}
+#create .content_wrap .input_area:hover {
+  opacity: 0.5;
+}
+#create .next_btn {
+  margin-top: 50px;
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+}
+#create .next_btn .cancel {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  width: 120px;
+  border: 1px solid #000;
+}
+#create .next_btn .cancel:hover {
+  background: rgb(237, 237, 237);
+  font-weight: bold;
+}
+#create .next_btn .save {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  width: 120px;
+  border: 1px solid red;
+  background: red;
+  color: #fff;
+}
+#create .next_btn .save:hover {
+  opacity: 0.5;
+}
