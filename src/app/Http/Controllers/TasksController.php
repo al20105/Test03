@@ -32,7 +32,7 @@ class TasksController extends Controller
             return $next($request);
         });
     }
- 
+
     public function ShowListWD() { //M3 一覧表示UI処理
         return view('tasks.index');
     }
