@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-// use App\Models\Blog;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -14,7 +13,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Validator;
-
 
 class TasksController extends Controller
 {
