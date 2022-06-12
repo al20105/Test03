@@ -35,6 +35,18 @@ class TasksController extends Controller
 
 
     public function TaskEdit(Request $request) { //M18 課題編集処理
+        $TASK = [
+            'task_user' => $request->task_user,
+            'task_name' => $request->task_name,
+            'date' => $request->date,
+            'time' => $request->time,
+            'tag' => $request->tag,
+            'memo' => $request->memo,
+        ];
+
+        $post = new Post;
+        $post->fill($TASK)->save();
+
         return redirect('/tasks');
     }
 
