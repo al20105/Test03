@@ -1,0 +1,155 @@
+body {
+  width: 100%;
+}
+.main {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+
+  .left_area {
+    width: 70%;
+    
+    .date_wrap {
+      >h1 {
+        font-size: 50px;
+        color: #000;
+        text-align: center;
+        margin: 40px 0 30px 0;
+      }
+    }
+
+    .calender {
+      margin: 0 auto;
+      width: 95%;
+      background-color: #000;
+      border-collapse: separate;
+      thead, tbody {
+        text-align: center;
+      } 
+      thead {
+        tr {
+          background: rgb(36, 36, 36);
+          th {
+            width: calc(100%/7);
+            text-align: center;
+            color: #fff;
+            font-size: 30px;
+
+            &:nth-of-type(6) {
+              color: blue;
+            }
+            &:nth-of-type(7) {
+              color: red;
+            }
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          background: rgb(183, 183, 183);
+          
+          td {
+            width: calc(100%/7);
+            text-align: center;
+            color: #000;
+
+            .lists {
+              .days {
+                list-style-type: none;
+                font-size: 20px;
+                margin: 10px 0;
+              }
+              .schedule {
+                margin: 5px auto;
+                padding: 5px 0;
+                width: 90%;
+                list-style: none;
+                font-size: 15px;
+                color: #fff;
+                border-radius: 5px;
+                background: rgb(45, 21, 21);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .right_area {
+    width: 30%;
+    border-left: 2px solid #000;
+    .inner {
+      width: 90%;
+      margin: 0 auto;
+      >h1 {
+        margin: 40px 0 30px 0;
+        text-align: center;
+        font-size: 40px;
+        color: #000;
+      }
+      .account_info {
+        >h2 {
+          font-size: 30px;
+          color: rgb(0, 85, 134);
+          text-align: center;
+        }
+      }
+      .new_schedule {
+        text-align: center;
+        margin-bottom: 30px;
+        >a {
+          display: block;
+          width: 100px;
+          margin: 30px auto;
+          .button_wrap {
+            border: 1px solid #000;
+            text-align: center;
+            padding: 10px 0;
+            &:hover {
+              background: rgb(135, 135, 135);
+            }
+          }
+        }
+      }
+
+      #todo {
+        width: 90%;
+        ul {
+          width: 100%;
+          .item {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px auto;
+
+            .sche_name {
+              font-size: 15px;
+              font-weight: bold;
+            }
+
+            .btn {
+              &:hover {
+                color: rgb(160, 160, 160);
+                transition: .2s;
+                font-weight: bold;
+              }
+            }
+
+            .show {
+              color: red;
+            }
+            .edit {
+              color: blue;
+            }
+            .delete {
+              color: green;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
