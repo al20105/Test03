@@ -9,4 +9,9 @@ class Task extends Model
 { 
     use HasFactory;
     protected $fillable = ['task_user', 'name', 'date', 'time', 'memo'];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }  
