@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TasksController;
+use App\Http\Controllers\Task\RegisterController;
+use App\Http\Controllers\Task\DestroyController;
+use App\Http\Controllers\Task\ShowListController;
+use App\Http\Controllers\Task\ShowDetailController;
+use App\Http\Controllers\Task\EditController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,13 +27,13 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('tasks', [TasksController::class, 'ShowListWD'])->name('task.index');
-Route::get('task/create', [TasksController::class, 'ShowTaskRegisterWD'])->name('task.create');
-Route::post('task/store', [TasksController::class, 'TaskRegister'])->name('task.store');
-Route::get('task/show', [TasksController::class, 'ShowTaskWD'])->name('task.show'); 
-Route::get('task/edit', [TasksController::class, 'ShowTaskEditWD'])->name('task.edit');
-Route::post('task/update', [TasksController::class, 'TaskEdit'])->name('task.update');
-Route::delete('task/destroy', [TasksController::class, 'destroy'])->name('task.destroy');
+Route::get('tasks', [ShowListController::class, 'ShowListWD'])->name('task.index');
+Route::get('task/create', [RegisterController::class, 'ShowTaskRegisterWD'])->name('task.create');
+Route::post('task/store', [RegisterController::class, 'TaskRegister'])->name('task.store');
+Route::get('task/show', [ShowDetailController::class, 'ShowTaskWD'])->name('task.show'); 
+Route::get('task/edit', [EditController::class, 'ShowTaskEditWD'])->name('task.edit');
+Route::post('task/update', [EditController::class, 'TaskEdit'])->name('task.update');
+Route::delete('task/destroy', [DostroyController::class, 'destroy'])->name('task.destroy');
 
 Route::get('scss', function () {
     return view('for-scss');
