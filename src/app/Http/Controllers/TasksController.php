@@ -16,23 +16,6 @@ use Illuminate\Support\Facades\Validator;
 
 class TasksController extends Controller
 {
-    private $user;
-
-    public function __construct()
-    {
-        $this->middleware('auth')->except(['index', 'show']);
-
-        $this->middleware(function ($request, $next) {
-            // 認証情報を取得
-
-            $this->user = Auth::user();
-
-            View::share('user', $this->user);
-
-            return $next($request);
-        });
-    }
-
     public function ShowListWD() { //M3 一覧表示UI処理
         return view('tasks.index');
     }
@@ -45,27 +28,17 @@ class TasksController extends Controller
         return view('tasks.create');
     }
 
-    public function TaskRegisterCheck() { //M16 課題内容不備確認 登録，編集で使う バリデーション処理
-        return true;
-    }
-
-    public function TaskRegister(Request $request) { //M17 課題登録処理
-        return redirect('/tasks');
-    }
-
     public function ShowTaskEditWD() { //M6 課題編集画面表示UI処理
         return view('tasks.edit');
     }
-
-
 
     public function TaskEdit(Request $request) { //M18 課題編集処理
         return redirect('/tasks');
     }
 
-
-
     public function destroy(Request $request) {
         return redirect('/tasks');
     }
 } 
+
+
