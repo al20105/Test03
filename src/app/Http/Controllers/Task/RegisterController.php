@@ -14,12 +14,12 @@ class RegisterController extends Controller
 {
     use GetUser; use TaskCheck; use RedirectsUsers;
 
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/tasks';
 
     protected function TaskRegister(Request $request)
     {
         $this->TaskCheck($request->all())->validate();
-        $task = $this->create($request->all());
+        $this->user->task()->create($request->all());
 
         return $request->wantsJson() ? new JsonResponse([], 201) : redirect($this->redirectPath());
     }
