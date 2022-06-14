@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Foundation\Auth\RedirectsUsers;
 use App\Http\Controllers\Controller;
 
-class ShowFileController extends Controller
+class ShowListController extends Controller
 {
     use GetUser;
 

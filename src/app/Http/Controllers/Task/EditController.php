@@ -10,7 +10,7 @@ use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Foundation\Auth\RedirectsUsers;
 use App\Http\Controllers\Controller;
 
-class TasksController extends Controller
+class EditController extends Controller
 {
     use GetUser;
 
