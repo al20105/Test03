@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Task;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -8,8 +8,9 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Foundation\Auth\RedirectsUsers;
+use App\Http\Controllers\Controller;
 
-class TasksController extends Controller
+class EditController extends Controller
 {
     use GetUser;
 
