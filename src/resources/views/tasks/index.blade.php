@@ -12,7 +12,7 @@
         <h1>2022年 04月</h1>
       </div>
 
-      <table border="1" class="calender">
+      <!-- <table border="1" class="calender">
         <thead>
           <tr>
             <th>月</th>
@@ -214,7 +214,7 @@
             <td></td>
           </tr>
         </tbody>
-      </table>
+      </table> -->
     </div>
 
     <div class="right_area">
@@ -232,46 +232,21 @@
 
         <section id="todo">
           <ul>
-            <li class="item">
-              <h2 class="sche_name">人工知能第3回レポート</h2>
-              <a href="{{ route('task.show') }}" class="btn show">詳細</a>
-              <a href="{{ route('task.edit') }}" class="btn edit">編集</a>
-              <form action="{{ route('task.destroy') }}" method="post">
-                @csrf
-                @method('DELETE')
-                <input type="submit" class="btn delete" onclick="deletePost(this);" value="削除">
-              </form>
-            </li>
-            <li class="item">
-              <h2 class="sche_name">人工知能第3回レポート</h2>
-              <a href="{{ route('task.show') }}" class="btn show">詳細</a>
-              <a href="{{ route('task.edit') }}" class="btn edit">編集</a>
-              <form action="{{ route('task.destroy') }}" method="post">
-                @csrf
-                @method('DELETE')
-                <input type="submit" class="btn delete" onclick="deletePost(this);" value="削除">
-              </form>
-            </li>
-            <li class="item">
-              <h2 class="sche_name">人工知能第3回レポート</h2>
-              <a href="{{ route('task.show') }}" class="btn show">詳細</a>
-              <a href="{{ route('task.edit') }}" class="btn edit">編集</a>
-              <form action="{{ route('task.destroy') }}" method="post">
-                @csrf
-                @method('DELETE')
-                <input type="submit" class="btn delete" onclick="deletePost(this);" value="削除">
-              </form>
-            </li>
-            <li class="item">
-             <h2 class="sche_name">人工知能第3回レポート</h2>
-              <a href="{{ route('task.show') }}" class="btn show">詳細</a>
-              <a href="{{ route('task.edit') }}" class="btn edit">編集</a>
-              <form action="{{ route('task.destroy') }}" method="post">
-                @csrf
-                @method('DELETE')
-                <input type="submit" class="btn delete" onclick="deletePost(this);" value="削除">
-              </form>
-            </li>
+            
+            @foreach($tasks as $task)
+              <li class="item">
+                <h2 class="sche_name">{{ $task->name }}</h2>
+                <a href="{{ route('task.show',Crypt::encrypt($task->{'id'}) ) }}" class="btn show">詳細</a>
+                <a href="{{ route('task.edit', Crypt::encrypt($task->{'id'}) ) }}" class="btn edit">編集</a>
+                <form action="{{ route('task.destroy', Crypt::encrypt( $task->{'id'}) ) }}" id="form_{{ $task->id }}" method="post">
+                  @csrf
+                  {{ method_field('delete') }}
+                  <a href="#" data-id="{{ $task->id }}" onclick="deletePost(this);" class="btn btn-danger">
+                  <span>削除</span></a>
+                </form>
+              </li>
+            @endforeach
+            
           </ul>
         </section>
       </div>
