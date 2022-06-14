@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->integer('task_user')->comment('課題の管理者の区別に用いる');
+            $table->integer('user_id')->comment('課題の管理者の区別に用いる');
             $table->string('name')->comment('課題名');
             $table->date('date')->comment('締め切り日時');
             $table->time('time')->comment('締め切り時間');

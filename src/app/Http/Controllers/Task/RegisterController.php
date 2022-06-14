@@ -22,7 +22,7 @@ class RegisterController extends Controller
     protected function TaskRegister(Request $request)
     {
         $this->TaskCheck($request->all())->validate();
-        $this->user->task()->create($request->all());
+        $this->user->tasks()->create($request->all());
 
         return $request->wantsJson() ? new JsonResponse([], 201) : redirect($this->redirectPath());
     }
