@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Task;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Foundation\Auth\RedirectsUsers;
+use App\Http\Controllers\Controller;
 
 class TasksController extends Controller
 {
@@ -17,7 +18,22 @@ class TasksController extends Controller
         return view('tasks.edit');
     }
 
-    public function TaskEdit(Request $request) { //M18 課題編集処理
-        return redirect('/tasks');
+    protected function TaskEdit(Request $request) { //M18 課題編集処理
+        $this->TaskCheck($request->all())->validate();
+        $this->user->task()->create($request->all());
+
+        return $request->wantsJson() ? new JsonResponse([], 201) : redirect($this->redirectPath());
+    }
+
+    protected function edit(array $data)
+    {
+        return Task::edit([
+            'task_user' => $data['task_user'],
+            'name' => $data['name'],
+            'date' => $data['date'],
+            'time' => $data['time'],
+            'tag' => $data['tag'],
+            'memo' => $data['memo'],
+        ]);
     }
 }

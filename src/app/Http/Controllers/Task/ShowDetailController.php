@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Task;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\View;
 use Illuminate\Foundation\Auth\RedirectsUsers;
+use App\Http\Controllers\Controller;
 
 class ShowFileController extends Controller
 {
