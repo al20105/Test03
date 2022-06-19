@@ -237,7 +237,7 @@
               <li class="item">
                 <h2 class="sche_name">{{ $task->name }}</h2>
                 <a href="{{ route('task.show',Crypt::encrypt($task->{'id'}) ) }}" class="btn show">詳細</a>
-                <a href="{{ route('task.edit', Crypt::encrypt($task->{'id'}) ) }}" class="btn edit">編集</a>
+                <a href="{{ route('task.edit', ['encrypted' => Crypt::encrypt( $task->{'id'} )] ) }}" class="btn edit">編集</a>
                 <form action="{{ route('task.destroy', Crypt::encrypt( $task->{'id'}) ) }}" id="form_{{ $task->id }}" method="post">
                   @csrf
                   {{ method_field('delete') }}

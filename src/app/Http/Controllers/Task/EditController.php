@@ -16,24 +16,24 @@ class EditController extends Controller
     use TaskCheck;
     use RedirectsUsers;
 
-    public function ShowTaskEditWD($value) {
-        $data = Task::find(Crypt::decrypt($value));
+    public function ShowTaskEditWD($encrypted) {
+        $data = Task::find(Crypt::decrypt($encrypted));
         return view('tasks.edit', ['task' => $data]);
     }
 
     protected $redirectTo = '/tasks';
 
-    protected function TaskEdit(Request $request)
+    protected function TaskEdit(Request $request, $encrypted)
     {
         $this->TaskCheck($request->all())->validate();
-        $this->user->tasks()->update($request->all());
+        $this->user->tasks()->update($request->all(), $encrypted);
 
         return $request->wantsJson() ? new JsonResponse([], 201) : redirect($this->redirectPath());
     }
 
-    protected function update(array $data)
+    protected function update(array $data, $encrypted)
     {
-        return Task::find(Crypt::decrypt($data['id']))->update([
+        return Task::find(Crypt::decrypt($encrypted))->update([
             'name' => $data['name'],
             'date' => $data['date'],
             'time' => $data['time'],

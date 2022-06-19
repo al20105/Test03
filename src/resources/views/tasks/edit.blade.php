@@ -8,15 +8,15 @@
 <body>
   <h1>EDIT ページ</h1>
 
-  <form action="{{ route('task.update', Crypt::encrypt($task->{'id'}) ) }}" method="post" enctype='multipart/form-data' id="create">
+  <form action="{{ route('task.update', ['encrypted' => Crypt::encrypt($task->{'id'})] ) }}" method="post" enctype='multipart/form-data' id="create">
+    @
     @csrf
-    @method('PUT')
     <h2 class="main_title">課題情報編集</h2>
 
     <input type="hidden" name="id", value="{{ $task->id }}">
     <div class="content_wrap">
       <h3 class="content_title">課題名</h3>
-      <input type="text" name="name" value="{{ old('title', $task->title) }}" class="input_area", required="">
+      <input type="text" name="name" value="{{ old('name', $task->name) }}" class="input_area", required="">
     </div>
     <div class="content_wrap">
       <h3 class="content_title">締め切り時刻</h3>

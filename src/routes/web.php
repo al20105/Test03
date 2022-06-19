@@ -31,8 +31,8 @@ Route::get('tasks', [ShowListController::class, 'ShowListWD'])->name('task.index
 Route::get('task/create', [RegisterController::class, 'ShowTaskRegisterWD'])->name('task.create');
 Route::post('task/store', [RegisterController::class, 'TaskRegister'])->name('task.store');
 Route::get('task/show', [ShowDetailController::class, 'ShowTaskWD'])->name('task.show'); 
-Route::get('task/edit', [EditController::class, 'ShowTaskEditWD'])->name('task.edit');
-Route::post('task/update', [EditController::class, 'TaskEdit'])->name('task.update');
+Route::get('task/edit/{encrypted}', [EditController::class, 'ShowTaskEditWD'])->name('task.edit');
+Route::post('task/update/{encrypted}', [EditController::class, 'TaskEdit'])->name('task.update');
 Route::delete('task/destroy', [DostroyController::class, 'destroy'])->name('task.destroy');
 
 Route::get('scss', function () {
