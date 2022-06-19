@@ -8,18 +8,20 @@
 <body>
   <h1>EDIT ページ</h1>
 
-  <form action="{{ route('task.update') }}" method="post" enctype='multipart/form-data' id="create">
+  <form action="{{ route('task.update', Crypt::encrypt($task->{'id'}) ) }}" method="post" enctype='multipart/form-data' id="create">
     @csrf
+    @method('PUT')
     <h2 class="main_title">課題情報編集</h2>
 
+    <input type="hidden" name="id", value="{{ $task->id }}">
     <div class="content_wrap">
       <h3 class="content_title">課題名</h3>
-      <input type="text" name="name" value="情報セキュリティ" class="input_area">
+      <input type="text" name="name" value="{{ old('title', $task->title) }}" class="input_area", required="">
     </div>
     <div class="content_wrap">
       <h3 class="content_title">締め切り時刻</h3>
-      <input type="date" class="input_area" value="2022-05-22">
-      <input type="time" class="input_area" value="13:30">
+      <input type="date" class="input_area" value="{{ old('date', $task->date) }}">
+      <input type="time" class="input_area" value="{{ old('time', $task->time) }}">
     </div>
     <div class="content_wrap">
       <h3 class="content_title">タグ追加</h3>
@@ -28,7 +30,7 @@
     </div>
     <div class="content_wrap">
       <h3 class="content_title">詳細</h3>
-      <input type="text" value="締め切り過ぎている" class="input_area">
+      <input type="text" value="{{ old('memo', $task->memo) }}" class="input_area">
     </div>
 
     <div class="next_btn">
