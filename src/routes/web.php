@@ -8,6 +8,7 @@ use App\Http\Controllers\Task\ShowListController;
 use App\Http\Controllers\Task\ShowDetailController;
 use App\Http\Controllers\Task\EditController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,10 +31,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('tasks', [ShowListController::class, 'ShowListWD'])->name('task.index');
 Route::get('task/create', [RegisterController::class, 'ShowTaskRegisterWD'])->name('task.create');
 Route::post('task/store', [RegisterController::class, 'TaskRegister'])->name('task.store');
-Route::get('task/show', [ShowDetailController::class, 'ShowTaskWD'])->name('task.show'); 
-Route::get('task/edit', [EditController::class, 'ShowTaskEditWD'])->name('task.edit');
+Route::get('task/show/{parameter}', [ShowDetailController::class, 'ShowTaskWD'])->name('task.show'); 
+Route::get('task/edit/{parameter}', [EditController::class, 'ShowTaskEditWD'])->name('task.edit');
 Route::post('task/update', [EditController::class, 'TaskEdit'])->name('task.update');
 Route::delete('task/destroy', [DostroyController::class, 'destroy'])->name('task.destroy');
+
+Route::get('edit',[App\Http\Controllers\Auth\EditController::class, 'showEditForm'])->name('edit');
+Route::post('edit',[App\Http\Controllers\Auth\EditController::class, 'edit']);
 
 Route::get('scss', function () {
     return view('for-scss');

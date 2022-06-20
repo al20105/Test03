@@ -1,5 +1,8 @@
 {
     "require-dev": {
         "laravel/ui": "^3.4"
+    },
+    "require": {
+        "doctrine/dbal": "^3.3"
     }
 }

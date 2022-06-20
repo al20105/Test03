@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Task;
+
 use App\Models\User;
 use Illuminate\Foundation\Auth\RedirectsUsers;
 use Illuminate\Support\Facades\Crypt;
