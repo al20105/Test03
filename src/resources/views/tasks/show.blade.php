@@ -8,24 +8,22 @@
 <body>
   <div class="" id="show">
     <h2 class="main_title">課題情報閲覧</h2>
-
     <div class="content_wrap">
       <h3 class="content_title">課題名</h3>
-      <p></p>
+      <p>{{ $task->name }}</p>
     </div>
     <div class="content_wrap">
       <h3 class="content_title">締め切り時刻</h3>
-      <p></p>
-      <p></p>
+      <p>{{ $task->date }} {{ $task->time }}</p>
     </div>
     <div class="content_wrap">
-      <h3 class="content_title">タグ追加</h3>
-      <p>選択されたタグ</p>
+      <h3 class="content_title">タグ</h3>
+      <p>~~タグ~~</p>
       <p></p>
     </div>
     <div class="content_wrap">
       <h3 class="content_title">詳細</h3>
-      <p></p>
+      <p>{{ $task->memo }}</p>
     </div>
 
     <div class="next_btn">
