@@ -10,10 +10,11 @@ use App\Http\Controllers\Controller;
 
 class DestroyController extends Controller
 {
+
     public function destroy($encrypted) {
         $id = Crypt::decrypt($encrypted);
-        Task::where('id', $id)->delete();
-        
+        $db_data = new Task;
+        $db_data->where('id', $id)->delete();
         return redirect('/tasks');
     }
 }
