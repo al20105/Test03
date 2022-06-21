@@ -9,9 +9,10 @@ use Doctrine\DBAL\Schema\Identifier;
 use Doctrine\DBAL\Schema\Index;
 use Doctrine\DBAL\Schema\Sequence;
 use Doctrine\DBAL\Schema\TableDiff;
+use Doctrine\DBAL\Types\BigIntType;
 use Doctrine\DBAL\Types\BinaryType;
 use Doctrine\DBAL\Types\BlobType;
-use Doctrine\DBAL\Types\PhpIntegerMappingType;
+use Doctrine\DBAL\Types\IntegerType;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\Deprecations\Deprecation;
 use UnexpectedValueException;
@@ -802,7 +803,7 @@ SQL
             return $callback(true);
         }
 
-        throw new UnexpectedValueException(sprintf("Unrecognized boolean literal '%s'", $value));
+        throw new UnexpectedValueException("Unrecognized boolean literal '${value}'");
     }
 
     /**
@@ -1229,7 +1230,7 @@ SQL
     {
         return isset($column['type'], $column['autoincrement'])
             && $column['autoincrement'] === true
-            && $this->isIntegerType($column['type']);
+            && $this->isNumericType($column['type']);
     }
 
     /**
@@ -1241,17 +1242,17 @@ SQL
             return $columnDiff->hasChanged('type');
         }
 
-        $oldTypeIsInteger = $this->isIntegerType($columnDiff->fromColumn->getType());
-        $newTypeIsInteger = $this->isIntegerType($columnDiff->column->getType());
+        $oldTypeIsNumeric = $this->isNumericType($columnDiff->fromColumn->getType());
+        $newTypeIsNumeric = $this->isNumericType($columnDiff->column->getType());
 
-        // default should not be changed when switching between integer types and the default comes from a sequence
+        // default should not be changed when switching between numeric types and the default comes from a sequence
         return $columnDiff->hasChanged('type')
-            && ! ($oldTypeIsInteger && $newTypeIsInteger && $columnDiff->column->getAutoincrement());
+            && ! ($oldTypeIsNumeric && $newTypeIsNumeric && $columnDiff->column->getAutoincrement());
     }
 
-    private function isIntegerType(Type $type): bool
+    private function isNumericType(Type $type): bool
     {
-        return $type instanceof PhpIntegerMappingType;
+        return $type instanceof IntegerType || $type instanceof BigIntType;
     }
 
     private function getOldColumnComment(ColumnDiff $columnDiff): ?string

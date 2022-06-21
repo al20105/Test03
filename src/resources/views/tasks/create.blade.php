@@ -18,7 +18,7 @@
     <div class="content_wrap">
       <h3 class="content_title">締め切り時刻</h3>
       <input type="date" name="date" class="input_area">
-      <input type="time" name="time" class="input_area" value="00:00">
+      <input type="time" name="time" class="input_area">
     </div>
     <div class="content_wrap">
       <h3 class="content_title">タグ追加</h3>
