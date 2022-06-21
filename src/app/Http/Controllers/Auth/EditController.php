@@ -18,7 +18,6 @@ class EditController extends Controller
 
     public function userEdit(Request $request) {
         //var_dump($request);
-        //$auth = Auth::user();
         $auth = User::find(1);
         $this->auth_validate($request->all())->validate();
         //$comfirm_pass = $request['password'];
