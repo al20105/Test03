@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <title>課題管理システム</title>
   <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
   <link rel="stylesheet" href="{{ asset('css/edit.css') }}">
 </head>
+
 <body>
   <h1>EDIT ページ</h1>
 
   <form action="{{ route('task.update' ) }}" method="post" enctype='multipart/form-data' id="create">
     @csrf
+    @method('PUT')
     <h2 class="main_title">課題情報編集</h2>
-
     <input type="hidden" name="id" value={{ $task->id }}>
     <div class="content_wrap">
       <h3 class="content_title">課題名</h3>
@@ -38,4 +40,5 @@
     </div>
   </form>
 </body>
+
 </html>

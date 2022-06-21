@@ -243,7 +243,9 @@ class InstalledVersions
 
     /**
      * @return array
+
      * @psalm-return array{name: string, pretty_version: string, version: string, reference: string|null, type: string, install_path: string, aliases: string[], dev: bool}
+
      */
     public static function getRootPackage()
     {
