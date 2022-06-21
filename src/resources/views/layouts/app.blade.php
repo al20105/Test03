@@ -58,6 +58,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+<<<<<<< HEAD
                                     <a class="dropdown-item" href="{{ route('edit') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('edit-form').submit();">
@@ -66,6 +67,10 @@
 
                                     <form id="edit-form" action="{{ route('edit') }}" method="POST" class="d-none">
                                         @csrf
+=======
+                                    <form id="edit-form" action="{{ route('auth.edit') }}" method="GET" class="dropdown-item">
+                                        <input type="submit" value="Edit">
+>>>>>>> origin/main
                                     </form>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
