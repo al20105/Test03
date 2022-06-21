@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Task;
 
 use App\Models\Task;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Foundation\Auth\RedirectsUsers;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Contracts\Encryption\DecryptException;
 
 class EditController extends Controller
 {
@@ -16,28 +17,27 @@ class EditController extends Controller
     use RedirectsUsers;
 
     public function ShowTaskEditWD($encrypted) {
-        $data = Task::find(Crypt::decrypt($encrypted));
-        return view('tasks.edit', ['task' => $data]);
+        $task = Task::find(Crypt::decrypt($encrypted))->first();
+        return view('tasks.edit', compact('task'));
     }
+
+    protected $redirectTo = '/tasks';
 
     protected function TaskEdit(Request $request)
     {
-        /*echo "<pre>";
-        var_dump(        $request->all()    );
-        echo "</pre>";*/
-        $data = Task::find($request->id);
-        echo "<pre>";        var_dump($data);        echo "</pre>";
-        $data->fill($request->all())->save();
-//      $data->validate();
+        $this->TaskCheck($request->all())->validate();
+        $this->update($request->all());
 
-/*        Task::find($request->id)->update([
-            'name' => (bigint_unsigned)$request->name,
-            'date' => (date)$request->date,
-            'time' => (time)$request->time,
-            'memo' => (text)$request->memo
+        return $request->wantsJson() ? new JsonResponse([], 201) : redirect($this->redirectPath());
+    }
+
+    protected function update(array $data)
+    {
+        Task::find($data['id'])->update([
+            'name' => $data['name'],
+            'date' => $data['date'],
+            'time' => $data['time'],
+            'memo' => $data['memo']
         ]);
-*/
-
-        //return redirect('/tasks');
     }
 }

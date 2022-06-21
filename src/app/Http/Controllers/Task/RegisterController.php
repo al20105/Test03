@@ -30,7 +30,6 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return Task::create([
-            'task_user' => $this->user->id,
             'name' => $data['name'],
             'date' => $data['date'],
             'time' => $data['time'],
