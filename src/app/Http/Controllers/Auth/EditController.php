@@ -10,9 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class EditController extends Controller
 {
-
     protected $redirectTo = '/home';
-
 
     public function ShowEditForm() {
         return view('auth.edit');
