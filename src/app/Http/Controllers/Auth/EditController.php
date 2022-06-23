@@ -3,13 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-<<<<<<< HEAD
-use App\Providers\RouteServiceProvider;
-
-class EditController extends Controller
-{
-    protected $redirectTo = RouteServiceProvider::HOME;
-=======
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -18,18 +11,11 @@ use Illuminate\Support\Facades\Hash;
 class EditController extends Controller
 {
     protected $redirectTo = '/home';
->>>>>>> origin/main
 
     public function ShowEditForm() {
         return view('auth.edit');
     }
 
-<<<<<<< HEAD
-    public function edit() {
-        //
-    }
-}
-=======
     public function userEdit(Request $request) {
 
         $auth = User::find(1);
@@ -62,4 +48,3 @@ class EditController extends Controller
     }
 
 }
->>>>>>> origin/main
