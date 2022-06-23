@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <?php
 //タイムゾーンを設定
 date_default_timezone_set('Asia/Tokyo');
@@ -176,3 +179,4 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
     }
 </script>
 </html>
+@endsection
