@@ -58,6 +58,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <form id="edit-form" action="{{ route('auth.edit') }}" method="GET" class="dropdown-item">
+                                        <input type="submit" value="Edit">
+                                    </form>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
