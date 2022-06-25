@@ -23,6 +23,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if(env('APP_ENV') === 'ngrok')
+        {
+            $this->app['request']->server->set('HTTPS', true);
+        }
     }
 }
