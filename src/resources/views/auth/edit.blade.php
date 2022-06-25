@@ -1,3 +1,17 @@
+<!-- /*******************************************************************
+***  File Name		: edit.blade.php
+***  Version		: V2.0
+***  Designer		: 佐藤　駿介
+***  Date			: 2022.06.25
+***  Purpose       	: アカウント編集処理画面のレイアウト
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : 佐藤　駿介, 2022.06.18
+*** V2.0 : 佐藤　駿介, 2022.06.25 アカウント編集処理
+*/ -->
+
 @extends('layouts.app')
 
 @section('content')
@@ -5,7 +19,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('アカウント編集') }}</div>
+                <div class="card-header">{{ __('アカウント情報編集画面') }}</div>
 
                 
                 <div class="card-body">
@@ -13,7 +27,7 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('名前') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('ユーザ名') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -41,8 +55,8 @@
                         </div>
 
                         
-                        <!-- <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('パスワード') }}</label>
+                        <div class="row mb-3">
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('現在のパスワード') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -53,12 +67,13 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div> -->
+                        </div>
 
                         <div class="row mb-0">
+
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('編集') }}
+                                    {{ __('保存') }}
                                 </button>
                             </div>
                         </div>

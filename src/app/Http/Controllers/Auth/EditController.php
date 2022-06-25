@@ -1,4 +1,18 @@
 <?php
+/*******************************************************************
+***  File Name		: EditController.php
+***  Version		: V2.0
+***  Designer		: 佐藤　駿介
+***  Date			: 2022.06.25
+***  Purpose       	: アカウント情報を編集する
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : 佐藤　駿介, 2022.06.18
+*** V2.0 : 佐藤　駿介, 2022.06.25 アカウント編集処理
+
+*/
 
 namespace App\Http\Controllers\Auth;
 
@@ -16,34 +30,34 @@ class EditController extends Controller
         return view('auth.edit');
     }
 
-    public function userEdit(Request $request) {
+    public function userEdit(Request $request) 
+    {
 
         $auth = User::find(1);
+        //バリデーション処理
         $this->auth_validate($request->all())->validate();
-        //$comfirm_pass = $request['password'];
-        /*if(Hash::check($comfirm_pass,$auth->password)){
-            $this->update($request->all(),$auth);
-        }else{
-        }
-        */
+        //データの上書き編集
         $this->update($request->all(),$auth);
         return redirect('home');
     }
 
-    public function update(array $data, User $user){
-       
+    public function update(array $data, //入力データ
+                            User $user )//ユーザデータ
+    {
+        //データの上書き編集
         return $user->update([
-            'name' => $data['name'],
-            'email' => $data['email']
+            'name' => $data['name'],//ユーザ名
+            'email' => $data['email']//メールアドレス
         ]);
     }
     
     protected function auth_validate(array $data)
     {
+        //バリデーション処理
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            //'password' => ['required', 'string', 'min:8']
+            'name' => ['required', 'string', 'max:255'],//ユーザ名
+            'email' => ['required', 'string', 'email', 'max:255'],//メールアドレス
+            'password' => ['required', 'string', 'min:8','current_password']//現在のパスワード
         ]);
     }
 
