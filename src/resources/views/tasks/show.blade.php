@@ -18,7 +18,7 @@
     </div>
     <div class="content_wrap">
       <h3 class="content_title">タグ</h3>
-      @foreach($task->tags() as $tag)
+      @foreach($task->tags as $tag)
         <p>{{ $tag->name }}</p>
       @endforeach
       <p></p>
