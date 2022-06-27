@@ -6,34 +6,38 @@ use App\Models\Task;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Foundation\Auth\RedirectsUsers;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Crypt;
 
 class EditController extends Controller
 {
-    use GetUser;
-    use TaskCheck;
-    use RedirectsUsers;
+    use GetUser; use TaskCheck; use RedirectsUsers; use TagController;
 
     public function ShowTaskEditWD($encrypted) {
         $task = Task::find(Crypt::decrypt($encrypted))->first();
-        return view('tasks.edit', compact('task'));
+        $tags = $task->tags;
+        return view('tasks.edit', compact('task','tags'));
     }
 
-    protected $redirectTo = '/tasks';
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     protected function TaskEdit(Request $request)
     {
-        $this->TaskCheck($request->all())->validate();
-        $this->update($request->all());
+        if ($request->has('approve')) {
+            $this->TaskCheck($request->all())->validate();
+            $task = $this->update($request->all());
+            $tags = $this->TagRegister($request->input('tags'));
+            $task->tags()->sync($tags);
+        }
 
-        return $request->wantsJson() ? new JsonResponse([], 201) : redirect($this->redirectPath());
+        return redirect($this->redirectPath());
     }
 
     protected function update(array $data)
     {
-        Task::find($data['id'])->update([
+        return Task::find($data['id'])->update([
             'name' => $data['name'],
             'date' => $data['date'],
             'time' => $data['time'],

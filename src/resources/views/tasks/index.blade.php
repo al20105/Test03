@@ -167,6 +167,17 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         </section>
       </div>
     </div>
+    
+    <div class="text-align-right">
+      <h3 class="content_title">タグ一覧</h3>
+      <ul>
+        @foreach($tags as $tag)
+          <li class="item">
+            <a href="home?tag={{ $tag->name }}" class="text">#{{ $tag->name }}</h2>
+          </li>
+        @endforeach
+      </ul>
+    </div>
   </section>
 </body>
 
