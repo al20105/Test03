@@ -21,24 +21,23 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
 
 class EditController extends Controller
 {
-    protected $redirectTo = '/home';
-
-    public function ShowEditForm() {
+    public function ShowEditForm() 
+    {
         return view('auth.edit');
     }
 
     public function userEdit(Request $request) 
     {
-
-        $auth = User::find(1);
+        $auth = User::find($request->id);
         //バリデーション処理
         $this->auth_validate($request->all())->validate();
         //データの上書き編集
         $this->update($request->all(),$auth);
-        return redirect('home');
+        return redirect('/tasks');
     }
 
     public function update(array $data, //入力データ
@@ -60,5 +59,4 @@ class EditController extends Controller
             'password' => ['required', 'string', 'min:8','current_password']//現在のパスワード
         ]);
     }
-
 }
