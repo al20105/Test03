@@ -25,9 +25,11 @@ use App\Providers\RouteServiceProvider;
 
 class EditController extends Controller
 {
-    public function ShowEditForm() 
+    public function ShowEditForm(Request $request) 
     {
-        return view('auth.edit');
+        return view('auth.edit', [
+            'change_id' => $request->id
+        ]);
     }
 
     public function userEdit(Request $request) 
