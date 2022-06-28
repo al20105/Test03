@@ -27,7 +27,6 @@ class EditController extends Controller
 {
     public function ShowEditForm(Request $request) 
     {
-        // 受け取ったidをauth.editに渡し，bladeからuserEdit関数に渡す
         return view('auth.edit', [
             'change_id' => $request->id
         ]);
