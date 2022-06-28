@@ -6,11 +6,25 @@
     "authors": [
         {
             "name": "PHP-FIG",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> aeab7e180b1f21ba588ceeade8d149a5e75a7e41
             "homepage": "http://www.php-fig.org/"
         }
     ],
     "require": {
         "php": ">=5.3.0"
+<<<<<<< HEAD
+=======
+=======
+            "homepage": "https://www.php-fig.org/"
+        }
+    ],
+    "require": {
+        "php": ">=8.0.0"
+>>>>>>> origin/main
+>>>>>>> aeab7e180b1f21ba588ceeade8d149a5e75a7e41
     },
     "autoload": {
         "psr-4": {

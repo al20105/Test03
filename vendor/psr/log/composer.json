@@ -11,16 +11,38 @@
         }
     ],
     "require": {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> aeab7e180b1f21ba588ceeade8d149a5e75a7e41
         "php": ">=5.3.0"
     },
     "autoload": {
         "psr-4": {
             "Psr\\Log\\": "Psr/Log/"
+<<<<<<< HEAD
+=======
+=======
+        "php": ">=8.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Psr\\Log\\": "src"
+>>>>>>> origin/main
+>>>>>>> aeab7e180b1f21ba588ceeade8d149a5e75a7e41
         }
     },
     "extra": {
         "branch-alias": {
+<<<<<<< HEAD
             "dev-master": "1.1.x-dev"
+=======
+<<<<<<< HEAD
+            "dev-master": "1.1.x-dev"
+=======
+            "dev-master": "3.x-dev"
+>>>>>>> origin/main
+>>>>>>> aeab7e180b1f21ba588ceeade8d149a5e75a7e41
         }
     }
 }

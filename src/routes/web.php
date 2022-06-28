@@ -35,8 +35,13 @@ Route::get('task/edit/{parameter}', [EditController::class, 'ShowTaskEditWD'])->
 Route::post('task/update', [EditController::class, 'TaskEdit'])->name('task.update');
 Route::delete('task/destroy/{parameter}', [DestroyController::class, 'destroy'])->name('task.destroy');
 
+<<<<<<< HEAD
 Route::get('edit',[App\Http\Controllers\Auth\EditController::class, 'showEditForm'])->name('edit');
 Route::post('edit',[App\Http\Controllers\Auth\EditController::class, 'edit']);
+=======
+Route::get('edit',[App\Http\Controllers\Auth\EditController::class, 'showEditForm'])->name('auth.edit');
+Route::post('edited',[App\Http\Controllers\Auth\EditController::class, 'userEdit'])->name('auth.update');
+>>>>>>> aeab7e180b1f21ba588ceeade8d149a5e75a7e41
 
 Route::get('scss', function () {
     return view('for-scss');

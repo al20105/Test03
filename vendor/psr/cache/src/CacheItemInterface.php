@@ -32,7 +32,15 @@ interface CacheItemInterface
      * @return string
      *   The key string for this cache item.
      */
+<<<<<<< HEAD
     public function getKey();
+=======
+<<<<<<< HEAD
+    public function getKey();
+=======
+    public function getKey(): string;
+>>>>>>> origin/main
+>>>>>>> aeab7e180b1f21ba588ceeade8d149a5e75a7e41
 
     /**
      * Retrieves the value of the item from the cache associated with this object's key.
@@ -46,7 +54,15 @@ interface CacheItemInterface
      * @return mixed
      *   The value corresponding to this cache item's key, or null if not found.
      */
+<<<<<<< HEAD
     public function get();
+=======
+<<<<<<< HEAD
+    public function get();
+=======
+    public function get(): mixed;
+>>>>>>> origin/main
+>>>>>>> aeab7e180b1f21ba588ceeade8d149a5e75a7e41
 
     /**
      * Confirms if the cache item lookup resulted in a cache hit.
@@ -57,7 +73,15 @@ interface CacheItemInterface
      * @return bool
      *   True if the request resulted in a cache hit. False otherwise.
      */
+<<<<<<< HEAD
     public function isHit();
+=======
+<<<<<<< HEAD
+    public function isHit();
+=======
+    public function isHit(): bool;
+>>>>>>> origin/main
+>>>>>>> aeab7e180b1f21ba588ceeade8d149a5e75a7e41
 
     /**
      * Sets the value represented by this cache item.
@@ -72,12 +96,28 @@ interface CacheItemInterface
      * @return static
      *   The invoked object.
      */
+<<<<<<< HEAD
     public function set($value);
+=======
+<<<<<<< HEAD
+    public function set($value);
+=======
+    public function set(mixed $value): static;
+>>>>>>> origin/main
+>>>>>>> aeab7e180b1f21ba588ceeade8d149a5e75a7e41
 
     /**
      * Sets the expiration time for this cache item.
      *
+<<<<<<< HEAD
      * @param \DateTimeInterface|null $expiration
+=======
+<<<<<<< HEAD
+     * @param \DateTimeInterface|null $expiration
+=======
+     * @param ?\DateTimeInterface $expiration
+>>>>>>> origin/main
+>>>>>>> aeab7e180b1f21ba588ceeade8d149a5e75a7e41
      *   The point in time after which the item MUST be considered expired.
      *   If null is passed explicitly, a default value MAY be used. If none is set,
      *   the value should be stored permanently or for as long as the
@@ -86,7 +126,15 @@ interface CacheItemInterface
      * @return static
      *   The called object.
      */
+<<<<<<< HEAD
     public function expiresAt($expiration);
+=======
+<<<<<<< HEAD
+    public function expiresAt($expiration);
+=======
+    public function expiresAt(?\DateTimeInterface $expiration): static;
+>>>>>>> origin/main
+>>>>>>> aeab7e180b1f21ba588ceeade8d149a5e75a7e41
 
     /**
      * Sets the expiration time for this cache item.
@@ -101,5 +149,13 @@ interface CacheItemInterface
      * @return static
      *   The called object.
      */
+<<<<<<< HEAD
     public function expiresAfter($time);
+=======
+<<<<<<< HEAD
+    public function expiresAfter($time);
+=======
+    public function expiresAfter(int|\DateInterval|null $time): static;
+>>>>>>> origin/main
+>>>>>>> aeab7e180b1f21ba588ceeade8d149a5e75a7e41
 }

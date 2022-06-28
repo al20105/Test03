@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> aeab7e180b1f21ba588ceeade8d149a5e75a7e41
 PSR Cache
 =========
 
@@ -7,3 +11,20 @@ This repository holds all interfaces defined by
 Note that this is not a Cache implementation of its own. It is merely an
 interface that describes a Cache implementation. See the specification for more 
 details.
+<<<<<<< HEAD
+=======
+=======
+Caching Interface
+==============
+
+This repository holds all interfaces related to [PSR-6 (Caching Interface)][psr-url].
+
+Note that this is not a Caching implementation of its own. It is merely interfaces that describe the components of a Caching mechanism.
+
+The installable [package][package-url] and [implementations][implementation-url] are listed on Packagist.
+
+[psr-url]: https://www.php-fig.org/psr/psr-6/
+[package-url]: https://packagist.org/packages/psr/cache
+[implementation-url]: https://packagist.org/providers/psr/cache-implementation
+>>>>>>> origin/main
+>>>>>>> aeab7e180b1f21ba588ceeade8d149a5e75a7e41
