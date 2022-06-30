@@ -1,5 +1,17 @@
 <?php
+/*******************************************************************
+***  File Name		: ResisterController.php
+***  Version		: V1.0
+***  Designer		: 佐藤　駿介
+***  Date			: 2022.06.18
+***  Purpose       	: アカウント情報を登録する
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : 佐藤　駿介, 2022.06.18
 
+*/
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
