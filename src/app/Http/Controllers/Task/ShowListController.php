@@ -31,6 +31,7 @@ class ShowListController extends Controller
     protected $redirectTo = RouteServiceProvider::HOME;
 
     public function TagEditIndex(Request $request) {
+        $task=null;
         if ($request->has('approve')) {
             if ($request->name!=""){
                 $tag = Tag::where('name',$request->old)->first();
@@ -38,7 +39,7 @@ class ShowListController extends Controller
             }
         }
 
-        if ($task) {
+        if ($task!=null) {
             $messageKey = 'successMessage';
             $flashMessage = __('flash.tag_edit_success');
         } else {

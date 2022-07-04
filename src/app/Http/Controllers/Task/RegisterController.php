@@ -45,7 +45,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'date' => $data['date'],
             'time' => $data['time'],
-            'memo' => $data['memo'],
+            'memo' => $data['memo']
         ]);
     }
 }

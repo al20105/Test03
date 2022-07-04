@@ -84,7 +84,19 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         if($cnt != 0){
           $tw .= '<br>';
         }
-        $tw .= $task['name'];
+        $data_tags = array();
+        foreach ($task->tags as $tag) {
+          $data_tags[] = $tag->name;
+        }
+        if ($task->memo==null) $task->memo="null";
+        $data_tags = implode(',', $data_tags);
+        $tw .= "<button type='button' class='btn show' data-toggle='modal' data-target='#TaskShow'
+                  data-name=$task->name 
+                  data-date=$task->date 
+                  data-time=$task->time 
+                  data-memo=$task->memo 
+                  data-tags=$data_tags>".$task['name'].
+                "</button>";
         $tw .= '<br>' . date('H:i' ,strtotime($task['time']));
         $cnt++;
       }
@@ -191,12 +203,13 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
                     $data_tags[] = $tag->name;
                   }
                   $data_tags = implode(',', $data_tags);
+                  if ($task->memo==null) $task->memo="";
                 ?>
                 <button type="button" class="btn show" data-toggle="modal" data-target="#TaskShow"
                   data-name={{ $task->name }} 
                   data-date={{ $task->date }} 
                   data-time={{ $task->time }} 
-                  data-memo={{ $task->memo }} 
+                  data-memo={{ $task->memo }}
                   data-tags={{ $data_tags }}>詳細
                 </button>
                 <button type="button" class="btn edit" data-toggle="modal" data-target="#TaskEdit"
@@ -456,8 +469,8 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
               <!-- memo -->
               <div class="form-group">
                 <label class="col-form-label" for="show-memo">詳細</label><br>
-                <div style="display:inline-block; padding: 10px; margin-bottom: 10px; border: 1px solid #333333; background-color: #ffffff; color: #000000;">
-                  <div type="text" id="show-memo"></div>
+                <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; background-color: #ffffff; color: #000000;">
+                  <div type="text" id="show-memo"> </div>
                 </div>
               </div>
               <!-- /memo -->

@@ -45,9 +45,10 @@ trait TagController
     public function TagEdit($user_id, $tag_id, String $name) {
         $tasks = $this->TagDelete($user_id, $tag_id);
         $tag_id = $this->TagRegister([$name]);
-        $tag = Tag::find($tag_id);
+        $tag = Tag::find($tag_id)->first();
         foreach($tasks as $task){
             $task->tags()->attach($tag);
+            $task->tags()->sync($task->tags->unique('id'));
         }
         return $tasks;
     }

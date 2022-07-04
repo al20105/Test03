@@ -30,6 +30,7 @@
                 var date = button.data('date');
                 var time = button.data('time');
                 var memo = button.data('memo');
+                if (memo=="null") memo = "";
                 var tags = button.data('tags').split(',');
 
                 var modal = $(this);
@@ -63,6 +64,7 @@
                 var date = button.data('date');
                 var time = button.data('time');
                 var memo = button.data('memo');
+                if (memo=="null") memo = "";
                 var tags = button.data('tags').split(',');
 
                 var modal = $(this);
