@@ -75,11 +75,12 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
           $tw .= '<br>';
         }
         $tw .= $task['name'];
-        $tw .= '<br>' . date('H:i' ,strtotime($task['time']));
+        $tw .= '<br>' . date('H:i' ,strtotime($task['time'])) . '<br class="space">';
         $cnt++;
       }
     }
-    $tw .= '</td>';
+
+    $tw .= '<br>' . '</td>';
 
     if($youbi % 7 == 6 || $day == $day_count){//週終わり、月終わりの場合
         //%は余りを求める、||はまたは
@@ -109,8 +110,10 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
     <div class="left_area">
 
 
-      <div class="container">
-        <h3><a href="?ym=<?php echo $prev; ?>">&lt;</a><?php echo $html_title; ?><a href="?ym=<?php echo $next; ?>">&gt;</a></h3>
+      <div class="container calender">
+        <h3 class="calender-title">
+          <a href="?ym=<?php echo $prev; ?>">&lt;&lt;　</a><?php echo $html_title; ?><a href="?ym=<?php echo $next; ?>">　&gt;&gt;</a>
+        </h3>
         <table class="table table-bordered">
           <tr>
               <th>日</th>
@@ -132,15 +135,16 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
 
     <div class="right_area">
       <div class="inner">
-        <h1>個人情報</h1>
         <div class="account_info">
-          <h2>芝浦太郎</h2>
-        </div>
+          <!-- <div class="account_title">
+            <p class="user-name">{{ $user->name }}</p>
+          </div> -->
 
-        <div class="new_schedule">
-          <a href="{{ route('task.create') }}">
-            <div class="button_wrap">新規作成</div>
-          </a>
+          <div class="new_schedule">
+            <a href="{{ route('task.create') }}">
+              <div class="button_wrap">新規作成</div>
+            </a>
+        </div>
         </div>
 
         <section id="todo">
@@ -148,18 +152,22 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
             
             @foreach($tasks as $task)
               <li class="item">
-                <h2 class="sche_name">{{ $task->name }}</h2>
                 <?php
                   $parameter = Crypt::encrypt(['id' => $task->id]);
                 ?>
-                <a href="{{ route('task.show', $parameter ) }}" class="btn show">詳細</a>
-                <a href="{{ route('task.edit', $parameter ) }}" class="btn edit">編集</a>
-                <form action="{{ route('task.destroy', $parameter ) }}" id="form_{{ $task->id }}" method="post">
-                  @csrf
-                  {{ method_field('delete') }}
-                  <a href="#" data-id="{{ $task->id }}" onclick="deletePost(this);" class="btn btn-danger">
-                  <span>削除</span></a>
-                </form>
+                <div class="left_item_area">
+                  <h2 class="sche_name">{{ $task->name }}</h2>
+                </div>
+                <div class="right_item_area">
+                  <a href="{{ route('task.show', $parameter ) }}" class="btn show">詳細</a>
+                  <a href="{{ route('task.edit', $parameter ) }}" class="btn edit">編集</a>
+                  <form action="{{ route('task.destroy', $parameter ) }}" id="form_{{ $task->id }}" method="post" class="btn delete-btn">
+                    @csrf
+                    {{ method_field('delete') }}
+                    <a href="#" data-id="{{ $task->id }}" onclick="deletePost(this);" class="delete">
+                    <span>削除</span></a>
+                  </form>
+                </div>
               </li>
             @endforeach
             

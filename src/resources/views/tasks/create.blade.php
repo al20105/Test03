@@ -6,7 +6,6 @@
   <link rel="stylesheet" href="{{ asset('css/create.css') }}">
 </head>
 <body>
-  <h1>CREATE ページ</h1>
   <form action="{{ route('task.store') }}" method="post" enctype='multipart/form-data' id="create">
     @csrf
     <h2 class="main_title">課題情報登録</h2>
