@@ -11,58 +11,34 @@
 *** Revision :
 *** V1.0 : 佐藤　駿介, 2022.06.18
 *** V2.0 : 佐藤　駿介, 2022.06.25 アカウント編集処理
-
 */
 
-namespace App\Http\Controllers\Task;
+namespace App\Http\Controllers\Auth;
 
-use App\Models\Task;
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\Encryption\DecryptException;
-use Illuminate\Foundation\Auth\RedirectsUsers;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
 
 class EditController extends Controller
 {
-    use GetUser;
-    use TaskCheck;
-    use RedirectsUsers;
-
-    public function ShowTaskEditWD($encrypted) {
-        $task = Task::find(Crypt::decrypt($encrypted))->first();
-        return view('tasks.edit', compact('task'));
+    public function ShowEditForm(Request $request) 
+    {
+        return view('auth.edit', [
+            'change_id' => $request->id
+        ]);
     }
 
-<<<<<<< HEAD
-    protected $redirectTo = '/tasks';
-
-    protected function TaskEdit(Request $request)
-    {
-        $this->TaskCheck($request->all())->validate();
-        $this->update($request->all());
-
-        return $request->wantsJson() ? new JsonResponse([], 201) : redirect($this->redirectPath());
-    }
-
-    protected function update(array $data)
-    {
-        Task::find($data['id'])->update([
-            'name' => $data['name'],
-            'date' => $data['date'],
-            'time' => $data['time'],
-            'memo' => $data['memo']
-=======
     public function userEdit(Request $request) 
     {
-
-        $auth = User::find(1);
+        $auth = User::find($request->id);
         //バリデーション処理
         $this->auth_validate($request->all())->validate();
         //データの上書き編集
         $this->update($request->all(),$auth);
-        return redirect('home');
+        return redirect('/tasks');
     }
 
     public function update(array $data, //入力データ
@@ -82,8 +58,6 @@ class EditController extends Controller
             'name' => ['required', 'string', 'max:255'],//ユーザ名
             'email' => ['required', 'string', 'email', 'max:255'],//メールアドレス
             'password' => ['required', 'string', 'min:8','current_password']//現在のパスワード
->>>>>>> origin/main
         ]);
     }
-
 }
