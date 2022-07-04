@@ -2,8 +2,6 @@
 <html lang="ja">
 <head>
   <title>課題管理システム</title>
-  <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/show.css') }}">
 </head>
 <body>
   <div class="" id="show">

@@ -14,16 +14,18 @@ trait TagController
         return $tag;
     }
 
-    public function TagRegister(array $data) {
-        $tag_names = array_unique($data);
+    public function TagRegister($data) {
         $tags = null;
-        foreach ($tag_names as $name) {
-            if ($name!=null) {
-                $tag = Tag::where('name',$name)->first();
-                if ($tag != null) {
-                    $tags[] = $tag->id;
-                } else {
-                    $tags[] = $this->TagCreate($name)->id;
+        if ($data!=null) {
+            $tag_names = array_unique($data);
+            foreach ($tag_names as $name) {
+                if ($name!=null) {
+                    $tag = Tag::where('name',$name)->first();
+                    if ($tag != null) {
+                        $tags[] = $tag->id;
+                    } else {
+                        $tags[] = $this->TagCreate($name)->id;
+                    }
                 }
             }
         }
@@ -38,5 +40,25 @@ trait TagController
             }
         }
         return $tags->unique('id');
+    }
+
+    public function TagEdit($user_id, $tag_id, String $name) {
+        $tasks = $this->TagDelete($user_id, $tag_id);
+        $tag_id = $this->TagRegister([$name]);
+        $tag = Tag::find($tag_id);
+        foreach($tasks as $task){
+            $task->tags()->attach($tag);
+        }
+        return $tasks;
+    }
+
+    public function TagDelete($user_id, $tag_id) {
+        $tag = Tag::find($tag_id);
+        $tasks = $tag->tasks;
+        $tasks = $tasks->where('user_id',$user_id);
+        foreach($tasks as $task){
+            $task->tags()->detach($tag);
+        }
+        return $tasks;
     }
 }

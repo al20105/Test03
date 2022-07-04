@@ -29,7 +29,14 @@ class RegisterController extends Controller
             $task->tags()->attach($tags);
         }
 
-        return redirect($this->redirectPath());
+        if ($task->tags) {
+            $messageKey = 'successMessage';
+            $flashMessage = __('flash.task_register_success');
+        } else {
+            $messageKey = 'errorMessage';
+            $flashMessage = __('book.task_register_failed');
+        }
+        return redirect($this->redirectPath())->with($messageKey, $flashMessage);
     }
 
     protected function create(array $data)

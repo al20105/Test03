@@ -2,8 +2,6 @@
 <html lang="ja">
 <head>
   <title>課題管理システム</title>
-  <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/edit.css') }}">
 </head>
 <body>
   <h1>EDIT ページ</h1>
@@ -55,8 +53,8 @@
     </div>
 
     <div class="next_btn">
-      <input type="submit" class="cancel" value="キャンセル">
-      <input type="submit" class="save" value="編集">
+      <input type="submit" class="cancel" value="キャンセル" name="reject">
+      <input type="submit" class="save" value="登録" name="approve">
     </div>
   </form>
 </body>

@@ -29,19 +29,28 @@ class EditController extends Controller
             $this->TaskCheck($request->all())->validate();
             $task = $this->update($request->all());
             $tags = $this->TagRegister($request->input('tags'));
+
             $task->tags()->sync($tags);
         }
 
-        return redirect($this->redirectPath());
+        if ($task->tags) {
+            $messageKey = 'successMessage';
+            $flashMessage = __('flash.task_edit_success');
+        } else {
+            $messageKey = 'errorMessage';
+            $flashMessage = __('book.task_edit_failed');
+        }
+        return redirect($this->redirectPath())->with($messageKey, $flashMessage);
     }
 
     protected function update(array $data)
     {
-        return Task::find($data['id'])->update([
+        Task::find($data['id'])->update([
             'name' => $data['name'],
             'date' => $data['date'],
             'time' => $data['time'],
             'memo' => $data['memo']
         ]);
+        return Task::find($data['id']);
     }
 }
