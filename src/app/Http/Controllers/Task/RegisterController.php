@@ -13,10 +13,6 @@ class RegisterController extends Controller
 {
     use GetUser; use TaskCheck; use RedirectsUsers; use TagController;
 
-    public function ShowTaskRegisterWD() { //M5 課題登録画面表示UI処理
-        return view('tasks.create');
-    }
-
     protected $redirectTo = RouteServiceProvider::HOME;
 
     protected function TaskRegister(Request $request)

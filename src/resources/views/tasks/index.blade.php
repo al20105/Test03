@@ -90,14 +90,16 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         }
         if ($task->memo==null) $task->memo="null";
         $data_tags = implode(',', $data_tags);
+        $t_name = $task['name'];
+        if (Str::length($t_name)>10) $t_name = substr($t_name, 0, 10)."...";
         $tw .= "<button type='button' class='btn show' data-toggle='modal' data-target='#TaskShow'
                   data-name=$task->name 
                   data-date=$task->date 
                   data-time=$task->time 
                   data-memo=$task->memo 
-                  data-tags=$data_tags>".$task['name'].
+                  data-tags=$data_tags>".$t_name.
                 "</button>";
-        $tw .= '<br>' . date('H:i' ,strtotime($task['time']));
+        $tw .= date('H:i' ,strtotime($task['time']));
         $cnt++;
       }
     }
@@ -134,33 +136,36 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
 </head>
 <body>
+  {{-- フラッシュメッセージ始まり --}}
+  {{-- 成功の時 --}}
+  @if (session('successMessage'))
+  <div class="alert alert-success text-center">
+    {{ session('successMessage') }}
+  </div> 
+  @endif
+  {{-- 失敗の時 --}}
+  @if (session('errorMessage'))
+  <div class="alert alert-danger text-center">
+    {{ session('errorMessage') }}
+  </div> 
+  @endif
+  @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+  @endif
+  {{-- フラッシュメッセージ終わり --}}
   <section class="main">
-    {{-- フラッシュメッセージ始まり --}}
-    {{-- 成功の時 --}}
-    @if (session('successMessage'))
-    <div class="alert alert-success text-center">
-      {{ session('successMessage') }}
-    </div> 
-    @endif
-    {{-- 失敗の時 --}}
-    @if (session('errorMessage'))
-    <div class="alert alert-danger text-center">
-      {{ session('errorMessage') }}
-    </div> 
-    @endif
-    @if ($errors->any())
-	    <div class="alert alert-danger">
-	        <ul>
-	            @foreach ($errors->all() as $error)
-	                <li>{{ $error }}</li>
-	            @endforeach
-	        </ul>
-	    </div>
-	  @endif
-    {{-- フラッシュメッセージ終わり --}}
+    
     <div class="left_area">
-      <div class="container">
-        <h3><a href="?ym=<?php echo $prev.$tag_que; ?>">&lt;</a><?php echo $html_title; ?><a href="?ym=<?php echo $next.$tag_que; ?>">&gt;</a></h3>
+      <div class="container-fluid calender">
+        <h3 class="calender-title">
+          <a href="?ym=<?php echo $prev.$tag_que; ?>">&lt;</a><?php echo $html_title; ?><a href="?ym=<?php echo $next.$tag_que; ?>">&gt;</a>
+        </h3>
         <table class="table table-bordered">
           <tr>
               <th>日</th>
@@ -182,16 +187,25 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
 
     <div class="right_area">
       <div class="inner">
-
-        <div class="new_schedule">
-          <div class="button_wrap" data-toggle="modal" data-target="#TaskRegister">新規作成</div>
+        <div class="account_info">
+          <div class="new_schedule">
+            <a>
+              <div class="button_wrap" data-toggle="modal" data-target="#TaskRegister">新規作成</div>
+            </a>
+          </div>
         </div>
 
         <section id="todo">
           <ul>
             @foreach($tasks as $task)
               <li class="item">
-                <h2 class="sche_name">{{ $task->name }}</h2>
+                <div class="left_item_area">
+                  <?php
+                    $t_name = $task->name;
+                    if (Str::length($t_name)>16) $t_name = substr($t_name, 0, 16)."...";
+                  ?>
+                  <h2 class="sche_name">{{ $t_name }}</h2>
+                </div>
                 <?php
                   $parameter = Crypt::encrypt(['id' => $task->id]);
                   $data_tags = array();
@@ -201,36 +215,35 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
                   $data_tags = implode(',', $data_tags);
                   if ($task->memo==null) $task->memo="";
                 ?>
-                <button type="button" class="btn show" data-toggle="modal" data-target="#TaskShow"
-                  data-name={{ $task->name }} 
-                  data-date={{ $task->date }} 
-                  data-time={{ $task->time }} 
-                  data-memo={{ $task->memo }}
-                  data-tags={{ $data_tags }}>詳細
-                </button>
-                <button type="button" class="btn edit" data-toggle="modal" data-target="#TaskEdit"
-                  data-id={{ $task->id }} 
-                  data-name={{ $task->name }} 
-                  data-date={{ $task->date }} 
-                  data-time={{ $task->time }} 
-                  data-memo={{ $task->memo }} 
-                  data-tags={{ $data_tags }}>編集
-                </button>
-                <form action="{{ route('task.destroy', $parameter ) }}" id="form_{{ $task->id }}" method="post">
-                  @csrf
-                  {{ method_field('delete') }}
-                  <a href="#" data-id="{{ $task->id }}" onclick="deletePost(this);" class="btn btn-danger">
-                  <span>削除</span></a>
-                </form>
+                <div class="right_item_area">
+                  <button type="button" class="btn show" data-toggle="modal" data-target="#TaskShow"
+                    data-name={{ $task->name }} 
+                    data-date={{ $task->date }} 
+                    data-time={{ $task->time }} 
+                    data-memo={{ $task->memo }}
+                    data-tags={{ $data_tags }}>詳細
+                  </button>
+                  <button type="button" class="btn edit" data-toggle="modal" data-target="#TaskEdit"
+                    data-id={{ $task->id }} 
+                    data-name={{ $task->name }} 
+                    data-date={{ $task->date }} 
+                    data-time={{ $task->time }} 
+                    data-memo={{ $task->memo }} 
+                    data-tags={{ $data_tags }}>編集
+                  </button>
+                  <form action="{{ route('task.destroy', $parameter ) }}" id="form_{{ $task->id }}" method="post" class="btn delete-btn">
+                    @csrf
+                    {{ method_field('delete') }}
+                    <a href="#" data-id="{{ $task->id }}" onclick="deletePost(this);" class="delete">
+                    <span>削除</span></a>
+                  </form>
+                </div>
               </li>
             @endforeach
             
           </ul>
         </section>
       </div>
-    </div>
-    
-    <div class="text-align-right">
       <h3 class="content_title">タグ一覧</h3>
       <?php // tagsの構造体を変換
         $data_tags = array();
@@ -260,7 +273,9 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
           </li>
         @endforeach
       </ul>
+      <a href="home?ym=<?php echo $ym; ?>" class="text">タグ検索をリセット</a>
     </div>
+
   </section>
 
   <!-- Modal -->
