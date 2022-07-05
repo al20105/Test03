@@ -38,7 +38,7 @@ class EditController extends Controller
         $this->auth_validate($request->all())->validate();
         //データの上書き編集
         $this->update($request->all(),$auth);
-        return redirect('/tasks');
+        return redirect('home');
     }
 
     public function update(array $data, //入力データ

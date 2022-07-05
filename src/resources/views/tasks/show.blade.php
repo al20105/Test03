@@ -2,8 +2,6 @@
 <html lang="ja">
 <head>
   <title>課題管理システム</title>
-  <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/show.css') }}">
 </head>
 <body>
   <div class="" id="show">
@@ -18,7 +16,7 @@
     </div>
     <div class="content_wrap">
       <h3 class="content_title">タグ</h3>
-      @foreach($task->tags() as $tag)
+      @foreach($task->tags as $tag)
         <p>{{ $tag->name }}</p>
       @endforeach
       <p></p>

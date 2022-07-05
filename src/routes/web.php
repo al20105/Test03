@@ -6,6 +6,7 @@ use App\Http\Controllers\Task\DestroyController;
 use App\Http\Controllers\Task\ShowListController;
 use App\Http\Controllers\Task\ShowDetailController;
 use App\Http\Controllers\Task\EditController;
+use Illuminate\Foundation\Auth\RedirectsUsers;
 
 
 /*
@@ -20,23 +21,25 @@ use App\Http\Controllers\Task\EditController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('home', [ShowListController::class, 'ShowListWD'])->name('home');
 
-Route::get('tasks', [ShowListController::class, 'ShowListWD'])->name('task.index');
-Route::get('task/create', [RegisterController::class, 'ShowTaskRegisterWD'])->name('task.create');
+//Route::get('task/create', [RegisterController::class, 'ShowTaskRegisterWD'])->name('task.create');
 Route::post('task/store', [RegisterController::class, 'TaskRegister'])->name('task.store');
-Route::get('task/show/{parameter}', [ShowDetailController::class, 'ShowTaskWD'])->name('task.show'); 
-Route::get('task/edit/{parameter}', [EditController::class, 'ShowTaskEditWD'])->name('task.edit');
+//Route::get('task/show/{parameter}', [ShowDetailController::class, 'ShowTaskWD'])->name('task.show'); 
+//Route::get('task/edit/{parameter}', [EditController::class, 'ShowTaskEditWD'])->name('task.edit');
 Route::post('task/update', [EditController::class, 'TaskEdit'])->name('task.update');
 Route::delete('task/destroy/{parameter}', [DestroyController::class, 'destroy'])->name('task.destroy');
 
 Route::get('edit',[App\Http\Controllers\Auth\EditController::class, 'showEditForm'])->name('auth.edit');
 Route::post('edited',[App\Http\Controllers\Auth\EditController::class, 'userEdit'])->name('auth.update');
+
+Route::post('tag/edit', [ShowListController::class, 'TagEditIndex'])->name('tag.edit');
+Route::post('tag/delete', [ShowListController::class, 'TagDeleteIndex'])->name('tag.delete');
 
 Route::get('scss', function () {
     return view('for-scss');
