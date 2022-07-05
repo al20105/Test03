@@ -247,7 +247,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <form id="edit-form" action="{{ route('auth.edit') }}" method="GET">
                                         <input type="hidden" name="id" value="{{ Auth::user()->id }}">
-                                        <input type="submit" class="dropdown-item" value="Edit">
+                                        <input type="submit" class="dropdown-item" value="編集">
                                     </form>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"

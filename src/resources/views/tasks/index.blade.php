@@ -182,10 +182,6 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
 
     <div class="right_area">
       <div class="inner">
-        <h1>個人情報</h1>
-        <div class="account_info">
-          <h2>芝浦太郎</h2>
-        </div>
 
         <div class="new_schedule">
           <div class="button_wrap" data-toggle="modal" data-target="#TaskRegister">新規作成</div>
