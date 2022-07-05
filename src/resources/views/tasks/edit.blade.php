@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <title>課題管理システム</title>
 </head>
+
 <body>
   <h1>EDIT ページ</h1>
 
   <form action="{{ route('task.update' ) }}" method="post" enctype='multipart/form-data' id="create">
     @csrf
+    @method('PUT')
     <h2 class="main_title">課題情報編集</h2>
-
+<<<<<<< HEAD
     <input type="hidden" name="id" value={{ $task->id }}>
+=======
+
+<<<<<<< HEAD
+>>>>>>> origin/main
+=======
+    <input type="hidden" name="id" value={{ $task->id }}>
+>>>>>>> origin/main
     <div class="content_wrap">
       <h3 class="content_title">課題名</h3>
       <input type="text" name="name" value={{ $task->name }} class="input_area">
@@ -58,4 +68,5 @@
     </div>
   </form>
 </body>
+
 </html>
