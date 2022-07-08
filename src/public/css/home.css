@@ -28,21 +28,22 @@ body {
 
 .main {
   position: relative;
-  width: 100% !important;
+  width: 100%;
   min-height: 100vh;
   margin: 0 auto;
-  display: flex !important;
+  display: flex;
   justify-content: space-between;
 }
 .main .left_area {
-  width: 70% !important;
+  width: 70%;
 }
 .main .left_area .calender {
   margin: 0 auto;
+  width: 100% !important;
 }
 .main .left_area .calender .calender-title {
   text-align: center;
-  font-size: 50px;
+  font-size: 35px;
 }
 .main .left_area .calender .calender-title > a {
   text-decoration: none;
@@ -83,7 +84,7 @@ body {
   background: #dcdcfd;
 }
 .main .right_area {
-  width: 30% !important;
+  width: 30%;
   margin: 0 auto;
 }
 .main .right_area .inner {
@@ -119,26 +120,36 @@ body {
 .main .right_area .inner #todo {
   width: 95%;
   margin: 27px auto 0;
-  background: #b8b8ff;
+  border: 1px solid #b8b8ff;
+  background: rgba(184, 184, 255, 0.5);
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
   border-radius: 7px;
 }
+.main .right_area .inner #todo .todo_title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
 .main .right_area .inner #todo ul {
   width: 98%;
-  margin: 0 auto;
-  padding: 20px 0 !important;
+  height: 50vh;
+  margin: 10px auto;
+  padding: 0 0 10px !important;
+  overflow: scroll;
 }
 .main .right_area .inner #todo ul .item {
   display: flex;
   justify-content: space-between;
   margin: 20px auto;
   padding: 10px 0 !important;
-  background: rgba(104, 104, 255, 0.7);
+  border: 1px solid #b8b8ff;
+  background: rgb(238, 238, 238);
   border-radius: 7px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 .main .right_area .inner #todo ul .item .left_item_area {
-  width: 50%;
+  width: 55%;
 }
 .main .right_area .inner #todo ul .item .left_item_area .sche_name {
   margin-bottom: 0 !important;
@@ -148,36 +159,119 @@ body {
   align-items: baseline;
 }
 .main .right_area .inner #todo ul .item .right_item_area {
-  width: 50%;
+  position: relative;
+  width: 45%;
+  right: 0;
   display: flex;
   justify-content: flex-end;
 }
 .main .right_area .inner #todo ul .item .right_item_area .btn {
   text-decoration: none;
-  color: #fff;
+  color: #000;
+  width: 50px;
+  height: 30px;
+  padding: 0;
+  margin-right: 10px;
 }
 .main .right_area .inner #todo ul .item .right_item_area .btn:hover {
-  color: rgb(160, 160, 160);
+  color: rgb(28, 28, 28);
   transition: 0.2s;
   font-weight: bold;
 }
 .main .right_area .inner #todo ul .item .right_item_area .btn > a {
   text-decoration: none;
 }
+.main .right_area .inner #todo ul .item .right_item_area .btn > a > span {
+  display: block;
+  transform: translateY(2px);
+}
 .main .right_area .inner #todo ul .item .right_item_area .delete-btn {
-  background: green;
+  background: #ada8b2;
 }
 .main .right_area .inner #todo ul .item .right_item_area .show {
-  background: red;
+  background: #ada8b2;
 }
 .main .right_area .inner #todo ul .item .right_item_area .edit {
-  background: blue;
+  background: #ada8b2;
 }
 .main .right_area .inner #todo ul .item .right_item_area .delete {
-  color: #fff;
+  color: #000;
 }
 .main .right_area .inner #todo ul .item .right_item_area .delete:hover {
-  color: rgb(160, 160, 160);
+  color: rgb(28, 28, 28);
   transition: 0.2s;
   font-weight: bold;
+}
+.main .right_area .inner #tag {
+  width: 95%;
+  margin: 27px auto 0;
+  border: 1px solid #b8b8ff;
+  background: rgba(184, 184, 255, 0.5);
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+  border-radius: 7px;
+}
+.main .right_area .inner #tag .tag_title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.main .right_area .inner #tag .tag_btn {
+  display: flex;
+}
+.main .right_area .inner #tag .tag_btn .tag_edit {
+  display: block;
+  margin-left: 20px;
+  background: #ada8b2;
+  width: 50px;
+  height: 30px;
+  text-align: center;
+  border-radius: 5px;
+}
+.main .right_area .inner #tag .tag_btn .tag_delete {
+  display: block;
+  margin-left: 20px;
+  background: #ada8b2;
+  width: 50px;
+  height: 30px;
+  text-align: center;
+  border-radius: 5px;
+}
+.main .right_area .inner #tag .tag_btn .tag_search {
+  display: block;
+  margin-left: 20px;
+  padding: 0 20px;
+  background: #ada8b2;
+  text-align: center;
+  border-radius: 5px;
+}
+.main .right_area .inner #tag .tag_btn .tag_search > a > span {
+  display: block;
+  transform: translateY(3px);
+  color: #000;
+}
+.main .right_area .inner #tag .tag_btn .button_wrap {
+  transform: translateY(2px);
+}
+.main .right_area .inner #tag ul {
+  width: 90%;
+  max-height: 50vh;
+  margin: 10px auto;
+  padding: 20px 0 !important;
+  overflow: scroll;
+}
+.main .right_area .inner #tag ul .item {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px auto;
+  padding: 10px 0 !important;
+  border: 1px solid #b8b8ff;
+  background: rgb(238, 238, 238);
+  border-radius: 7px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.main .right_area .inner #tag ul .item .text {
+  font-size: 15px;
+  padding: 0 20px;
 }

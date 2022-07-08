@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('tag_task', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('task_id');
-            $table->unsignedBigInteger('tag_id');
+            // $table->unsignedBigInteger('task_id');
+            // $table->unsignedBigInteger('tag_id');
             $table->foreignId('task_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('tag_id');
             $table->timestamps();

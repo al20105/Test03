@@ -164,7 +164,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
     <div class="left_area">
       <div class="container-fluid calender">
         <h3 class="calender-title">
-          <a href="?ym=<?php echo $prev.$tag_que; ?>">&lt;</a><?php echo $html_title; ?><a href="?ym=<?php echo $next.$tag_que; ?>">&gt;</a>
+          <a href="?ym=<?php echo $prev.$tag_que; ?>">&lt;&lt;　</a><?php echo $html_title; ?><a href="?ym=<?php echo $next.$tag_que; ?>">　&gt;&gt;</a>
         </h3>
         <table class="table table-bordered">
           <tr>
@@ -196,6 +196,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         </div>
 
         <section id="todo">
+          <p class="todo_title">To Doリスト一覧</p>
           <ul>
             @foreach($tasks as $task)
               <li class="item">
@@ -243,37 +244,44 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
             
           </ul>
         </section>
-      </div>
-      <h3 class="content_title">タグ一覧</h3>
-      <?php // tagsの構造体を変換
-        $data_tags = array();
-        foreach ($tags as $tag) {
-          $data_tags[] = $tag->name;
-        }
-        $data_tags = implode(',', $data_tags);
-      ?>
-      <div class="tag_edit">
-        <div class="button_wrap" data-toggle="modal" data-target="#TagEdit" data-tags={{ $data_tags }}>編集</div>
-      </div>
-      <div class="tag_delete">
-        <div class="button_wrap" data-toggle="modal" data-target="#TagDelete" data-tags={{ $data_tags }}>削除</div>
-      </div>
-      <ul>
-        @foreach($tags as $tag)
-          <li class="item">
-            <?php // そのタグを持つ課題の数を求める
-              $tag_count = 0; 
-              foreach ($tasks as $task) {
-                if ($task->tags->where('id',$tag->id)->count()==1) {
-                  $tag_count++;
+
+        <section id="tag">
+        <h3 class="tag_title">タグ一覧</h3>
+        <?php // tagsの構造体を変換
+          $data_tags = array();
+          foreach ($tags as $tag) {
+            $data_tags[] = $tag->name;
+          }
+          $data_tags = implode(',', $data_tags);
+        ?>
+        <div class="tag_btn">
+          <div class="tag_edit">
+            <div class="button_wrap" data-toggle="modal" data-target="#TagEdit" data-tags={{ $data_tags }}>編集</div>
+          </div>
+          <div class="tag_delete">
+            <div class="button_wrap" data-toggle="modal" data-target="#TagDelete" data-tags={{ $data_tags }}>削除</div>
+          </div>
+          <div class="tag_search">
+            <a href="home?ym=<?php echo $ym; ?>" class="text"><span>タグ検索をリセット</span></a>
+          </div>
+        </div>
+        <ul>
+          @foreach($tags as $tag)
+            <li class="item">
+              <?php // そのタグを持つ課題の数を求める
+                $tag_count = 0; 
+                foreach ($tasks as $task) {
+                  if ($task->tags->where('id',$tag->id)->count()==1) {
+                    $tag_count++;
+                  }
                 }
-              }
-            ?>
-            <a href="home?ym=<?php echo $ym; ?>&tag={{ $tag->name }}" class="text">#{{ $tag->name }}<?php echo("(".$tag_count.")")?></a>
-          </li>
-        @endforeach
-      </ul>
-      <a href="home?ym=<?php echo $ym; ?>" class="text">タグ検索をリセット</a>
+              ?>
+              <a href="home?ym=<?php echo $ym; ?>&tag={{ $tag->name }}" class="text"><span>#{{ $tag->name }}<?php echo("(".$tag_count.")")?></span></a>
+            </li>
+          @endforeach
+        </ul>
+      </section>
+      </div>
     </div>
 
   </section>
