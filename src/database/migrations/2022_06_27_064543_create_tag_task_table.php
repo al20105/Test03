@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('tag_task', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->comment('課題名');
+            // $table->unsignedBigInteger('task_id');
+            // $table->unsignedBigInteger('tag_id');
+            $table->foreignId('task_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('tag_id');
             $table->timestamps();
-            $table->softDeletes()->comment('安全な削除処理に必要');
         });
     }
 
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('tag_task');
     }
 };

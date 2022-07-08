@@ -157,7 +157,13 @@ trait AuthenticatesUsers
         return 'email';
     }
 
+    public function lo()
+    {
+        return;
+    }
+
     /**
+     *
      * Log the user out of the application.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -177,7 +183,7 @@ trait AuthenticatesUsers
 
         return $request->wantsJson()
             ? new JsonResponse([], 204)
-            : redirect('/');
+            : redirect('/login');
     }
 
     /**

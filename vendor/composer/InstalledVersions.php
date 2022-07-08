@@ -252,7 +252,13 @@ class InstalledVersions
     /**
      * @return array
 <<<<<<< HEAD
+<<<<<<< HEAD
+
      * @psalm-return array{name: string, pretty_version: string, version: string, reference: string|null, type: string, install_path: string, aliases: string[], dev: bool}
+
+=======
+     * @psalm-return array{name: string, pretty_version: string, version: string, reference: string|null, type: string, install_path: string, aliases: string[], dev: bool}
+>>>>>>> origin/main
 =======
      * @psalm-return array{name: string, version: string, reference: string, pretty_version: string, aliases: string[], dev: bool, install_path: string, type: string}
 >>>>>>> origin/main

@@ -11,20 +11,28 @@ use Illuminate\Foundation\Auth\RedirectsUsers;
 
 class RegisterController extends Controller
 {
-    use GetUser; use TaskCheck; use RedirectsUsers;
+    use GetUser; use TaskCheck; use RedirectsUsers; use TagController;
 
-    public function ShowTaskRegisterWD() { //M5 課題登録画面表示UI処理
-        return view('tasks.create');
-    }
-
-    protected $redirectTo = '/tasks';
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     protected function TaskRegister(Request $request)
     {
-        $this->TaskCheck($request->all())->validate();
-        $this->user->tasks()->create($request->all());
+        if ($request->has('approve')) {
+            $this->TaskCheck($request->all())->validate();
+            $task = $this->user->tasks()->create($request->all());
+            $tags = $this->TagRegister($request->input('tags'));
 
-        return $request->wantsJson() ? new JsonResponse([], 201) : redirect($this->redirectPath());
+            $task->tags()->attach($tags);
+        }
+
+        if ($task->tags) {
+            $messageKey = 'successMessage';
+            $flashMessage = __('flash.task_register_success');
+        } else {
+            $messageKey = 'errorMessage';
+            $flashMessage = __('book.task_register_failed');
+        }
+        return redirect($this->redirectPath())->with($messageKey, $flashMessage);
     }
 
     protected function create(array $data)

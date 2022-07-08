@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     {
         if(env('APP_ENV') === 'ngrok')
         {
-            $this->app['request']->server->set('HTTPS', true);
+            \URL::forceScheme('https');
         }
     }
 }
