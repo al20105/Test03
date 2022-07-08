@@ -15,12 +15,6 @@ class EditController extends Controller
 {
     use GetUser; use TaskCheck; use RedirectsUsers; use TagController;
 
-    public function ShowTaskEditWD($encrypted) {
-        $task = Task::find(Crypt::decrypt($encrypted))->first();
-        $tags = $task->tags;
-        return view('tasks.edit', compact('task','tags'));
-    }
-
     protected $redirectTo = RouteServiceProvider::HOME;
 
     protected function TaskEdit(Request $request)
