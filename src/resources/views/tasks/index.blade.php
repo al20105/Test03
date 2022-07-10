@@ -84,6 +84,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         if($cnt != 0){
           $tw .= '<br>';
         }
+<<<<<<< HEAD
         $data_tags = array();
         foreach ($task->tags as $tag) {
           $data_tags[] = $tag->name;
@@ -100,10 +101,15 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
                   data-tags=$data_tags>".$t_name.
                 "</button>";
         $tw .= date('H:i' ,strtotime($task['time']));
+=======
+        $tw .= $task['name'];
+        $tw .= '<br>' . date('H:i' ,strtotime($task['time'])) . '<br class="space">';
+>>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
         $cnt++;
       }
     }
-    $tw .= '</td>';
+
+    $tw .= '<br>' . '</td>';
 
     if($youbi % 7 == 6 || $day == $day_count){//週終わり、月終わりの場合
         //%は余りを求める、||はまたは
@@ -162,9 +168,17 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
   <section class="main">
     
     <div class="left_area">
+<<<<<<< HEAD
       <div class="container-fluid calender">
         <h3 class="calender-title">
           <a href="?ym=<?php echo $prev.$tag_que; ?>">&lt;&lt;　</a><?php echo $html_title; ?><a href="?ym=<?php echo $next.$tag_que; ?>">　&gt;&gt;</a>
+=======
+
+
+      <div class="container calender">
+        <h3 class="calender-title">
+          <a href="?ym=<?php echo $prev; ?>">&lt;&lt;　</a><?php echo $html_title; ?><a href="?ym=<?php echo $next; ?>">　&gt;&gt;</a>
+>>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
         </h3>
         <table class="table table-bordered">
           <tr>
@@ -188,11 +202,23 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
     <div class="right_area">
       <div class="inner">
         <div class="account_info">
+<<<<<<< HEAD
           <div class="new_schedule">
             <a>
               <div class="button_wrap" data-toggle="modal" data-target="#TaskRegister">新規作成</div>
             </a>
           </div>
+=======
+          <!-- <div class="account_title">
+            <p class="user-name">{{ $user->name }}</p>
+          </div> -->
+
+          <div class="new_schedule">
+            <a href="{{ route('task.create') }}">
+              <div class="button_wrap">新規作成</div>
+            </a>
+        </div>
+>>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
         </div>
 
         <section id="todo">
@@ -200,6 +226,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
           <ul>
             @foreach($tasks as $task)
               <li class="item">
+<<<<<<< HEAD
                 <div class="left_item_area">
                   <?php
                     $t_name = $task->name;
@@ -207,6 +234,8 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
                   ?>
                   <h2 class="sche_name">{{ $t_name }}</h2>
                 </div>
+=======
+>>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
                 <?php
                   $parameter = Crypt::encrypt(['id' => $task->id]);
                   $data_tags = array();
@@ -216,6 +245,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
                   $data_tags = implode(',', $data_tags);
                   if ($task->memo==null) $task->memo="";
                 ?>
+<<<<<<< HEAD
                 <div class="right_item_area">
                   <button type="button" class="btn show" data-toggle="modal" data-target="#TaskShow"
                     data-name={{ $task->name }} 
@@ -232,6 +262,14 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
                     data-memo={{ $task->memo }} 
                     data-tags={{ $data_tags }}>編集
                   </button>
+=======
+                <div class="left_item_area">
+                  <h2 class="sche_name">{{ $task->name }}</h2>
+                </div>
+                <div class="right_item_area">
+                  <a href="{{ route('task.show', $parameter ) }}" class="btn show">詳細</a>
+                  <a href="{{ route('task.edit', $parameter ) }}" class="btn edit">編集</a>
+>>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
                   <form action="{{ route('task.destroy', $parameter ) }}" id="form_{{ $task->id }}" method="post" class="btn delete-btn">
                     @csrf
                     {{ method_field('delete') }}
