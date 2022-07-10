@@ -19,7 +19,7 @@ trait TagController
         if ($data!=null) {
             $tag_names = array_unique($data);
             foreach ($tag_names as $name) {
-                if ($name!=null) {
+                if ($name!=null && !preg_match('/#/',$name)) {
                     $tag = Tag::where('name',$name)->first();
                     if ($tag != null) {
                         $tags[] = $tag->id;
@@ -43,12 +43,15 @@ trait TagController
     }
 
     public function TagEdit($user_id, $tag_id, String $name) {
-        $tasks = $this->TagDelete($user_id, $tag_id);
-        $tag_id = $this->TagRegister([$name]);
-        $tag = Tag::find($tag_id)->first();
-        foreach($tasks as $task){
-            $task->tags()->attach($tag);
-            $task->tags()->sync($task->tags->unique('id'));
+        $tasks = null;
+        $id = $this->TagRegister([$name]);
+        if ($id != null) {
+            $tasks = $this->TagDelete($user_id, $tag_id);
+            $tag = Tag::find($id)->first();
+            foreach($tasks as $task){
+                $task->tags()->attach($tag);
+                $task->tags()->sync($task->tags->unique('id'));
+            }
         }
         return $tasks;
     }

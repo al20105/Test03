@@ -25,12 +25,17 @@ class RegisterController extends Controller
             $task->tags()->attach($tags);
         }
 
-        if ($task->tags) {
+        if ($task) {
             $messageKey = 'successMessage';
-            $flashMessage = __('flash.task_register_success');
+            if (is_array($request->input('tags')) && preg_match('/#/',implode($request->input('tags')))) {
+                $flashMessage = __('flash.task_register_success_without_hashmark');
+            }
+            else {
+                $flashMessage = __('flash.task_register_success');
+            }
         } else {
             $messageKey = 'errorMessage';
-            $flashMessage = __('book.task_register_failed');
+            $flashMessage = __('flash.task_register_failed');
         }
         return redirect($this->redirectPath())->with($messageKey, $flashMessage);
     }

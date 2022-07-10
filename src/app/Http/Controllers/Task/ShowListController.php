@@ -31,15 +31,15 @@ class ShowListController extends Controller
     protected $redirectTo = RouteServiceProvider::HOME;
 
     public function TagEditIndex(Request $request) {
-        $task=null;
+        $tasks = null;
         if ($request->has('approve')) {
             if ($request->name!=""){
                 $tag = Tag::where('name',$request->old)->first();
-                $task = $this->TagEdit($this->user->id,$tag->id,$request->name);
+                $tasks = $this->TagEdit($this->user->id,$tag->id,$request->name);
             }
         }
 
-        if ($task!=null) {
+        if ($tasks!=null) {
             $messageKey = 'successMessage';
             $flashMessage = __('flash.tag_edit_success');
         } else {

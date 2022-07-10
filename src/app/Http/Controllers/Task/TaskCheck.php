@@ -10,8 +10,8 @@ trait TaskCheck
     public function TaskCheck(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'max:100'],
-            'date' => ['required'],
+            'name' => ['required', 'max:100', 'regex:/^(?!.*(<|>)).*$/'],
+            'date' => ['required', 'max:10'],
         ]);
     }
 }

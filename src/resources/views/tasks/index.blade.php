@@ -91,7 +91,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         if ($task->memo==null) $task->memo="null";
         $data_tags = implode(',', $data_tags);
         $t_name = $task['name'];
-        if (Str::length($t_name)>10) $t_name = substr($t_name, 0, 10)."...";
+        if (Str::length($t_name)>10) $t_name = mb_substr($t_name, 0, 10, "utf-8")."...";
         $tw .= "<button type='button' class='btn show' data-toggle='modal' data-target='#TaskShow'
                   data-name=$task->name 
                   data-date=$task->date 
@@ -164,7 +164,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
     <div class="left_area">
       <div class="container-fluid calender">
         <h3 class="calender-title">
-          <a href="?ym=<?php echo $prev.$tag_que; ?>">&lt;&lt;　</a><?php echo $html_title; ?><a href="?ym=<?php echo $next.$tag_que; ?>">　&gt;&gt;</a>
+          <a href="?ym=<?php echo $prev.$tag_que; ?>">&lt;&lt; </a><?php echo $html_title; ?><a href="?ym=<?php echo $next.$tag_que; ?>">　&gt;&gt;</a>
         </h3>
         <table class="table table-bordered">
           <tr>
@@ -203,7 +203,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
                 <div class="left_item_area">
                   <?php
                     $t_name = $task->name;
-                    if (Str::length($t_name)>16) $t_name = substr($t_name, 0, 16)."...";
+                    if (Str::length($t_name)>16) $t_name = mb_substr($t_name, 0, 16, "utf-8")."...";
                   ?>
                   <h2 class="sche_name">{{ $t_name }}</h2>
                 </div>

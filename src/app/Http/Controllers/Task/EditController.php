@@ -29,10 +29,15 @@ class EditController extends Controller
 
         if ($task->tags) {
             $messageKey = 'successMessage';
-            $flashMessage = __('flash.task_edit_success');
+            if (is_array($request->input('tags')) && preg_match('/#/',implode($request->input('tags')))) {
+                $flashMessage = __('flash.task_edit_success_without_hashmark');
+            }
+            else {
+                $flashMessage = __('flash.task_edit_success');
+            }
         } else {
             $messageKey = 'errorMessage';
-            $flashMessage = __('book.task_edit_failed');
+            $flashMessage = __('flash.task_edit_failed');
         }
         return redirect($this->redirectPath())->with($messageKey, $flashMessage);
     }
