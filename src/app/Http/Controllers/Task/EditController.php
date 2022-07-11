@@ -54,9 +54,9 @@ class EditController extends Controller
         if ($task != null) 
         {
             $messageKey = 'successMessage'; // 成功
-            if (is_array($request->input('tags')) && preg_match('/#/',implode($request->input('tags')))) // タグに#が含まれている場合
+            if (is_array($request->input('tags')) && preg_match('/[#<>]/',implode($request->input('tags')))) // タグに#が含まれている場合
             {
-                $flashMessage = __('flash.task_edit_success_without_hashmark'); // フラッシュメッセージを生成
+                $flashMessage = __('flash.task_edit_success_without_mark'); // フラッシュメッセージを生成
             }
             else
             {
