@@ -1,4 +1,16 @@
 <?php
+/*******************************************************************
+***  File Name		: ShowListController.php
+***  Version		: V1.0
+***  Designer		: 秋葉 星輝
+***  Date			: 2022.06.13
+***  Purpose       	: タグの処理
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : 秋葉 星輝, 2022.06.13 作成
+*/
 
 namespace App\Http\Controllers\Task;
 
@@ -12,10 +24,14 @@ use App\Providers\RouteServiceProvider;
 
 class ShowListController extends Controller
 {
-    use GetUser; use TagController; use RedirectsUsers;
+    // 継承
+    use GetUser; 
+    use TagController; 
+    use RedirectsUsers;
 
+    //M3 一覧表示UI処理
     public function ShowListWD(Request $request)
-    { //M3 一覧表示UI処理
+    {
         $tag_input = $request->input('tag'); // クエリパラメータのタグの入力を代入
         $tag = Tag::where('name',$tag_input)->first(); // タグを取得
         if ($tag != null) // タグが存在する場合
@@ -33,7 +49,8 @@ class ShowListController extends Controller
 
     protected $redirectTo = RouteServiceProvider::HOME; // リダイレクトパスにhomeを指定
 
-    public function TagEditIndex(Request $request) // タグ編集処理
+    // タグ編集処理
+    public function TagEditIndex(Request $request)
     {
         $tasks = null; // 空の変数を宣言
         if ($request->has('approve')) // 編集ボタンが押された場合
@@ -58,7 +75,8 @@ class ShowListController extends Controller
         return redirect($this->redirectPath())->with($messageKey, $flashMessage); // リダイレクトパスにリダイレクト
     }
 
-    public function TagDeleteIndex(Request $request) // タグ削除処理
+    // タグ削除処理
+    public function TagDeleteIndex(Request $request)
     {
         $task = null; // 空の変数を宣言
         if ($request->has('approve')) // 削除ボタンが押された場合

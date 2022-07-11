@@ -1,4 +1,16 @@
 <?php
+/*******************************************************************
+***  File Name		: RegisterController.php
+***  Version		: V1.0
+***  Designer		: 秋葉 星輝
+***  Date			: 2022.06.13
+***  Purpose       	: 課題の登録
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : 秋葉 星輝, 2022.06.13 作成
+*/
 
 namespace App\Http\Controllers\Task;
 
@@ -15,6 +27,7 @@ class RegisterController extends Controller
 
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    // 課題登録処理
     protected function TaskRegister(Request $request)
     {
         $task = null; //空の変数を宣言

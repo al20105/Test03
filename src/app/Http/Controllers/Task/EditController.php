@@ -1,4 +1,16 @@
 <?php
+/*******************************************************************
+***  File Name		: EditController.php
+***  Version		: V1.0
+***  Designer		: なまえ
+***  Date			: 2022.06.13
+***  Purpose       	: 課題を編集する
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : なまえ, 2022.06.13
+*/
 
 namespace App\Http\Controllers\Task;
 
@@ -13,7 +25,11 @@ use Illuminate\Support\Facades\Crypt;
 
 class EditController extends Controller
 {
-    use GetUser; use TaskCheck; use RedirectsUsers; use TagController; // 継承
+    // 継承
+    use GetUser;
+    use TaskCheck;
+    use RedirectsUsers;
+    use TagController;
 
     protected $redirectTo = RouteServiceProvider::HOME; // homeのurlをリダイレクトパスに設定
 

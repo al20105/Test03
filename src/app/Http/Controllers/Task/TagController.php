@@ -1,13 +1,27 @@
 <?php
+/*******************************************************************
+***  File Name		: TagController.php
+***  Version		: V1.0
+***  Designer		: 秋葉 星輝
+***  Date			: 2022.07.04
+***  Purpose       	: タグの処理
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : 秋葉 星輝, 2022.07.04 作成
+*/
 
 namespace App\Http\Controllers\Task;
 
 use App\Models\Tag;
 use Illuminate\Support\Collection;
 
+// タグの処理(継承用)
 trait TagController
 {
-    public function TagCreate(String $name) // タグ生成
+    // タグ生成処理
+    public function TagCreate(String $name)
     {
         $tag = new Tag; // 新しいTagを生成
         $tag->name = $name; // 入力された名前を代入
@@ -15,7 +29,8 @@ trait TagController
         return $tag; // 生成したタグを返す
     }
 
-    public function TagRegister($data) // タグ登録
+    // タグ登録処理
+    public function TagRegister($data)
     {
         $tags = null; // 空の変数を宣言
         if ($data!=null) // 入力データがnullでない
@@ -40,7 +55,8 @@ trait TagController
         return $tags; // タグidの配列またはnullを返す
     }
 
-    public function GetTags(Collection $tasks) // 課題からタグを取得する
+    // 課題からタグを取得する
+    public function GetTags(Collection $tasks)
     {
         $tags = new Collection(); // 空のCollection(Eloquementの配列)を宣言
         foreach($tasks as $task) // 入力された課題群をループ
@@ -53,7 +69,8 @@ trait TagController
         return $tags->unique('id'); // 重複なしのタグのCollectionを返す
     }
 
-    public function TagEdit($user_id, $tag_id, String $name) // タグ編集
+    // タグ編集処理
+    public function TagEdit($user_id, $tag_id, String $name)
     {
         $tasks = null; // 空の変数を宣言
         $id = $this->TagRegister([$name]); // 入力された名前から既存のタグのidを取得、もしくは新規作成したidを代入
@@ -70,7 +87,8 @@ trait TagController
         return $tasks; // 変更された課題群またはnullを返す
     }
 
-    public function TagDelete($user_id, $tag_id) // タグ削除処理
+    // タグ削除処理
+    public function TagDelete($user_id, $tag_id)
     {
         $tag = Tag::find($tag_id); // 入力されたidからタグを取得
         $tasks = $tag->tasks; // そのタグを持つ課題群を取得
