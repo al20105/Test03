@@ -166,7 +166,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++)
     <div class="left_area">
       <div class="container-fluid calender">
         <h3 class="calender-title">
-          <a href="?ym=<?php echo $prev.$tag_que; ?>">&lt;&lt; </a><?php echo $html_title; ?><a href="?ym=<?php echo $next.$tag_que; ?>">　&gt;&gt;</a>
+          <a href="?ym=<?php echo $prev.$tag_que; ?>">&lt;&lt;　</a><?php echo $html_title; ?><a href="?ym=<?php echo $next.$tag_que; ?>">　&gt;&gt;</a>
         </h3>
         <table class="table table-bordered">
           <tr>
