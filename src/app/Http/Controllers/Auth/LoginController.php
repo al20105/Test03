@@ -1,4 +1,4 @@
-<!--
+<?php
 /*******************************************************************
 *** File Name           : form.php
 *** Version             : V1.0
@@ -10,9 +10,7 @@
 /*
 *** Revision :
 *** V1.0 : 里田 侑声, 2022.06.28
-*/ -->
-
-<?php
+*/
 
 namespace App\Http\Controllers\Auth;
 
