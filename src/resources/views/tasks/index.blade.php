@@ -90,8 +90,8 @@ for($day = 1; $day <= $day_count; $day++, $youbi++)
 
         if ($task->memo==null) // 詳細情報がnulの場合"null"とする(エラー回避)
         {
-          $task->memo="null"
-        };
+          $task->memo="null";
+        }
         $data_tags = implode(',', $data_tags); // タグの配列を,区切りの文章にする
         $t_name = $task['name']; // 課題名を取得
         if (Str::length($t_name)>10) $t_name = mb_substr($t_name, 0, 10, "utf-8")."..."; // 課題名が長い場合省略する
