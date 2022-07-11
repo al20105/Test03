@@ -7,6 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- 左上のtitle -->
     <title>{{ config('app.name', '課題管理システム') }}</title>
 
     <!-- Scripts -->
@@ -24,170 +25,194 @@
 
 
     <script>
-        window.onload = function() {
-            $('#TaskShow').on('show.bs.modal', function (event) {
+        window.onload = function() // ウィンドウが読みこまれた時
+        {
+            $('#TaskShow').on('show.bs.modal', function (event) // 課題詳細表示のモーダルが呼び出された時
+            {
                 var button = $(event.relatedTarget); //モーダルを呼び出すときに使われたボタンを取得
-                var name = button.data('name');
-                var date = button.data('date');
-                var time = button.data('time');
-                var memo = button.data('memo');
-                if (memo=="null") memo = "";
-                var tags = button.data('tags').split(',');
-
-                var modal = $(this);
-                modal.find('#show-name').text(name);
+                var name = button.data('name'); // 課題名
+                var date = button.data('date'); // 締め切り日
+                var time = button.data('time'); // 締め切り時間
+                var memo = button.data('memo'); // 詳細情報
+                if (memo=="null") // memoが"null"の場合(エラー回避用)
+                {
+                    memo = "" // nullを代入
+                };
+                var tags = button.data('tags').split(','); // ,区切りの文字列からタグ名の配列を生成
+                var modal = $(this); // 呼び出されたモーダルを取得
+                modal.find('#show-name').text(name); // show-*に代入
                 modal.find('#show-date').text(date);
                 modal.find('#show-time').text(time);
                 modal.find('#show-memo').text(memo);
 
-                var ele = document.getElementById("show-tag");
-                while( ele.firstChild ) {
+                var ele = document.getElementById("show-tag"); // idを持つエレメントを取得(ここでは<div></div>)
+                while( ele.firstChild ) // エレメントを初期化
+                {
                     ele.removeChild( ele.firstChild );
                 }
 
-                if (tags[0]!="") {
-                    for(var i=0;i<tags.length;i++){
-                        var ary=document.createElement("div");
-                        ary.setAttribute("type","text");
-                        ary.setAttribute("style","display:inline-block; padding: 10px; margin-bottom: 10px; border: 1px solid #333333; background-color: #ffffff; color: #000000;");
-                        ele.appendChild(ary);
-                        var tag=document.createTextNode(tags[i]);
-                        ary.appendChild(tag);
+                if (tags[0]!="") // tagsがnullでない
+                {
+                    for(var i=0;i<tags.length;i++) // tagsをループ
+                    {
+                        var ary = document.createElement("div"); // <div></div>のノードを生成
+                        ary.setAttribute("type","text"); // typeをtextに指定
+                        ary.setAttribute("style","display:inline-block; padding: 10px; margin-bottom: 10px; border: 1px solid #333333; background-color: #ffffff; color: #000000;"); // デザインを設定
+                        ele.appendChild(ary); // エレメントの子ノードに設定
+                        var tag = document.createTextNode(tags[i]); // タグのノードを生成
+                        ary.appendChild(tag); // タグを更なる子ノードに設定
                     }
                 }
             })
 
 
-            $('#TaskEdit').on('show.bs.modal', function (event) {
+            $('#TaskEdit').on('show.bs.modal', function (event) // 課題編集のモーダルが呼び出された時
+            {
                 var button = $(event.relatedTarget); //モーダルを呼び出すときに使われたボタンを取得
-                var id = button.data('id'); //data-* の値を取得
-                var name = button.data('name');
-                var date = button.data('date');
-                var time = button.data('time');
-                var memo = button.data('memo');
-                if (memo=="null") memo = "";
-                var tags = button.data('tags').split(',');
+                var id = button.data('id'); // 課題id
+                var name = button.data('name'); // 課題名
+                var date = button.data('date'); // 締め切り日
+                var time = button.data('time'); // 締め切り時間
+                var memo = button.data('memo'); // 詳細情報
+                if (memo=="null") // memoが"null"のときnullにする(エラー回避用)
+                {
+                    memo = "";
+                }
+                var tags = button.data('tags').split(','); // ,区切りの文章からタグの配列を生成
 
-                var modal = $(this);
-                modal.find('.modal-body input#edit-id').val(id);
-                modal.find('.modal-body input#edit-name').val(name);
-                modal.find('.modal-body input#edit-date').val(date);
-                modal.find('.modal-body input#edit-time').val(time);
-                modal.find('.modal-body input#edit-memo').val(memo);
+                var modal = $(this); // 呼び出されたモーダルを取得
+                modal.find('.modal-body input#edit-id').val(id); // 課題idをinputタグに代入
+                modal.find('.modal-body input#edit-name').val(name); // 課題名をinputタグに代入
+                modal.find('.modal-body input#edit-date').val(date); // 締め切り日をinputタグに代入
+                modal.find('.modal-body input#edit-time').val(time); // 締め切り時間をinputタグに代入
+                modal.find('.modal-body input#edit-memo').val(memo); // 詳細情報ををinputタグに代入
                 
-                var ele = document.getElementById("edit-tag");
-                while( ele.firstChild ) {
+                var ele = document.getElementById("edit-tag"); // エレメントを取得
+                while( ele.firstChild ) // エレメントを初期化
+                {
                     ele.removeChild( ele.firstChild );
                 } 
 
-                if (tags[0]!="") {
-                    for(var i=0;i<tags.length;i++){
-                        var ary=document.createElement("input");
-                        ary.setAttribute("class","inputs");
-                        ary.setAttribute("type","text");
-                        ary.setAttribute("name","tags[]");
-                        ary.setAttribute("value",tags[i]);
-                        ele.appendChild(ary);
-                        var ary=document.createElement("button");
-                        ary.setAttribute("class","input_delete_button");
-                        ary.setAttribute("type","button");
-                        var del = document.createTextNode("削除");
-                        ary.appendChild(del);
-                        ele.appendChild(ary);
-                        var br = document.createElement("br");
-                        ele.appendChild(br);
+                if (tags[0]!="") // タグ群がnullでない
+                {
+                    for(var i=0;i<tags.length;i++) // タグ群をループ
+                    {
+                        var ary=document.createElement("input"); // inputフォームを生成
+                        ary.setAttribute("class","inputs"); // classをinputsに設定
+                        ary.setAttribute("type","text"); // typeを文章に設定
+                        ary.setAttribute("name","tags[]"); // nameをtags[]に設定
+                        ary.setAttribute("value",tags[i]); // 値をタグ名に設定
+                        ele.appendChild(ary); // エレメントの子ノードに設定
+                        var ary=document.createElement("button"); // 削除ボタンを生成
+                        ary.setAttribute("class","input_delete_button"); // classを設定
+                        ary.setAttribute("type","button"); // typeをボタンに設定
+                        var del = document.createTextNode("削除"); // 「削除」のノードを生成
+                        ary.appendChild(del); // 更なる子ノードに設定(<button>削除</button>)
+                        ele.appendChild(ary); // エレメントの子ノードに設定
+                        var br = document.createElement("br"); // 改行
+                        ele.appendChild(br); // エレメントの子ノードに設定(~</button><br><input>~)
                     }
                 }
             })
 
-            $('#TagEdit').on('show.bs.modal', function (event) {
+            $('#TagEdit').on('show.bs.modal', function (event) // タグ編集一覧のモーダルが呼び出された時
+            {
                 var button = $(event.relatedTarget); //モーダルを呼び出すときに使われたボタンを取得
-                var tags = button.data('tags').split(',');
-                
-                var ele = document.getElementById("tag-edit-list");
-                while( ele.firstChild ) {
+                var tags = button.data('tags').split(','); // ,区切りの文章からタグの配列を生成
+                var ele = document.getElementById("tag-edit-list"); // エレメントを取得
+                while( ele.firstChild ) // エレメントを初期化
+                {
                     ele.removeChild( ele.firstChild );
                 } 
 
-                if (tags[0]!="") {
-                    for(var i=0;i<tags.length;i++){
-                        var ary=document.createElement("div");
-                        ary.setAttribute("class","button_wrap");
-                        ary.setAttribute("type","text");
-                        ary.setAttribute("data-toggle","modal");
-                        ary.setAttribute("data-target","#TagUpdate");
-                        ary.setAttribute("data-tag",tags[i]);
-                        ary.setAttribute("data-dismiss","modal")
-                        ele.appendChild(ary);
-                        var tag=document.createTextNode(tags[i]);
-                        ary.appendChild(tag);
+                if (tags[0]!="") // タグ群がnullでない
+                {
+                    for(var i=0;i<tags.length;i++) // タグ群をループ
+                    {
+                        var ary=document.createElement("div"); // <div></div>を生成
+                        ary.setAttribute("class","button_wrap"); // classをボタンに設定
+                        ary.setAttribute("type","text"); // typeを文章に設定
+                        ary.setAttribute("data-toggle","modal"); // 呼び出されるものをモーダルに設定
+                        ary.setAttribute("data-target","#TagUpdate"); // 呼び出されるモーダルのidを設定
+                        ary.setAttribute("data-tag",tags[i]); // タグを代入
+                        ary.setAttribute("data-dismiss","modal") //モーダルを閉じる
+                        ele.appendChild(ary); // エレメントの子ノードに設定
+                        var tag=document.createTextNode(tags[i]); // タグ名のノードを生成
+                        ary.appendChild(tag); // 更なる子ノードに設定
                     }
-                } else {
-                    var none = document.createTextNode("タグが見つかりませんでした(._.)");
+                }
+                else
+                {
+                    var none = document.createTextNode("タグが見つかりませんでした(._.)"); // タグ群がnull
                     ele.appendChild(none);
                 }
             })
 
-            $('#TagUpdate').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget); //モーダルを呼び出すときに使われたボタンを取得
-                var tag = button.data('tag');
-
-                var modal = $(this);
-                modal.find('.modal-body input#modal-tag').val(tag);
-                modal.find('#tag-name').text(tag);
+            $('#TagUpdate').on('show.bs.modal', function (event) // タグ編集のモーダルが呼び出された時
+            {
+                var button = $(event.relatedTarget); // モーダルを呼び出すときに使われたボタンを取得
+                var tag = button.data('tag'); // タグを取得
+                var modal = $(this); // 呼び出されたモーダルを取得
+                modal.find('.modal-body input#modal-tag').val(tag); // タグ名を代入 
+                modal.find('#tag-name').text(tag); // タグ名を表示
             })
 
-            $('#TagDelete').on('show.bs.modal', function (event) {
+            $('#TagDelete').on('show.bs.modal', function (event) // タグ削除確認のモーダルが呼び出された時
+            {
                 var button = $(event.relatedTarget); //モーダルを呼び出すときに使われたボタンを取得
-                var tags = button.data('tags').split(',');
-                
-                var ele = document.getElementById("tag-delete-list");
-                while( ele.firstChild ) {
+                var tags = button.data('tags').split(','); // ,区切りの文字列からタグ名の配列を生成
+                var ele = document.getElementById("tag-delete-list"); // エレメントを取得
+                while( ele.firstChild ) // エレメントを初期化
+                {
                     ele.removeChild( ele.firstChild );
                 } 
 
-                if (tags[0]!="") {
-                    for(var i=0;i<tags.length;i++){
-                        var ary=document.createElement("div");
-                        ary.setAttribute("class","button_wrap");
-                        ary.setAttribute("type","text");
-                        ary.setAttribute("data-toggle","modal");
-                        ary.setAttribute("data-target","#TagDestroy");
-                        ary.setAttribute("data-tag",tags[i]);
-                        ele.appendChild(ary);
-                        var tag=document.createTextNode(tags[i]);
-                        ary.appendChild(tag);
+                if (tags[0]!="") //タグ群がnullでない
+                {
+                    for(var i=0;i<tags.length;i++) //タグの配列をループ
+                    {
+                        var ary=document.createElement("div"); // <div></div>を生成
+                        ary.setAttribute("class","button_wrap"); // classをボタンに設定
+                        ary.setAttribute("type","text"); // typeを文章に設定
+                        ary.setAttribute("data-toggle","modal"); // 呼び出されるものをモーダルに設定
+                        ary.setAttribute("data-target","#TagDestroy"); // 呼び出されるモーダルのidを設定
+                        ary.setAttribute("data-tag",tags[i]); // タグを代入
+                        ary.setAttribute("data-dismiss","modal") //モーダルを閉じる
+                        ele.appendChild(ary); // エレメントの子ノードに設定
+                        var tag=document.createTextNode(tags[i]); // タグ名のノードを生成
+                        ary.appendChild(tag); // 更なる子ノードに設定
                     }
-                } else {
-                    var none = document.createTextNode("タグが見つかりませんでした(._.)");
+                }
+                else
+                {
+                    var none = document.createTextNode("タグが見つかりませんでした(._.)"); // タグ群がnull
                     ele.appendChild(none);
                 }
             })
 
-            $('#TagDestroy').on('show.bs.modal', function (event) {
+            $('#TagDestroy').on('show.bs.modal', function (event) // タグ削除のモーダルが呼び出された時
+            {
                 var button = $(event.relatedTarget); //モーダルを呼び出すときに使われたボタンを取得
-                var tag = button.data('tag');
-
-                var modal = $(this);
-                modal.find('.modal-body input#modal-tag').val(tag);
-                modal.find('#tag-name').text(tag);
+                var tag = button.data('tag'); // タグを取得
+                var modal = $(this); // 呼び出されたモーダルを取得
+                modal.find('.modal-body input#modal-tag').val(tag); // inputタグにタグを代入
+                modal.find('#tag-name').text(tag); // タグの名前を表示
             })
         };
 
-        $(function() {
-            // 追加ボタンを押されたら、新しい入力欄と削除ボタンを追加
-            $(document).on('click', '#input_add_button', function() {
-                $(".add_to").last().append(
-                '<div><input type="text" class="inputs" name="tags[]"><button class="input_delete_button" type="button">削除</button></div>');        
+        $(function()
+        {
+            $(document).on('click', '#input_add_button', function() // 追加ボタンを押されたら、新しい入力欄と削除ボタンを追加
+            {
+                $(".add_to").last().append('<div><input type="text" class="inputs" name="tags[]"><button class="input_delete_button" type="button">削除</button></div>');        
             });
-            $(document).on('click', '#input_add_button_2', function() {
-                $(".add_to_2").last().append(
-                '<div><input type="text" class="inputs" name="tags[]"><button class="input_delete_button" type="button">削除</button></div>');        
+            $(document).on('click', '#input_add_button_2', function() // 追加ボタンを押されたら、新しい入力欄と削除ボタンを追加
+            {
+                $(".add_to_2").last().append('<div><input type="text" class="inputs" name="tags[]"><button class="input_delete_button" type="button">削除</button></div>');        
             });
-            
-            // 削除ボタンを押されたら、自身の親要素(削除ボタンと入力欄)を削除
-            $(document).on('click', '.input_delete_button', function() {        
-                $(this).parent().remove();       
+            $(document).on('click', '.input_delete_button', function() // 削除ボタンを押されたら、自身の親要素(削除ボタンと入力欄)を削除
+            {        
+                $(this).parent().remove();
             });    
         });
 
