@@ -1,3 +1,18 @@
+<!--
+/*******************************************************************
+*** File Name           : EditController.php
+*** Version             : V1.0
+*** Designer            : 里田 侑声
+*** Date                : 2022.06.28
+*** Purpose             : 課題情報の編集を行う。
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : 里田 侑声, 2022.06.28
+*/
+-->
+
 <?php
 /*******************************************************************
 ***  File Name		: EditController.php
@@ -25,7 +40,6 @@ use Illuminate\Support\Facades\Crypt;
 
 class EditController extends Controller
 {
-    // 継承
     use GetUser;
     use TaskCheck;
     use RedirectsUsers;
@@ -33,7 +47,15 @@ class EditController extends Controller
 
     protected $redirectTo = RouteServiceProvider::HOME; // homeのurlをリダイレクトパスに設定
 
-    protected function TaskEdit(Request $request)
+/****************************************************************************
+*** Function Name       : TaskEdit( Request $request )
+*** Designer            : 長尾 理生
+*** Date                : 2022.06.28
+*** Function            : 課題編集画面を表示する。
+*** Return              : リダイレクト
+****************************************************************************/
+
+    protected function TaskEdit( Request $request ) // リクエスト
     {
         $task = null; // 空の変数を宣言
         if ($request->has('approve')) // 保存ボタンが押されている場合
@@ -65,7 +87,15 @@ class EditController extends Controller
         return redirect($this->redirectPath())->with($messageKey, $flashMessage); // リダイレクトパスにリダイレクト
     }
 
-    protected function update(array $data)
+/****************************************************************************
+*** Function Name       : update( array $data )
+*** Designer            : 里田 侑声
+*** Date                : 2022.06.28
+*** Function            : 課題情報の編集処理を行う。
+*** Return              : 課題情報
+****************************************************************************/
+
+    protected function update( array $data ) // 
     {
         Task::find($data['id'])->update([ // 上書き処理
             'name' => $data['name'], // 課題名
