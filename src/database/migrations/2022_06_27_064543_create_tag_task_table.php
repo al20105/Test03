@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('tag_task', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedBigInteger('task_id');
-            // $table->unsignedBigInteger('tag_id');
-            $table->foreignId('task_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('tag_id');
+            $table->unsignedBigInteger('task_id')->comment('課題id');
+            $table->unsignedBigInteger('tag_id')->comment('タグid');
+            $table->foreignId('task_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate()->comment('タグが持つ課題id');
+            $table->foreignId('tag_id')->comment('課題が持つタグid');
             $table->timestamps();
         });
     }
