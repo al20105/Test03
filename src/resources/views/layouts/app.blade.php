@@ -7,8 +7,15 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
     <!-- 左上のtitle -->
+>>>>>>> a936ae945ee919d91354b16747614053170e6497
     <title>{{ config('app.name', '課題管理システム') }}</title>
+=======
+    <title>Scomb3</title>
+>>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -18,8 +25,10 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    <!-- /* bootstrap css */ -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
+<<<<<<< HEAD
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
@@ -238,6 +247,16 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', '課題管理システム') }}
+=======
+</head>
+<body>
+    <div id="app">
+        <nav class="new_navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    <!-- {{ config('app.name', 'Scomb3') }} -->
+                    Scomb3
+>>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -273,7 +292,11 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <form id="edit-form" action="{{ route('auth.edit') }}" method="GET">
                                         <input type="hidden" name="id" value="{{ Auth::user()->id }}">
+<<<<<<< HEAD
                                         <input type="submit" class="dropdown-item" value="アカウント情報編集">
+=======
+                                        <input type="submit" class="dropdown-item" value="Edit">
+>>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
                                     </form>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -293,7 +316,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4" style="padding-top: 100px !important;">
             @yield('content')
         </main>
     </div>

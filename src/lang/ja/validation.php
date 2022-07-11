@@ -99,11 +99,21 @@ return
     ],
 
     'mac_address' => 'The :attribute must be a valid MAC address.',
+<<<<<<< HEAD
+
+    'max' =>
+    [
+        'array'   => ':attributeは:max未満の項目が必要です。',
+        'file'    => ':attributeは:value KB未満の必要があります。',
+        'numeric' => ':attributeは:max未満の必要があります。',
+        'string'  => ':attributeは:max未満の必要があります。',
+=======
     'max' => [
         'array' => ':attributeは:max以下の項目が必要です。',
         'file' => ':attributeは:value KB以下の必要があります。',
         'numeric' => ':attributeは:max以下の必要があります。',
         'string' => ':attributeは:max文字以下にする必要があります。',
+>>>>>>> a936ae945ee919d91354b16747614053170e6497
     ],
 
     'mimes' => 'The :attribute must be a file of type: :values.',

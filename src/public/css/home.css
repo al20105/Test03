@@ -39,11 +39,19 @@ body {
 }
 .main .left_area .calender {
   margin: 0 auto;
+<<<<<<< HEAD
   width: 100% !important;
 }
 .main .left_area .calender .calender-title {
   text-align: center;
   font-size: 35px;
+=======
+  width: 95%;
+}
+.main .left_area .calender .calender-title {
+  text-align: center;
+  font-size: 50px;
+>>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
 }
 .main .left_area .calender .calender-title > a {
   text-decoration: none;
@@ -120,6 +128,7 @@ body {
 .main .right_area .inner #todo {
   width: 95%;
   margin: 27px auto 0;
+<<<<<<< HEAD
   border: 1px solid #b8b8ff;
   background: rgba(184, 184, 255, 0.5);
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
@@ -137,19 +146,37 @@ body {
   margin: 10px auto;
   padding: 0 0 10px !important;
   overflow: scroll;
+=======
+  background: #b8b8ff;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+  border-radius: 7px;
+}
+.main .right_area .inner #todo ul {
+  width: 98%;
+  margin: 0 auto;
+  padding: 20px 0 !important;
+>>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
 }
 .main .right_area .inner #todo ul .item {
   display: flex;
   justify-content: space-between;
   margin: 20px auto;
   padding: 10px 0 !important;
+<<<<<<< HEAD
   border: 1px solid #b8b8ff;
   background: rgb(238, 238, 238);
+=======
+  background: rgba(104, 104, 255, 0.7);
+>>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
   border-radius: 7px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 .main .right_area .inner #todo ul .item .left_item_area {
+<<<<<<< HEAD
   width: 55%;
+=======
+  width: 54%;
+>>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
 }
 .main .right_area .inner #todo ul .item .left_item_area .sche_name {
   margin-bottom: 0 !important;
@@ -159,6 +186,7 @@ body {
   align-items: baseline;
 }
 .main .right_area .inner #todo ul .item .right_item_area {
+<<<<<<< HEAD
   position: relative;
   width: 45%;
   right: 0;
@@ -175,12 +203,23 @@ body {
 }
 .main .right_area .inner #todo ul .item .right_item_area .btn:hover {
   color: rgb(28, 28, 28);
+=======
+  width: 44%;
+}
+.main .right_area .inner #todo ul .item .right_item_area .btn {
+  text-decoration: none;
+  color: #fff;
+}
+.main .right_area .inner #todo ul .item .right_item_area .btn:hover {
+  color: rgb(160, 160, 160);
+>>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
   transition: 0.2s;
   font-weight: bold;
 }
 .main .right_area .inner #todo ul .item .right_item_area .btn > a {
   text-decoration: none;
 }
+<<<<<<< HEAD
 .main .right_area .inner #todo ul .item .right_item_area .btn > a > span {
   display: block;
   transform: translateY(2px);
@@ -274,4 +313,22 @@ body {
 .main .right_area .inner #tag ul .item .text {
   font-size: 15px;
   padding: 0 20px;
+=======
+.main .right_area .inner #todo ul .item .right_item_area .delete-btn {
+  background: green;
+}
+.main .right_area .inner #todo ul .item .right_item_area .show {
+  background: red;
+}
+.main .right_area .inner #todo ul .item .right_item_area .edit {
+  background: blue;
+}
+.main .right_area .inner #todo ul .item .right_item_area .delete {
+  color: #fff;
+}
+.main .right_area .inner #todo ul .item .right_item_area .delete:hover {
+  color: rgb(160, 160, 160);
+  transition: 0.2s;
+  font-weight: bold;
+>>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
 }
