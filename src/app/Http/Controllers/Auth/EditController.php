@@ -11,7 +11,6 @@
 *** Revision :
 *** V1.0 : 佐藤　駿介, 2022.06.18
 *** V2.0 : 佐藤　駿介, 2022.06.25 アカウント編集処理
-
 */
 
 namespace App\Http\Controllers\Auth;
@@ -39,7 +38,7 @@ class EditController extends Controller
         $this->auth_validate($request->all())->validate();
         //データの上書き編集
         $this->update($request->all(),$auth);
-        return redirect('/tasks');
+        return redirect('home');
     }
 
     public function update(array $data, //入力データ

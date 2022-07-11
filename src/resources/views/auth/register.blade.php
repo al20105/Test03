@@ -18,14 +18,22 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+<<<<<<< HEAD
                 <div class="card-header">{{ __('新規登録') }}</div>
+=======
+                <div class="card-header">{{ __('form.register.wd') }}</div>
+>>>>>>> a936ae945ee919d91354b16747614053170e6497
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="row mb-3">
+<<<<<<< HEAD
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('ユーザ名') }}</label>
+=======
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('form.register.name') }}</label>
+>>>>>>> a936ae945ee919d91354b16747614053170e6497
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -39,7 +47,11 @@
                         </div>
 
                         <div class="row mb-3">
+<<<<<<< HEAD
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('メールアドレス') }}</label>
+=======
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('form.register.mail') }}</label>
+>>>>>>> a936ae945ee919d91354b16747614053170e6497
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -53,7 +65,11 @@
                         </div>
 
                         <div class="row mb-3">
+<<<<<<< HEAD
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('パスワード') }}</label>
+=======
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('form.register.pass') }}</label>
+>>>>>>> a936ae945ee919d91354b16747614053170e6497
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -67,7 +83,11 @@
                         </div>
 
                         <div class="row mb-3">
+<<<<<<< HEAD
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('確認用パスワード') }}</label>
+=======
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('form.register.pass2') }}</label>
+>>>>>>> a936ae945ee919d91354b16747614053170e6497
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
@@ -77,7 +97,11 @@
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
+<<<<<<< HEAD
                                     {{ __('登録') }}
+=======
+                                    {{ __('form.register.btn') }}
+>>>>>>> a936ae945ee919d91354b16747614053170e6497
                                 </button>
                             </div>
                         </div>
