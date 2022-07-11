@@ -2,52 +2,44 @@
 
 @section('content')
 <?php
-//タイムゾーンを設定
-date_default_timezone_set('Asia/Tokyo');
-
-//前月・次月リンクが選択された場合は、GETパラメーターから年月を取得
-if(isset($_GET['ym'])){ 
+date_default_timezone_set('Asia/Tokyo'); // タイムゾーンを設定
+if(isset($_GET['ym'])) // 前月・次月リンクが選択された場合は、GETパラメーターから年月を取得
+{ 
     $ym = $_GET['ym'];
-}else{
-    //今月の年月を表示
+}
+else // 今月の年月を表示
+{
     $ym = date('Y-m');
 }
-//タグのクエリパラメータを取得
-if(isset($_GET['tag'])){ 
+
+if(isset($_GET['tag'])) // タグのクエリパラメータを取得
+{ 
     $tag_set = $_GET['tag'];
 }
-//タグのクエリパラメータの生成
-if (isset($tag_set)) {
+
+if (isset($tag_set)) // タグのクエリパラメータの生成
+{
   $tag_que = "&tag=$tag_set";
-} else {
+} 
+else
+{
   $tag_que = "";
 }
 
-//タイムスタンプ（どの時刻を基準にするか）を作成し、フォーマットをチェックする
-//strtotime('Y-m-01')
-$timestamp = strtotime($ym . '-01'); 
-if($timestamp === false){//エラー対策として形式チェックを追加
-    //falseが返ってきた時は、現在の年月・タイムスタンプを取得
-    $ym = date('Y-m');
+$timestamp = strtotime($ym . '-01'); // タイムスタンプ（どの時刻を基準にするか）を作成し、フォーマットをチェックする
+
+if($timestamp === false) // エラー対策として形式チェックを追加
+{
+    $ym = date('Y-m'); // falseが返ってきた時は、現在の年月・タイムスタンプを取得
     $timestamp = strtotime($ym . '-01');
 }
 
-//今月の日付　フォーマット　例）2020-10-2
-$today = date('Y-m-j');
-
-//カレンダーのタイトルを作成　例）2020年10月
-$html_title = date('Y年n月', $timestamp);//date(表示する内容,基準)
-
-//前月・次月の年月を取得
-//strtotime(,基準)
-$prev = date('Y-m', strtotime('-1 month', $timestamp));
-$next = date('Y-m', strtotime('+1 month', $timestamp));
-
-//該当月の日数を取得
-$day_count = date('t', $timestamp);
-
-//１日が何曜日か
-$youbi = date('w', $timestamp);
+$today = date('Y-m-j'); // 今月の日付　フォーマット　例）2020-10-2
+$html_title = date('Y年n月', $timestamp); // カレンダーのタイトルを作成　例）2020年10月
+$prev = date('Y-m', strtotime('-1 month', $timestamp)); // 前月の年月を取得
+$next = date('Y-m', strtotime('+1 month', $timestamp)); // 次月の年月を取得
+$day_count = date('t', $timestamp); // 該当月の日数を取得
+$youbi = date('w', $timestamp); // 何曜日か
 
 //カレンダー作成の準備
 $calendar = [];
@@ -55,73 +47,94 @@ $week = '';
 $tw = '';
 
 //第１週目：空のセルを追加
-//str_repeat(文字列, 反復回数)
 $week .= str_repeat('<td></td>', $youbi);
 $tw .= str_repeat('<td></td>', $youbi);
 
-for($day = 1; $day <= $day_count; $day++, $youbi++){
-    $date = $ym . '-' . $day; //2020-00-00
-    $date = date('Y-m-d', strtotime($date));
-    if($today == $date){
-        $week .= '<td class="today">' . $day;//今日の場合はclassにtodayをつける
-    } else {
+for($day = 1; $day <= $day_count; $day++, $youbi++)
+{
+    $date = $ym . '-' . $day; // 例:2020-00-00
+    $date = date('Y-m-d', strtotime($date)); // 日付を取得
+    if($today == $date)
+    {
+        $week .= '<td class="today">' . $day;// 今日の場合はclassにtodayをつける
+    }
+    else
+    {
         $week .= '<td>' . $day;
     }
     $week .= '</td>';
 
-    $day_task = array();
-    foreach($tasks as $task){
-      if(in_array($date, $task->toArray())){
+    $day_task = array(); // 初期化
+    foreach($tasks as $task)
+    {
+      if(in_array($date, $task->toArray())) // 課題の締め切り日が今日の場合$day_taskに格納する
+      {
         array_push($day_task, $task);
       }
     }
-    array_multisort( array_map( "strtotime", array_column( $day_task, "time" ) ), SORT_ASC, $day_task ) ;
+    array_multisort( array_map( "strtotime", array_column( $day_task, "time" ) ), SORT_ASC, $day_task ); // 締め切り時間で並び替え
 
-    $tw .= '<td>';
-    if(count($day_task) != 0){
+    $tw .= '<td>'; // 課題の行
+    if(count($day_task) != 0) // 今日の課題がある場合
+    {
       $cnt = 0; //カウンタ
       foreach ($day_task as $task) {
         if($cnt != 0){
-          $tw .= '<br>';
+          $tw .= '<br>'; // 改行
         }
+<<<<<<< HEAD
 <<<<<<< HEAD
         $data_tags = array();
         foreach ($task->tags as $tag) {
           $data_tags[] = $tag->name;
+=======
+        $data_tags = array(); // 初期化
+        foreach ($task->tags as $tag)
+        {
+          $data_tags[] = $tag->name; // タグを格納
+>>>>>>> a936ae945ee919d91354b16747614053170e6497
         }
-        if ($task->memo==null) $task->memo="null";
-        $data_tags = implode(',', $data_tags);
-        $t_name = $task['name'];
-        if (Str::length($t_name)>10) $t_name = substr($t_name, 0, 10)."...";
+
+        if ($task->memo==null) // 詳細情報がnulの場合"null"とする(エラー回避)
+        {
+          $task->memo="null";
+        }
+        $data_tags = implode(',', $data_tags); // タグの配列を,区切りの文章にする
+        $t_name = $task['name']; // 課題名を取得
+        if (Str::length($t_name)>10) $t_name = mb_substr($t_name, 0, 10, "utf-8")."..."; // 課題名が長い場合省略する
         $tw .= "<button type='button' class='btn show' data-toggle='modal' data-target='#TaskShow'
                   data-name=$task->name 
                   data-date=$task->date 
                   data-time=$task->time 
                   data-memo=$task->memo 
                   data-tags=$data_tags>".$t_name.
+<<<<<<< HEAD
                 "</button>";
         $tw .= date('H:i' ,strtotime($task['time']));
 =======
         $tw .= $task['name'];
         $tw .= '<br>' . date('H:i' ,strtotime($task['time'])) . '<br class="space">';
 >>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
+=======
+                "</button>"; // モーダル用
+        $tw .= date('H:i' ,strtotime($task['time'])); // 時間を表示
+>>>>>>> a936ae945ee919d91354b16747614053170e6497
         $cnt++;
       }
     }
 
     $tw .= '<br>' . '</td>';
 
-    if($youbi % 7 == 6 || $day == $day_count){//週終わり、月終わりの場合
-        //%は余りを求める、||はまたは
-        //土曜日を取得
-        if($day == $day_count){//月の最終日、空セルを追加
+    if($youbi % 7 == 6 || $day == $day_count){ // 週終わり、月終わりの場合
+        if($day == $day_count) // 月の最終日、空セルを追加
+        {
             $week .= str_repeat('<td></td>', 6 - ($youbi % 7));
             $tw .= str_repeat('<td></td>', 6 - ($youbi % 7));
         }
-        $calendar[] = '<tr>' . $week . '</tr>'; //calendar配列にtrと$weekを追加
-        $calendar[] = '<tr>' . $tw . '</tr>'; //calendar配列にtrと$taskweekを追加
-        $week = '';//リセット
-        $tw = '';
+        $calendar[] = '<tr>' . $week . '</tr>'; // calendar配列にtrと$weekを追加
+        $calendar[] = '<tr>' . $tw . '</tr>'; // calendar配列にtrと$taskweekを追加
+        $week = ''; // リセット
+        $tw = ''; // リセット
     }
 }
     
@@ -171,6 +184,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
 <<<<<<< HEAD
       <div class="container-fluid calender">
         <h3 class="calender-title">
+<<<<<<< HEAD
           <a href="?ym=<?php echo $prev.$tag_que; ?>">&lt;&lt;　</a><?php echo $html_title; ?><a href="?ym=<?php echo $next.$tag_que; ?>">　&gt;&gt;</a>
 =======
 
@@ -179,6 +193,9 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
         <h3 class="calender-title">
           <a href="?ym=<?php echo $prev; ?>">&lt;&lt;　</a><?php echo $html_title; ?><a href="?ym=<?php echo $next; ?>">　&gt;&gt;</a>
 >>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
+=======
+          <a href="?ym=<?php echo $prev.$tag_que; ?>">&lt;&lt; </a><?php echo $html_title; ?><a href="?ym=<?php echo $next.$tag_que; ?>">　&gt;&gt;</a>
+>>>>>>> a936ae945ee919d91354b16747614053170e6497
         </h3>
         <table class="table table-bordered">
           <tr>
@@ -230,7 +247,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
                 <div class="left_item_area">
                   <?php
                     $t_name = $task->name;
-                    if (Str::length($t_name)>16) $t_name = substr($t_name, 0, 16)."...";
+                    if (Str::length($t_name)>16) $t_name = mb_substr($t_name, 0, 16, "utf-8")."...";
                   ?>
                   <h2 class="sche_name">{{ $t_name }}</h2>
                 </div>
@@ -262,6 +279,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
                     data-memo={{ $task->memo }} 
                     data-tags={{ $data_tags }}>編集
                   </button>
+<<<<<<< HEAD
 =======
                 <div class="left_item_area">
                   <h2 class="sche_name">{{ $task->name }}</h2>
@@ -271,6 +289,9 @@ for($day = 1; $day <= $day_count; $day++, $youbi++){
                   <a href="{{ route('task.edit', $parameter ) }}" class="btn edit">編集</a>
 >>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
                   <form action="{{ route('task.destroy', $parameter ) }}" id="form_{{ $task->id }}" method="post" class="btn delete-btn">
+=======
+                  <form action="{{ route('task.delete', $parameter ) }}" id="form_{{ $task->id }}" method="post" class="btn delete-btn">
+>>>>>>> a936ae945ee919d91354b16747614053170e6497
                     @csrf
                     {{ method_field('delete') }}
                     <a href="#" data-id="{{ $task->id }}" onclick="deletePost(this);" class="delete">
