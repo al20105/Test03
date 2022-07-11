@@ -49,7 +49,9 @@ class ShowListController extends Controller
         {
             $messageKey = 'successMessage'; // 成功
             $flashMessage = __('flash.tag_edit_success'); // フラッシュメッセージを生成
-        } else {
+        }
+        else
+        {
             $messageKey = 'errorMessage'; // 失敗
             $flashMessage = __('flash.tag_edit_failed'); // フラッシュメッセージを生成
         }
