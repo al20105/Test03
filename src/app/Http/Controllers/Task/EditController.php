@@ -14,6 +14,18 @@
 -->
 
 <?php
+/*******************************************************************
+***  File Name		: EditController.php
+***  Version		: V1.0
+***  Designer		: なまえ
+***  Date			: 2022.06.13
+***  Purpose       	: 課題を編集する
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : なまえ, 2022.06.13
+*/
 
 namespace App\Http\Controllers\Task;
 
@@ -33,7 +45,7 @@ class EditController extends Controller
     use RedirectsUsers;
     use TagController;
 
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::HOME; // homeのurlをリダイレクトパスに設定
 
 /****************************************************************************
 *** Function Name       : TaskEdit( Request $request )
@@ -45,26 +57,34 @@ class EditController extends Controller
 
     protected function TaskEdit( Request $request ) // リクエスト
     {
-        if ($request->has( 'approve' ))
+        $task = null; // 空の変数を宣言
+        if ($request->has('approve')) // 保存ボタンが押されている場合
         {
-            $this->TaskCheck( $request->all() )->validate();
-            $task = $this->update( $request->all() );
-            $tags = $this->TagRegister( $request->input( 'tags' ) );
-
-            $task->tags()->sync($tags);
+            $this->TaskCheck($request->all())->validate(); // 入力データをバリデート処理
+            $task = $this->update($request->all()); // 上書き処理(下記の関数)
+            $tags = $this->TagRegister($request->input('tags')); // タグの登録処理
+            $task->tags()->sync($tags); // 課題とタグの同期処理
         }
 
-        if ($task->tags)
+        if ($task != null) 
         {
-            $messageKey = 'successMessage';
-            $flashMessage = __( 'flash.task_edit_success' );
-        }
-        else
+            $messageKey = 'successMessage'; // 成功
+            if (is_array($request->input('tags')) && preg_match('/#/',implode($request->input('tags')))) // タグに#が含まれている場合
+            {
+                $flashMessage = __('flash.task_edit_success_without_hashmark'); // フラッシュメッセージを生成
+            }
+            else
+            {
+                $flashMessage = __('flash.task_edit_success'); // フラッシュメッセージを生成
+            }
+        } 
+        else 
         {
-            $messageKey = 'errorMessage';
-            $flashMessage = __( 'book.task_edit_failed' );
+            $messageKey = 'errorMessage'; // 失敗
+            $flashMessage = __('flash.task_edit_failed'); // フラッシュメッセージを生成
         }
-        return redirect( $this->redirectPath() )->with( $messageKey, $flashMessage );
+
+        return redirect($this->redirectPath())->with($messageKey, $flashMessage); // リダイレクトパスにリダイレクト
     }
 
 /****************************************************************************
@@ -77,12 +97,12 @@ class EditController extends Controller
 
     protected function update( array $data ) // 
     {
-        Task::find( $data['id'] )->update([
-            'name' => $data['name'],
-            'date' => $data['date'],
-            'time' => $data['time'],
-            'memo' => $data['memo']
+        Task::find($data['id'])->update([ // 上書き処理
+            'name' => $data['name'], // 課題名
+            'date' => $data['date'], // 締め切り日
+            'time' => $data['time'], // 締め切り時間
+            'memo' => $data['memo'] // 詳細情報
         ]);
-        return Task::find( $data['id'] );
+        return Task::find($data['id']); // Taskを返す
     }
 }

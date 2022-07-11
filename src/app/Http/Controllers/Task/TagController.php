@@ -15,12 +15,25 @@
 -->
 
 <?php
+/*******************************************************************
+***  File Name		: TagController.php
+***  Version		: V1.0
+***  Designer		: 秋葉 星輝
+***  Date			: 2022.07.04
+***  Purpose       	: タグの処理
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : 秋葉 星輝, 2022.07.04 作成
+*/
 
 namespace App\Http\Controllers\Task;
 
 use App\Models\Tag;
 use Illuminate\Support\Collection;
 
+// タグの処理(継承用)
 trait TagController
 {
 
@@ -32,12 +45,13 @@ trait TagController
 *** Return              : タグ情報
 ****************************************************************************/
 
-    public function TagCreate( String $name ) // 入力されたタグ名
+    // タグ生成処理
+    public function TagCreate(String $name)
     {
-        $tag = new Tag; // タグ情報
-        $tag->name = $name; // タグ名
-        $tag->save();
-        return $tag;
+        $tag = new Tag; // 新しいTagを生成
+        $tag->name = $name; // 入力された名前を代入
+        $tag->save(); // 保存
+        return $tag; // 生成したタグを返す
     }
 
 /****************************************************************************
@@ -48,29 +62,30 @@ trait TagController
 *** Return              : タグ情報の配列
 ****************************************************************************/
 
-    public function TagRegister( $data ) // 
+    // タグ登録処理
+    public function TagRegister($data)
     {
-        $tags = null; // タグ情報の配列
-        if ($data!=null)
+        $tags = null; // 空の変数を宣言
+        if ($data!=null) // 入力データがnullでない
         {
-            $tag_names = array_unique($data); // タグ情報
-            foreach ($tag_names as $name)
-            {
-                if ($name != null)
+            $tag_names = array_unique($data); // 入力データを配列で取得
+            foreach ($tag_names as $name) // 配列をループ
+            { 
+                if ($name!=null && !preg_match('/#/',$name)) // nullでないかつ#が含まれていない
                 {
-                    $tag = Tag::where( 'name', $name )->first();
-                    if ( $tag != null )
+                    $tag = Tag::where('name',$name)->first(); // その名前を持つタグを検索
+                    if ($tag != null) // すでに存在する場合
                     {
-                        $tags[] = $tag->id;
+                        $tags[] = $tag->id; // 既存のタグのidを格納
                     }
                     else
                     {
-                        $tags[] = $this->TagCreate( $name )->id;
+                        $tags[] = $this->TagCreate($name)->id; // 新規にタグを生成し、そのidを格納
                     }
                 }
             }
         }
-        return $tags;
+        return $tags; // タグidの配列またはnullを返す
     }
 
 /****************************************************************************
@@ -81,19 +96,20 @@ trait TagController
 *** Return              : タグ情報の配列
 ****************************************************************************/
 
-    public function GetTags( Collection $tasks ) // 課題情報の配列
+    // 課題からタグを取得する
+    public function GetTags(Collection $tasks)
     {
-        $tags = new Collection();
-        foreach($tasks as $task)
+        $tags = new Collection(); // 空のCollection(Eloquementの配列)を宣言
+        foreach($tasks as $task) // 入力された課題群をループ
         {
-            foreach($task->tags as $tag)
+            foreach($task->tags as $tag) // 課題が持つタグをループ
             {
-                $tags->add($tag);
+                $tags->add($tag); // Collectionに格納
             }
         }
-        return $tags->unique('id');
+        return $tags->unique('id'); // 重複なしのタグのCollectionを返す
     }
-
+    
 /****************************************************************************
 *** Function Name       : TagEdit( $user_id, $tag_id, String $name )
 *** Designer            : 里田 侑声
@@ -102,19 +118,22 @@ trait TagController
 *** Return              : 課題情報
 ****************************************************************************/
 
-    public function TagEdit( $user_id, // 
-                             $tag_id, // 
-                             String $name ) // 
+     // タグ編集処理
+    public function TagEdit($user_id, $tag_id, String $name)
     {
-        $tasks = $this->TagDelete($user_id, $tag_id);
-        $tag_id = $this->TagRegister([$name]);
-        $tag = Tag::find($tag_id)->first();
-        foreach($tasks as $task)
+        $tasks = null; // 空の変数を宣言
+        $id = $this->TagRegister([$name]); // 入力された名前から既存のタグのidを取得、もしくは新規作成したidを代入
+        if ($id != null) // idが存在する($nameがnullでなく、#が含まれていない)
         {
-            $task->tags()->attach($tag);
-            $task->tags()->sync($task->tags->unique('id'));
+            $tasks = $this->TagDelete($user_id, $tag_id); // 元のタグ削除処理
+            $tag = Tag::find($id)->first(); // 変更後のタグを取得
+            foreach($tasks as $task) // 変更される課題をループ
+            {
+                $task->tags()->attach($tag); // タグを新規に紐づけ
+                $task->tags()->sync($task->tags->unique('id')); // 重複を除去
+            }
         }
-        return $tasks;
+        return $tasks; // 変更された課題群またはnullを返す
     }
 
 /****************************************************************************
@@ -125,16 +144,16 @@ trait TagController
 *** Return              : なし
 ****************************************************************************/
 
-    public function TagDelete( $user_id, // アカウント情報のID
-                               $tag_id ) // タグ情報のID
+    // タグ削除処理
+    public function TagDelete($user_id, $tag_id)
     {
-        $tag = Tag::find($tag_id);
-        $tasks = $tag->tasks;
-        $tasks = $tasks->where('user_id',$user_id);
-        foreach($tasks as $task)
+        $tag = Tag::find($tag_id); // 入力されたidからタグを取得
+        $tasks = $tag->tasks; // そのタグを持つ課題群を取得
+        $tasks = $tasks->where('user_id',$user_id); // 入力されたユーザーで絞り込み
+        foreach($tasks as $task) // 課題群をループ
         {
-            $task->tags()->detach($tag);
+            $task->tags()->detach($tag); // タグの紐づけ解除
         }
-        return $tasks;
+        return $tasks; // 変更された課題群を返す
     }
 }
