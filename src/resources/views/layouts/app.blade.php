@@ -102,7 +102,7 @@
                 modal.find('.modal-body input#edit-name').val(name); // 課題名をinputタグに代入
                 modal.find('.modal-body input#edit-date').val(date); // 締め切り日をinputタグに代入
                 modal.find('.modal-body input#edit-time').val(time); // 締め切り時間をinputタグに代入
-                modal.find('.modal-body input#edit-memo').val(memo); // 詳細情報ををinputタグに代入
+                modal.find('.modal-body input#edit-memo').val(memo); // 詳細情報をinputタグに代入
                 
                 var ele = document.getElementById("edit-tag"); // エレメントを取得
                 while( ele.firstChild ) // エレメントを初期化
