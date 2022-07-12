@@ -35,7 +35,7 @@ class EditController extends Controller
 
 /****************************************************************************
 *** Function Name       : TaskEdit( Request $request )
-*** Designer            : 長尾 理生
+*** Designer            : 里田 侑声
 *** Date                : 2022.06.28
 *** Function            : 課題編集画面を表示する。
 *** Return              : リダイレクト
