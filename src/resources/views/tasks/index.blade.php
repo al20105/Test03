@@ -242,8 +242,8 @@ for($day = 1; $day <= $day_count; $day++, $youbi++)
                   // 詳細情報がnullの場合null(string)とする
                   if ($task->memo==null)
                   {
-                    $task->memo=""
-                  };
+                    $task->memo="";
+                  }
                 ?>
                 <div class="right_item_area">
                   <!--モーダルの起動を含めたボタンを作成 -->
