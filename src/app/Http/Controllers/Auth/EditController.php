@@ -74,7 +74,7 @@ class EditController extends Controller
         //バリデーション処理
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],//ユーザ名
-            'email' => ['required', 'string', 'email', 'max:255'],//メールアドレス
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],//メールアドレス
             'password' => ['required', 'string', 'min:8','current_password']//現在のパスワード
         ]);
     }

@@ -94,7 +94,10 @@ for($day = 1; $day <= $day_count; $day++, $youbi++)
         }
         $data_tags = implode(',', $data_tags); // タグの配列を,区切りの文章にする
         $t_name = $task['name']; // 課題名を取得
-        if (Str::length($t_name)>10) $t_name = mb_substr($t_name, 0, 10, "utf-8")."..."; // 課題名が長い場合省略する
+        if (Str::length($t_name)>10)
+        {
+          $t_name = mb_substr($t_name, 0, 10, "utf-8")."..."; // 課題名が長い場合省略する
+        }
         $tw .= "<button type='button' class='btn show' data-toggle='modal' data-target='#TaskShow'
                   data-name=$task->name 
                   data-date=$task->date 
@@ -166,7 +169,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++)
     <div class="left_area">
       <div class="container-fluid calender">
         <h3 class="calender-title">
-          <a href="?ym=<?php echo $prev.$tag_que; ?>">&lt;&lt;　</a><?php echo $html_title; ?><a href="?ym=<?php echo $next.$tag_que; ?>">　&gt;&gt;</a>
+          <a href="?ym=<?php echo $prev.$tag_que; ?>">&lt;&lt; </a><?php echo $html_title; ?><a href="?ym=<?php echo $next.$tag_que; ?>">　&gt;&gt;</a>
         </h3>
         <table class="table table-bordered">
           <tr>

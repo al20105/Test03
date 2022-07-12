@@ -156,7 +156,7 @@ return
     'starts_with' => 'The :attribute must start with one of the following: :values.',
     'string' => ':attributeは文字列である必要があります。',
     'timezone' => ':attributeは有効な時刻である必要があります。',
-    'unique' => ':attributeはすでに取得済みです。',
+    'unique' => ':attributeはすでに使用されています。',
     'uploaded' => ':attributeのアップロードに失敗しました。',
     'url' => 'The :attribute must be a valid URL.',
     'uuid' => 'The :attribute must be a valid UUID.',

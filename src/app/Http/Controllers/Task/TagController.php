@@ -57,8 +57,12 @@ trait TagController
             $tag_names = array_unique($data); // 入力データを配列で取得
             foreach ($tag_names as $name) // 配列をループ
             { 
-                if ($name!=null && !preg_match('/#/',$name)) // nullでないかつ#が含まれていない
+                if ($name!=null && !preg_match('/[#<>]/',$name)) // nullでないかつ#が含まれていない
                 {
+                    if (strlen($name)>100) // 101文字以上の場合100文字にする
+                    {
+                        $name = mb_substr($name, 0, 100, "utf-8");
+                    }
                     $tag = Tag::where('name',$name)->first(); // その名前を持つタグを検索
                     if ($tag != null) // すでに存在する場合
                     {
