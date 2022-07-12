@@ -26,6 +26,13 @@ class DeleteController extends Controller
     use RedirectsUsers; // 継承
     protected $redirectTo = RouteServiceProvider::HOME; // homeのURLをリダイレクトパスに設定
 
+    /****************************************************************************
+    *** Function Name       : TaskDelete(string $encrypted)
+    *** Designer            : 長尾 理生
+    *** Date                : 2022.06.13
+    *** Function            : 課題情報の削除処理を行う。
+    *** Return              : リダイレクト
+    ****************************************************************************/
     public function TaskDelete($encrypted)
     { 
         $id = Crypt::decrypt($encrypted); // 暗号化された課題idを復号化

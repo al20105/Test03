@@ -20,6 +20,13 @@ use Illuminate\Support\Facades\Validator;
 // 課題のバリデート処理(継承用)
 trait TaskCheck
 {
+    /****************************************************************************
+    *** Function Name       : TaskCheck(array $data)
+    *** Designer            : 秋葉 星輝
+    *** Date                : 2022.06.13
+    *** Function            : 課題情報のバリデーション処理を行う。
+    *** Return              : 失敗した場合バリデーションメッセージを返す
+    ****************************************************************************/
     public function TaskCheck(array $data) // 課題のバリデーション処理
     {
         return Validator::make($data, [
