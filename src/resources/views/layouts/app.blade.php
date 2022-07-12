@@ -7,15 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     <!-- 左上のtitle -->
->>>>>>> a936ae945ee919d91354b16747614053170e6497
     <title>{{ config('app.name', '課題管理システム') }}</title>
-=======
-    <title>Scomb3</title>
->>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -25,10 +18,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <!-- /* bootstrap css */ -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
-<<<<<<< HEAD
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
@@ -53,13 +44,11 @@
                 modal.find('#show-date').text(date);
                 modal.find('#show-time').text(time);
                 modal.find('#show-memo').text(memo);
-
                 var ele = document.getElementById("show-tag"); // idを持つエレメントを取得(ここでは<div></div>)
                 while( ele.firstChild ) // エレメントを初期化
                 {
                     ele.removeChild( ele.firstChild );
                 }
-
                 if (tags[0]!="") // tagsがnullでない
                 {
                     for(var i=0;i<tags.length;i++) // tagsをループ
@@ -73,8 +62,6 @@
                     }
                 }
             })
-
-
             $('#TaskEdit').on('show.bs.modal', function (event) // 課題編集のモーダルが呼び出された時
             {
                 var button = $(event.relatedTarget); //モーダルを呼び出すときに使われたボタンを取得
@@ -88,7 +75,6 @@
                     memo = "";
                 }
                 var tags = button.data('tags').split(','); // ,区切りの文章からタグの配列を生成
-
                 var modal = $(this); // 呼び出されたモーダルを取得
                 modal.find('.modal-body input#edit-id').val(id); // 課題idをinputタグに代入
                 modal.find('.modal-body input#edit-name').val(name); // 課題名をinputタグに代入
@@ -101,7 +87,6 @@
                 {
                     ele.removeChild( ele.firstChild );
                 } 
-
                 if (tags[0]!="") // タグ群がnullでない
                 {
                     for(var i=0;i<tags.length;i++) // タグ群をループ
@@ -123,7 +108,6 @@
                     }
                 }
             })
-
             $('#TagEdit').on('show.bs.modal', function (event) // タグ編集一覧のモーダルが呼び出された時
             {
                 var button = $(event.relatedTarget); //モーダルを呼び出すときに使われたボタンを取得
@@ -133,7 +117,6 @@
                 {
                     ele.removeChild( ele.firstChild );
                 } 
-
                 if (tags[0]!="") // タグ群がnullでない
                 {
                     for(var i=0;i<tags.length;i++) // タグ群をループ
@@ -156,7 +139,6 @@
                     ele.appendChild(none);
                 }
             })
-
             $('#TagUpdate').on('show.bs.modal', function (event) // タグ編集のモーダルが呼び出された時
             {
                 var button = $(event.relatedTarget); // モーダルを呼び出すときに使われたボタンを取得
@@ -165,7 +147,6 @@
                 modal.find('.modal-body input#modal-tag').val(tag); // タグ名を代入 
                 modal.find('#tag-name').text(tag); // タグ名を表示
             })
-
             $('#TagDelete').on('show.bs.modal', function (event) // タグ削除確認のモーダルが呼び出された時
             {
                 var button = $(event.relatedTarget); //モーダルを呼び出すときに使われたボタンを取得
@@ -175,7 +156,6 @@
                 {
                     ele.removeChild( ele.firstChild );
                 } 
-
                 if (tags[0]!="") //タグ群がnullでない
                 {
                     for(var i=0;i<tags.length;i++) //タグの配列をループ
@@ -198,7 +178,6 @@
                     ele.appendChild(none);
                 }
             })
-
             $('#TagDestroy').on('show.bs.modal', function (event) // タグ削除のモーダルが呼び出された時
             {
                 var button = $(event.relatedTarget); //モーダルを呼び出すときに使われたボタンを取得
@@ -208,7 +187,6 @@
                 modal.find('#tag-name').text(tag); // タグの名前を表示
             })
         };
-
         $(function()
         {
             $(document).on('click', '#input_add_button', function() // 追加ボタンを押されたら、新しい入力欄と削除ボタンを追加
@@ -224,7 +202,6 @@
                 $(this).parent().remove();
             });    
         });
-
         function deletePost(e) {
             // 課題削除確認
             'use strict';
@@ -232,7 +209,6 @@
                 document.getElementById('form_' + e.dataset.id).submit();
             }
         }
-
     </script>
     
     <!-- Optional JavaScript -->
@@ -247,16 +223,6 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', '課題管理システム') }}
-=======
-</head>
-<body>
-    <div id="app">
-        <nav class="new_navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <!-- {{ config('app.name', 'Scomb3') }} -->
-                    Scomb3
->>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -292,11 +258,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <form id="edit-form" action="{{ route('auth.edit') }}" method="GET">
                                         <input type="hidden" name="id" value="{{ Auth::user()->id }}">
-<<<<<<< HEAD
                                         <input type="submit" class="dropdown-item" value="アカウント情報編集">
-=======
-                                        <input type="submit" class="dropdown-item" value="Edit">
->>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
                                     </form>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -316,7 +278,7 @@
             </div>
         </nav>
 
-        <main class="py-4" style="padding-top: 100px !important;">
+        <main class="py-4">
             @yield('content')
         </main>
     </div>
