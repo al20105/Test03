@@ -2,14 +2,14 @@
 /*******************************************************************
 ***  File Name		: ShowListController.php
 ***  Version		: V1.0
-***  Designer		: 秋葉 星輝
+***  Designer		: 平佐 竜也
 ***  Date			: 2022.06.13
 ***  Purpose       	: 一覧表示処理
 ***
 *******************************************************************/
 /*
 *** Revision :
-*** V1.0 : 秋葉 星輝, 2022.06.13 作成
+*** V1.0 : 平佐 竜也, 2022.06.13 作成
 */
 
 namespace App\Http\Controllers\Task;
@@ -29,7 +29,13 @@ class ShowListController extends Controller
     use TagController; 
     use RedirectsUsers;
 
-    //M3 一覧表示UI処理
+    /****************************************************************************
+    *** Function Name       : ShowListWD(Request $request)
+    *** Designer            : 平佐 竜也
+    *** Date                : 2022.06.13
+    *** Function            : 課題情報の一覧表示処理を行う。
+    *** Return              : task, tags
+    ****************************************************************************/
     public function ShowListWD(Request $request)
     {
         $tag_input = $request->input('tag'); // クエリパラメータのタグの入力を代入
@@ -49,7 +55,13 @@ class ShowListController extends Controller
 
     protected $redirectTo = RouteServiceProvider::HOME; // リダイレクトパスにhomeを指定
 
-    // タグ編集処理
+    /****************************************************************************
+    *** Function Name       : TagEditIndex(Request $request)
+    *** Designer            : 平佐 竜也
+    *** Date                : 2022.06.30
+    *** Function            : 課題情報のタグの編集処理を行う。
+    *** Return              : リダイレクト
+    ****************************************************************************/
     public function TagEditIndex(Request $request)
     {
         $tasks = null; // 空の変数を宣言
@@ -75,7 +87,14 @@ class ShowListController extends Controller
         return redirect($this->redirectPath())->with($messageKey, $flashMessage); // リダイレクトパスにリダイレクト
     }
 
-    // タグ削除処理
+    
+    /****************************************************************************
+    *** Function Name       : TagDeleteIndex(Request $request)
+    *** Designer            : 平佐 竜也
+    *** Date                : 2022.06.30
+    *** Function            : 課題情報のタグの削除処理を行う。
+    *** Return              : リダイレクト
+    ****************************************************************************/
     public function TagDeleteIndex(Request $request)
     {
         $task = null; // 空の変数を宣言

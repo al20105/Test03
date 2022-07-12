@@ -1,5 +1,18 @@
 <?php
 
+/*******************************************************************
+*** File Name           : User.php
+*** Version             : V1.0
+*** Designer            : 平佐 竜也
+*** Date                : 2022.06.14
+*** Purpose             : ユーザーの構造体を定義する。
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : 平佐 竜也, 2022.06.14
+*/
+
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -12,36 +25,22 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'email',
         'password',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
+    // 課題の取得
     public function tasks()
     {
         return $this->hasMany('App\Models\Task');

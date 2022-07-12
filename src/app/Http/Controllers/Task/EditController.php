@@ -35,7 +35,7 @@ class EditController extends Controller
 
 /****************************************************************************
 *** Function Name       : TaskEdit( Request $request )
-*** Designer            : 長尾 理生
+*** Designer            : 里田 侑声
 *** Date                : 2022.06.28
 *** Function            : 課題編集画面を表示する。
 *** Return              : リダイレクト
@@ -47,7 +47,7 @@ class EditController extends Controller
         if ($request->has('approve')) // 保存ボタンが押されている場合
         {
             $this->TaskCheck($request->all())->validate(); // 入力データをバリデート処理
-            $task = $this->update($request->all()); // 上書き処理(下記の関数)
+            $task = $this->Update($request->all()); // 上書き処理(下記の関数)
             $tags = $this->TagRegister($request->input('tags')); // タグの登録処理
             $task->tags()->sync($tags); // 課題とタグの同期処理
         }
@@ -55,9 +55,9 @@ class EditController extends Controller
         if ($task != null) 
         {
             $messageKey = 'successMessage'; // 成功
-            if (is_array($request->input('tags')) && preg_match('/#/',implode($request->input('tags')))) // タグに#が含まれている場合
+            if (is_array($request->input('tags')) && preg_match('/[#<>]/',implode($request->input('tags')))) // タグに#が含まれている場合
             {
-                $flashMessage = __('flash.task_edit_success_without_hashmark'); // フラッシュメッセージを生成
+                $flashMessage = __('flash.task_edit_success_without_mark'); // フラッシュメッセージを生成
             }
             else
             {
@@ -74,14 +74,14 @@ class EditController extends Controller
     }
 
 /****************************************************************************
-*** Function Name       : update( array $data )
+*** Function Name       : Update( array $data )
 *** Designer            : 里田 侑声
 *** Date                : 2022.06.28
 *** Function            : 課題情報の編集処理を行う。
 *** Return              : 課題情報
 ****************************************************************************/
 
-    protected function update( array $data ) // 
+    protected function Update( array $data ) // 
     {
         Task::find($data['id'])->update([ // 上書き処理
             'name' => $data['name'], // 課題名

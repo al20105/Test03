@@ -1,9 +1,23 @@
 <?php
+
+/*******************************************************************
+*** File Name           : flash.php
+*** Version             : V1.0
+*** Designer            : 秋葉 星輝
+*** Date                : 2022.06.28
+*** Purpose             : フラッシュメッセージを設定する。
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : 秋葉 星輝, 2022.06.28
+*/
+
 return [
     'task_register_success'=>'課題の登録に成功しました',
-    'task_register_success_without_hashmark'=>'課題の登録に成功しました (「#」を含むタグは登録できません)',
+    'task_register_success_without_mark'=>'課題の登録に成功しました (特定の記号を含むタグは登録できません)',
     'task_edit_success'=>'課題の編集に成功しました',
-    'task_edit_success_without_hashmark'=>'課題の編集に成功しました　(「#」を含むタグは登録できません)',
+    'task_edit_success_without_mark'=>'課題の編集に成功しました　(特定の記号を含むタグは登録できません)',
     'task_delete_success'=>'課題の削除に成功しました',
 
     'tag_edit_success'=>'タグの編集に成功しました',

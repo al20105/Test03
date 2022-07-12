@@ -27,14 +27,20 @@ class RegisterController extends Controller
 
     protected $redirectTo = RouteServiceProvider::HOME;
 
-    // 課題登録処理
+    /****************************************************************************
+    *** Function Name       : TaskRegister(Request $request)
+    *** Designer            : 秋葉 星輝
+    *** Date                : 2022.06.13
+    *** Function            : 課題情報の登録処理を行う。
+    *** Return              : リダイレクト
+    ****************************************************************************/
     protected function TaskRegister(Request $request)
     {
         $task = null; //空の変数を宣言
         if ($request->has('approve')) // 登録ボタンが押された場合
         {
             $this->TaskCheck($request->all())->validate(); // 入力データのバリデーション処理
-            $task = $this->user->tasks()->create($request->all()); // 登録処理(下記の関数)
+            $task = $this->user->tasks()->Create($request->all()); // 登録処理(下記の関数)
             $tags = $this->TagRegister($request->input('tags')); // タグの登録処理
             $task->tags()->attach($tags); // 課題とタグの紐づけ
         }
@@ -42,9 +48,9 @@ class RegisterController extends Controller
         if ($task != null)
         {
             $messageKey = 'successMessage'; // 成功
-            if (is_array($request->input('tags')) && preg_match('/#/',implode($request->input('tags')))) // タグに#が含まれている場合
+            if (is_array($request->input('tags')) && preg_match('/[#<>]/',implode($request->input('tags')))) // タグに#が含まれている場合
             {
-                $flashMessage = __('flash.task_register_success_without_hashmark');// フラッシュメッセージを生成
+                $flashMessage = __('flash.task_register_success_without_mark');// フラッシュメッセージを生成
             }
             else
             {
@@ -59,7 +65,14 @@ class RegisterController extends Controller
         return redirect($this->redirectPath())->with($messageKey, $flashMessage); // リダイレクトパスにリダイレクト
     }
 
-    protected function create(array $data)
+    /****************************************************************************
+    *** Function Name       : Create(array $data))
+    *** Designer            : 秋葉 星輝
+    *** Date                : 2022.06.13
+    *** Function            : 課題情報の登録処理を行う。
+    *** Return              : Task構造体
+    ****************************************************************************/
+    protected function Create(array $data)
     {
         return Task::create([ // 課題の登録処理
             'name' => $data['name'], // 課題名

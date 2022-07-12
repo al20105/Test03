@@ -1,6 +1,23 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    <!--
+
+    /*******************************************************************
+    ***  File Name        : app.blade.php
+    ***  Version        : V1.0
+    ***  Designer        : 平佐 竜也
+    ***  Date            : 2022.07.04
+    ***  Purpose           : 一覧表示処理の継承用の関数等。
+    ***
+    *******************************************************************/
+    /*
+    *** Revision :
+    *** V1.0 : 平佐 竜也, 2022.07.04
+    */
+    
+    -->
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -53,7 +70,7 @@
 
                 if (tags[0]!="") // tagsがnullでない
                 {
-                    for(var i=0;i<tags.length;i++) // tagsをループ
+                    for(var i=0; i<tags.length; i++) // tagsをループ
                     {
                         var ary = document.createElement("div"); // <div></div>のノードを生成
                         ary.setAttribute("type","text"); // typeをtextに指定
@@ -95,7 +112,7 @@
 
                 if (tags[0]!="") // タグ群がnullでない
                 {
-                    for(var i=0;i<tags.length;i++) // タグ群をループ
+                    for(var i=0; i<tags.length; i++) // タグ群をループ
                     {
                         var ary=document.createElement("input"); // inputフォームを生成
                         ary.setAttribute("class","inputs"); // classをinputsに設定
@@ -127,7 +144,7 @@
 
                 if (tags[0]!="") // タグ群がnullでない
                 {
-                    for(var i=0;i<tags.length;i++) // タグ群をループ
+                    for(var i=0; i<tags.length; i++) // タグ群をループ
                     {
                         var ary=document.createElement("div"); // <div></div>を生成
                         ary.setAttribute("class","button_wrap"); // classをボタンに設定
@@ -233,6 +250,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
 <body>
+    <!-- 上のメニューバー -->
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container-fluid">
