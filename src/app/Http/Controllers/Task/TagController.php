@@ -59,9 +59,9 @@ trait TagController
             { 
                 if ($name!=null && !preg_match('/[#<>]/',$name)) // nullでないかつ#が含まれていない
                 {
-                    if (strlen($name)>100) // 101文字以上の場合100文字にする
+                    if (strlen($name)>99) // 101文字以上の場合100文字にする
                     {
-                        $name = mb_substr($name, 0, 100, "utf-8");
+                        $name = mb_substr($name, 0, 99, "utf-8");
                     }
                     $tag = Tag::where('name',$name)->first(); // その名前を持つタグを検索
                     if ($tag != null) // すでに存在する場合

@@ -34,7 +34,7 @@ class RegisterController extends Controller
         if ($request->has('approve')) // 登録ボタンが押された場合
         {
             $this->TaskCheck($request->all())->validate(); // 入力データのバリデーション処理
-            $task = $this->user->tasks()->create($request->all()); // 登録処理(下記の関数)
+            $task = $this->user->tasks()->Create($request->all()); // 登録処理(下記の関数)
             $tags = $this->TagRegister($request->input('tags')); // タグの登録処理
             $task->tags()->attach($tags); // 課題とタグの紐づけ
         }
@@ -59,7 +59,7 @@ class RegisterController extends Controller
         return redirect($this->redirectPath())->with($messageKey, $flashMessage); // リダイレクトパスにリダイレクト
     }
 
-    protected function create(array $data)
+    protected function Create(array $data)
     {
         return Task::create([ // 課題の登録処理
             'name' => $data['name'], // 課題名

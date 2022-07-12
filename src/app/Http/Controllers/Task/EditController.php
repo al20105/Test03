@@ -47,7 +47,7 @@ class EditController extends Controller
         if ($request->has('approve')) // 保存ボタンが押されている場合
         {
             $this->TaskCheck($request->all())->validate(); // 入力データをバリデート処理
-            $task = $this->update($request->all()); // 上書き処理(下記の関数)
+            $task = $this->Update($request->all()); // 上書き処理(下記の関数)
             $tags = $this->TagRegister($request->input('tags')); // タグの登録処理
             $task->tags()->sync($tags); // 課題とタグの同期処理
         }
@@ -81,7 +81,7 @@ class EditController extends Controller
 *** Return              : 課題情報
 ****************************************************************************/
 
-    protected function update( array $data ) // 
+    protected function Update( array $data ) // 
     {
         Task::find($data['id'])->update([ // 上書き処理
             'name' => $data['name'], // 課題名
