@@ -30,7 +30,13 @@ class EditController extends Controller
             'change_id' => $request->id
         ]);
     }
-
+/****************************************************************************
+*** Function Name       : userEdit(Request $request)
+*** Designer            : 佐藤 駿介
+*** Date                : 2022.06.28
+*** Function            : アカウント編集処理。
+*** Return              : リダイレクト
+****************************************************************************/
     public function userEdit(Request $request) 
     {
         $auth = User::find($request->id);
@@ -40,7 +46,13 @@ class EditController extends Controller
         $this->update($request->all(),$auth);
         return redirect('home');
     }
-
+/****************************************************************************
+*** Function Name       : update(array $data, User $user)
+*** Designer            : 佐藤 駿介
+*** Date                : 2022.06.28
+*** Function            : 情報更新処理。
+*** Return              : 更新情報
+****************************************************************************/
     public function update(array $data, //入力データ
                             User $user )//ユーザデータ
     {
@@ -50,13 +62,19 @@ class EditController extends Controller
             'email' => $data['email']//メールアドレス
         ]);
     }
-    
+    /****************************************************************************
+*** Function Name       : auth_validate(array $data)
+*** Designer            : 佐藤 駿介
+*** Date                : 2022.06.28
+*** Function            : バリデーション処理。
+*** Return              : バリデーション結果
+****************************************************************************/
     protected function auth_validate(array $data)
     {
         //バリデーション処理
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],//ユーザ名
-            'email' => ['required', 'string', 'email', 'max:255'],//メールアドレス
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],//メールアドレス
             'password' => ['required', 'string', 'min:8','current_password']//現在のパスワード
         ]);
     }

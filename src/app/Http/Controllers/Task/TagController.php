@@ -1,4 +1,7 @@
 <?php
+
+namespace App\Http\Controllers\Task;
+
 /*******************************************************************
 *** File Name           : TagController.php
 *** Version             : V1.0
@@ -12,8 +15,6 @@
 *** Revision :
 *** V1.0 : 里田 侑声, 2022.07.04
 */
-
-namespace App\Http\Controllers\Task;
 
 use App\Models\Tag;
 use Illuminate\Support\Collection;
@@ -56,8 +57,12 @@ trait TagController
             $tag_names = array_unique($data); // 入力データを配列で取得
             foreach ($tag_names as $name) // 配列をループ
             { 
-                if ($name!=null && !preg_match('/#/',$name)) // nullでないかつ#が含まれていない
+                if ($name!=null && !preg_match('/[#<>]/',$name)) // nullでないかつ#が含まれていない
                 {
+                    if (strlen($name)>100) // 101文字以上の場合100文字にする
+                    {
+                        $name = mb_substr($name, 0, 100, "utf-8");
+                    }
                     $tag = Tag::where('name',$name)->first(); // その名前を持つタグを検索
                     if ($tag != null) // すでに存在する場合
                     {
