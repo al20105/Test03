@@ -74,7 +74,7 @@ class EditController extends Controller
     }
 
 /****************************************************************************
-*** Function Name       : update( array $data )
+*** Function Name       : Update( array $data )
 *** Designer            : 里田 侑声
 *** Date                : 2022.06.28
 *** Function            : 課題情報の編集処理を行う。

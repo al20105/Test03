@@ -27,7 +27,13 @@ class RegisterController extends Controller
 
     protected $redirectTo = RouteServiceProvider::HOME;
 
-    // 課題登録処理
+    /****************************************************************************
+    *** Function Name       : TaskRegister(Request $request)
+    *** Designer            : 秋葉 星輝
+    *** Date                : 2022.06.13
+    *** Function            : 課題情報の登録処理を行う。
+    *** Return              : リダイレクト
+    ****************************************************************************/
     protected function TaskRegister(Request $request)
     {
         $task = null; //空の変数を宣言
@@ -59,6 +65,13 @@ class RegisterController extends Controller
         return redirect($this->redirectPath())->with($messageKey, $flashMessage); // リダイレクトパスにリダイレクト
     }
 
+    /****************************************************************************
+    *** Function Name       : Create(array $data))
+    *** Designer            : 秋葉 星輝
+    *** Date                : 2022.06.13
+    *** Function            : 課題情報の登録処理を行う。
+    *** Return              : Task構造体
+    ****************************************************************************/
     protected function Create(array $data)
     {
         return Task::create([ // 課題の登録処理
