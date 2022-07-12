@@ -11,12 +11,10 @@ else // 今月の年月を表示
 {
     $ym = date('Y-m');
 }
-
 if(isset($_GET['tag'])) // タグのクエリパラメータを取得
 { 
     $tag_set = $_GET['tag'];
 }
-
 if (isset($tag_set)) // タグのクエリパラメータの生成
 {
   $tag_que = "&tag=$tag_set";
@@ -25,31 +23,25 @@ else
 {
   $tag_que = "";
 }
-
 $timestamp = strtotime($ym . '-01'); // タイムスタンプ（どの時刻を基準にするか）を作成し、フォーマットをチェックする
-
 if($timestamp === false) // エラー対策として形式チェックを追加
 {
     $ym = date('Y-m'); // falseが返ってきた時は、現在の年月・タイムスタンプを取得
     $timestamp = strtotime($ym . '-01');
 }
-
 $today = date('Y-m-j'); // 今月の日付　フォーマット　例）2020-10-2
 $html_title = date('Y年n月', $timestamp); // カレンダーのタイトルを作成　例）2020年10月
 $prev = date('Y-m', strtotime('-1 month', $timestamp)); // 前月の年月を取得
 $next = date('Y-m', strtotime('+1 month', $timestamp)); // 次月の年月を取得
 $day_count = date('t', $timestamp); // 該当月の日数を取得
 $youbi = date('w', $timestamp); // 何曜日か
-
 //カレンダー作成の準備
 $calendar = [];
 $week = '';
 $tw = '';
-
 //第１週目：空のセルを追加
 $week .= str_repeat('<td></td>', $youbi);
 $tw .= str_repeat('<td></td>', $youbi);
-
 for($day = 1; $day <= $day_count; $day++, $youbi++)
 {
     $date = $ym . '-' . $day; // 例:2020-00-00
@@ -63,7 +55,6 @@ for($day = 1; $day <= $day_count; $day++, $youbi++)
         $week .= '<td>' . $day;
     }
     $week .= '</td>';
-
     $day_task = array(); // 初期化
     foreach($tasks as $task)
     {
@@ -73,7 +64,6 @@ for($day = 1; $day <= $day_count; $day++, $youbi++)
       }
     }
     array_multisort( array_map( "strtotime", array_column( $day_task, "time" ) ), SORT_ASC, $day_task ); // 締め切り時間で並び替え
-
     $tw .= '<td>'; // 課題の行
     if(count($day_task) != 0) // 今日の課題がある場合
     {
@@ -82,19 +72,11 @@ for($day = 1; $day <= $day_count; $day++, $youbi++)
         if($cnt != 0){
           $tw .= '<br>'; // 改行
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-        $data_tags = array();
-        foreach ($task->tags as $tag) {
-          $data_tags[] = $tag->name;
-=======
         $data_tags = array(); // 初期化
         foreach ($task->tags as $tag)
         {
           $data_tags[] = $tag->name; // タグを格納
->>>>>>> a936ae945ee919d91354b16747614053170e6497
         }
-
         if ($task->memo==null) // 詳細情報がnulの場合"null"とする(エラー回避)
         {
           $task->memo="null";
@@ -111,23 +93,12 @@ for($day = 1; $day <= $day_count; $day++, $youbi++)
                   data-time=$task->time 
                   data-memo=$task->memo 
                   data-tags=$data_tags>".$t_name.
-<<<<<<< HEAD
-                "</button>";
-        $tw .= date('H:i' ,strtotime($task['time']));
-=======
-        $tw .= $task['name'];
-        $tw .= '<br>' . date('H:i' ,strtotime($task['time'])) . '<br class="space">';
->>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
-=======
                 "</button>"; // モーダル用
         $tw .= date('H:i' ,strtotime($task['time'])); // 時間を表示
->>>>>>> a936ae945ee919d91354b16747614053170e6497
         $cnt++;
       }
     }
-
-    $tw .= '<br>' . '</td>';
-
+    $tw .= '</td>';
     if($youbi % 7 == 6 || $day == $day_count){ // 週終わり、月終わりの場合
         if($day == $day_count) // 月の最終日、空セルを追加
         {
@@ -184,25 +155,9 @@ for($day = 1; $day <= $day_count; $day++, $youbi++)
   <section class="main">
     
     <div class="left_area">
-<<<<<<< HEAD
       <div class="container-fluid calender">
         <h3 class="calender-title">
-<<<<<<< HEAD
-<<<<<<< HEAD
-          <a href="?ym=<?php echo $prev.$tag_que; ?>">&lt;&lt;　</a><?php echo $html_title; ?><a href="?ym=<?php echo $next.$tag_que; ?>">　&gt;&gt;</a>
-=======
-
-
-      <div class="container calender">
-        <h3 class="calender-title">
-          <a href="?ym=<?php echo $prev; ?>">&lt;&lt;　</a><?php echo $html_title; ?><a href="?ym=<?php echo $next; ?>">　&gt;&gt;</a>
->>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
-=======
-          <a href="?ym=<?php echo $prev.$tag_que; ?>">&lt;&lt; </a><?php echo $html_title; ?><a href="?ym=<?php echo $next.$tag_que; ?>">　&gt;&gt;</a>
->>>>>>> a936ae945ee919d91354b16747614053170e6497
-=======
           <a href="?ym=<?php echo $prev.$tag_que; ?>">&lt;&lt;&emsp;</a><?php echo $html_title; ?><a href="?ym=<?php echo $next.$tag_que; ?>">&emsp;&gt;&gt;</a>
->>>>>>> 333da0a4aa41249bc547c148e3196b53626cf522
         </h3>
         <table class="table table-bordered">
           <tr>
@@ -226,23 +181,11 @@ for($day = 1; $day <= $day_count; $day++, $youbi++)
     <div class="right_area">
       <div class="inner">
         <div class="account_info">
-<<<<<<< HEAD
           <div class="new_schedule">
             <a>
               <div class="button_wrap" data-toggle="modal" data-target="#TaskRegister">新規作成</div>
             </a>
           </div>
-=======
-          <!-- <div class="account_title">
-            <p class="user-name">{{ $user->name }}</p>
-          </div> -->
-
-          <div class="new_schedule">
-            <a href="{{ route('task.create') }}">
-              <div class="button_wrap">新規作成</div>
-            </a>
-        </div>
->>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
         </div>
 
         <section id="todo">
@@ -250,7 +193,6 @@ for($day = 1; $day <= $day_count; $day++, $youbi++)
           <ul>
             @foreach($tasks as $task)
               <li class="item">
-<<<<<<< HEAD
                 <div class="left_item_area">
                   <?php
                     $t_name = $task->name;
@@ -258,8 +200,6 @@ for($day = 1; $day <= $day_count; $day++, $youbi++)
                   ?>
                   <h2 class="sche_name">{{ $t_name }}</h2>
                 </div>
-=======
->>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
                 <?php
                   $parameter = Crypt::encrypt(['id' => $task->id]);
                   $data_tags = array();
@@ -269,7 +209,6 @@ for($day = 1; $day <= $day_count; $day++, $youbi++)
                   $data_tags = implode(',', $data_tags);
                   if ($task->memo==null) $task->memo="";
                 ?>
-<<<<<<< HEAD
                 <div class="right_item_area">
                   <button type="button" class="btn show" data-toggle="modal" data-target="#TaskShow"
                     data-name={{ $task->name }} 
@@ -286,19 +225,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++)
                     data-memo={{ $task->memo }} 
                     data-tags={{ $data_tags }}>編集
                   </button>
-<<<<<<< HEAD
-=======
-                <div class="left_item_area">
-                  <h2 class="sche_name">{{ $task->name }}</h2>
-                </div>
-                <div class="right_item_area">
-                  <a href="{{ route('task.show', $parameter ) }}" class="btn show">詳細</a>
-                  <a href="{{ route('task.edit', $parameter ) }}" class="btn edit">編集</a>
->>>>>>> e48681d349859e500cc97d9e0b5ee1aff9d87957
-                  <form action="{{ route('task.destroy', $parameter ) }}" id="form_{{ $task->id }}" method="post" class="btn delete-btn">
-=======
                   <form action="{{ route('task.delete', $parameter ) }}" id="form_{{ $task->id }}" method="post" class="btn delete-btn">
->>>>>>> a936ae945ee919d91354b16747614053170e6497
                     @csrf
                     {{ method_field('delete') }}
                     <a href="#" data-id="{{ $task->id }}" onclick="deletePost(this);" class="delete">
