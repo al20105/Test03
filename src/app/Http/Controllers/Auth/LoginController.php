@@ -1,4 +1,7 @@
 <?php
+
+namespace App\Http\Controllers\Auth;
+
 /*******************************************************************
 *** File Name           : form.php
 *** Version             : V1.0
@@ -11,8 +14,6 @@
 *** Revision :
 *** V1.0 : 里田 侑声, 2022.06.28
 */
-
-namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;

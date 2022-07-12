@@ -1,4 +1,7 @@
 <?php
+
+namespace App\Http\Controllers\Task;
+
 /*******************************************************************
 *** File Name           : TagController.php
 *** Version             : V1.0
@@ -12,8 +15,6 @@
 *** Revision :
 *** V1.0 : 里田 侑声, 2022.07.04
 */
-
-namespace App\Http\Controllers\Task;
 
 use App\Models\Tag;
 use Illuminate\Support\Collection;
