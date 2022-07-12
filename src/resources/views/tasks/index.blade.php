@@ -2,6 +2,20 @@
 
 @section('content')
 <?php
+
+/*******************************************************************
+***  File Name        : index.blade.php
+***  Version        : V1.0
+***  Designer        : 平佐 竜也
+***  Date            : 2022.07.04
+***  Purpose           : 一覧表示処理のhtml部分
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : 平佐 竜也, 2022.07.04
+*/
+
 date_default_timezone_set('Asia/Tokyo'); // タイムゾーンを設定
 if(isset($_GET['ym'])) // 前月・次月リンクが選択された場合は、GETパラメーターから年月を取得
 { 
@@ -152,14 +166,16 @@ for($day = 1; $day <= $day_count; $day++, $youbi++)
     </div>
   @endif
   {{-- フラッシュメッセージ終わり --}}
+
   <section class="main">
-    
     <div class="left_area">
       <div class="container-fluid calender">
         <h3 class="calender-title">
+          <!-- カレンダーのタイトルを設定 -->
           <a href="?ym=<?php echo $prev.$tag_que; ?>">&lt;&lt;&emsp;</a><?php echo $html_title; ?><a href="?ym=<?php echo $next.$tag_que; ?>">&emsp;&gt;&gt;</a>
         </h3>
         <table class="table table-bordered">
+          <!-- 曜日の表を作成 -->
           <tr>
               <th>日</th>
               <th>月</th>
@@ -170,6 +186,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++)
               <th>土</th>
           </tr>
           <?php
+            // 上記のphp部分で定義した1週分のカレンダーを作成
             foreach ($calendar as $week) {
                 echo $week;
             }
@@ -201,15 +218,23 @@ for($day = 1; $day <= $day_count; $day++, $youbi++)
                   <h2 class="sche_name">{{ $t_name }}</h2>
                 </div>
                 <?php
+                  // 課題idを暗号化
                   $parameter = Crypt::encrypt(['id' => $task->id]);
+                  // タグの配列を定義
                   $data_tags = array();
                   foreach ($task->tags as $tag) {
                     $data_tags[] = $tag->name;
                   }
+                  // タグの配列を,区切りの文字列に変形
                   $data_tags = implode(',', $data_tags);
-                  if ($task->memo==null) $task->memo="";
+                  // 詳細情報がnullの場合null(string)とする
+                  if ($task->memo==null)
+                  {
+                    $task->memo="";
+                  }
                 ?>
                 <div class="right_item_area">
+                  <!--モーダルの起動を含めたボタンを作成 -->
                   <button type="button" class="btn show" data-toggle="modal" data-target="#TaskShow"
                     data-name={{ $task->name }} 
                     data-date={{ $task->date }} 
@@ -225,6 +250,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++)
                     data-memo={{ $task->memo }} 
                     data-tags={{ $data_tags }}>編集
                   </button>
+                  <!-- 課題削除をするボタンを作成 -->
                   <form action="{{ route('task.delete', $parameter ) }}" id="form_{{ $task->id }}" method="post" class="btn delete-btn">
                     @csrf
                     {{ method_field('delete') }}
@@ -248,6 +274,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++)
           $data_tags = implode(',', $data_tags);
         ?>
         <div class="tag_btn">
+          <!-- タグに関するボタンを作成 -->
           <div class="tag_edit">
             <div class="button_wrap" data-toggle="modal" data-target="#TagEdit" data-tags={{ $data_tags }}>編集</div>
           </div>
@@ -269,6 +296,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++)
                   }
                 }
               ?>
+              <!-- タグの表記を作成 -->
               <a href="home?ym=<?php echo $ym; ?>&tag={{ $tag->name }}" class="text"><span>#{{ $tag->name }}<?php echo("(".$tag_count.")")?></span></a>
             </li>
           @endforeach
@@ -280,6 +308,7 @@ for($day = 1; $day <= $day_count; $day++, $youbi++)
   </section>
 
   <!-- Modal -->
+  <!-- 処理はapp.blade.phpのjs部分 -->
   <!-- Tag Modal -->
   <div class="modal fade" id="TagDelete" tabindex="-1" role="dialog" aria-labelledby="show-modal-label" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
