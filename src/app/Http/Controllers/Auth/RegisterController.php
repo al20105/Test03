@@ -51,7 +51,7 @@ class RegisterController extends Controller
      */
     /****************************************************************************
 *** Function Name       : validator( array $data )
-*** Designer            : 佐藤 駿介
+*** Designer            : 長尾 理生
 *** Date                : 2022.06.28
 *** Function            : バリデーション処理を行う。
 *** Return              : バリデーション結果
