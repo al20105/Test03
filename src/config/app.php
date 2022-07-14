@@ -1,5 +1,18 @@
 <?php
 
+/*******************************************************************
+***  File Name		: AuthServiceProvider.php
+***  Version		: V1.0
+***  Designer		: 
+***  Date			: 
+***  Purpose       	: 
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : , 2022.06.13
+*/
+
 use Illuminate\Support\Facades\Facade;
 
 return [

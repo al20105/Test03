@@ -24,13 +24,26 @@ class Task extends Model
     
     protected $fillable = ['user_id', 'name', 'date', 'time', 'memo'];
 
-    // 親ユーザーの取得
+/****************************************************************************
+*** Function Name       : user()
+*** Designer            : 
+*** Date                : 
+*** Function            : 
+*** Return              : 
+****************************************************************************/
+
     public function user()
     {
         return $this->belongsTo('App\Models\User');
     }
 
-    // タグの取得
+/****************************************************************************
+*** Function Name       : tags()
+*** Designer            : 
+*** Date                : 
+*** Function            : 
+*** Return              : 
+****************************************************************************/
     public function tags()
     {
         return $this->belongsToMany('App\Models\Tag');

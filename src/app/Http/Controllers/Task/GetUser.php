@@ -20,7 +20,16 @@ use Illuminate\Support\Facades\View;
 // ユーザーの取得(継承用)
 trait GetUser
 {
-    public function __construct()
+
+/****************************************************************************
+*** Function Name       : __construct()
+*** Designer            : 
+*** Date                : 
+*** Function            : 新しいコントローラーのインスタンスを生成する
+*** Return              : なし
+****************************************************************************/
+
+public function __construct()
     {
         $this->middleware('auth')->except(['index', 'show']);
         $this->middleware(function ($request, $next)

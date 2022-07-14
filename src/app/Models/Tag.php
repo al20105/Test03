@@ -20,11 +20,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    use HasFactory;
+    use HasFactory; // 
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name']; // 
 
-    // 課題の取得
+/****************************************************************************
+*** Function Name       : tasks()
+*** Designer            : 
+*** Date                : 
+*** Function            : 
+*** Return              : 
+****************************************************************************/
+
     public function tasks()
     {
         return $this->belongsToMany('App\Models\Task');

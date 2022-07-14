@@ -2,24 +2,27 @@
 
 namespace App\Http\Middleware;
 
+/*******************************************************************
+***  File Name		: TrustProxies.php
+***  Version		: V1.0
+***  Designer		: 
+***  Date			: 
+***  Purpose       	: 
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : , 2022.06.13
+*/
+
 use Illuminate\Http\Middleware\TrustProxies as Middleware;
 use Illuminate\Http\Request;
 
 class TrustProxies extends Middleware
 {
-    /**
-     * The trusted proxies for this application.
-     *
-     * @var array<int, string>|string|null
-     */
-    protected $proxies = '**';
+    protected $proxies = '**'; // * The trusted proxies for this application.
 
-    /**
-     * The headers that should be used to detect proxies.
-     *
-     * @var int
-     */
-    protected $headers =
+    protected $headers = // * The headers that should be used to detect proxies.
         Request::HEADER_X_FORWARDED_FOR |
         Request::HEADER_X_FORWARDED_HOST |
         Request::HEADER_X_FORWARDED_PORT |

@@ -1,6 +1,20 @@
 <?php
 
-return [
+/*******************************************************************
+***  File Name		: AuthServiceProvider.php
+***  Version		: V1.0
+***  Designer		: 
+***  Date			: 
+***  Purpose       	: 
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : , 2022.06.13
+*/
+
+return
+[
 
     /*
     |--------------------------------------------------------------------------
@@ -28,37 +42,45 @@ return [
     |
     */
 
-    'connections' => [
+    'connections' =>
+    [
 
-        'pusher' => [
+        'pusher' =>
+        [
             'driver' => 'pusher',
             'key' => env('PUSHER_APP_KEY'),
             'secret' => env('PUSHER_APP_SECRET'),
             'app_id' => env('PUSHER_APP_ID'),
-            'options' => [
+            'options' =>
+            [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
                 'useTLS' => true,
             ],
-            'client_options' => [
+            'client_options' =>
+            [
                 // Guzzle client options: https://docs.guzzlephp.org/en/stable/request-options.html
             ],
         ],
 
-        'ably' => [
+        'ably' =>
+        [
             'driver' => 'ably',
             'key' => env('ABLY_KEY'),
         ],
 
-        'redis' => [
+        'redis' =>
+        [
             'driver' => 'redis',
             'connection' => 'default',
         ],
 
-        'log' => [
+        'log' =>
+        [
             'driver' => 'log',
         ],
 
-        'null' => [
+        'null' =>
+        [
             'driver' => 'null',
         ],
 
