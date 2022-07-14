@@ -43,7 +43,7 @@ class EditController extends Controller
         //バリデーション処理
         $this->auth_validate($request->all())->validate();
         //データの上書き編集
-        $this->update($request->all(),$auth);
+        $this->Update($request->all(),$auth);
         return redirect('home');
     }
 /****************************************************************************
@@ -53,7 +53,7 @@ class EditController extends Controller
 *** Function            : 情報更新処理。
 *** Return              : 更新情報
 ****************************************************************************/
-    public function update(array $data, //入力データ
+    public function Update(array $data, //入力データ
                             User $user )//ユーザデータ
     {
         //データの上書き編集
