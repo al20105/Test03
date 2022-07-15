@@ -1,6 +1,20 @@
 <?php
 
-return [
+/*******************************************************************
+***  File Name		: AuthServiceProvider.php
+***  Version		: V1.0
+***  Designer		: 
+***  Date			: 
+***  Purpose       	: 
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : , 2022.06.13
+*/
+
+return
+[
 
     /*
     |--------------------------------------------------------------------------
@@ -13,7 +27,8 @@ return [
     |
     */
 
-    'defaults' => [
+    'defaults' =>
+    [
         'guard' => 'web',
         'passwords' => 'users',
     ],
@@ -35,8 +50,10 @@ return [
     |
     */
 
-    'guards' => [
-        'web' => [
+    'guards' =>
+    [
+        'web' =>
+        [
             'driver' => 'session',
             'provider' => 'users',
         ],
@@ -59,16 +76,13 @@ return [
     |
     */
 
-    'providers' => [
-        'users' => [
+    'providers' =>
+    [
+        'users' =>
+        [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*
@@ -86,8 +100,10 @@ return [
     |
     */
 
-    'passwords' => [
-        'users' => [
+    'passwords' =>
+    [
+        'users' =>
+        [
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,

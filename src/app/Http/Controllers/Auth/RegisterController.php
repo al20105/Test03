@@ -26,29 +26,21 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::HOME; // homeのURLをリダイレクトパスに設定
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+/****************************************************************************
+*** Function Name       : __construct()
+*** Designer            : 
+*** Date                : 
+*** Function            : 新しいコントローラーのインスタンスを生成する
+*** Return              : なし
+****************************************************************************/
+
     public function __construct()
     {
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
     /****************************************************************************
 *** Function Name       : validator( array $data )
 *** Designer            : 長尾 理生
@@ -56,7 +48,8 @@ class RegisterController extends Controller
 *** Function            : バリデーション処理を行う。
 *** Return              : バリデーション結果
 ****************************************************************************/
-    protected function validator(array $data)
+
+    protected function validator(array $data) // 
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],//ユーザ名
@@ -65,12 +58,6 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
     /****************************************************************************
 *** Function Name       : create(array $data)
 *** Designer            : 佐藤 駿介
@@ -78,7 +65,7 @@ class RegisterController extends Controller
 *** Function            : ユーザ情報の構造を作成。
 *** Return              : 構造体
 ****************************************************************************/
-    protected function create(array $data)
+    protected function create(array $data) // /
     {
         return User::create([
             'name' => $data['name'],//ユーザ名

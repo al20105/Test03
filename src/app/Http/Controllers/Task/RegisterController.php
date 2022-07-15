@@ -23,9 +23,12 @@ use Illuminate\Foundation\Auth\RedirectsUsers;
 
 class RegisterController extends Controller
 {
-    use GetUser; use TaskCheck; use RedirectsUsers; use TagController;
+    use GetUser; // 継承
+    use TaskCheck; // 継承
+    use RedirectsUsers; // 継承
+    use TagController; // 継承
 
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::HOME; // homeのURLをリダイレクトパスに設定
 
     /****************************************************************************
     *** Function Name       : TaskRegister(Request $request)
@@ -34,6 +37,7 @@ class RegisterController extends Controller
     *** Function            : 課題情報の登録処理を行う。
     *** Return              : リダイレクト
     ****************************************************************************/
+
     protected function TaskRegister(Request $request)
     {
         $task = null; //空の変数を宣言
@@ -72,6 +76,7 @@ class RegisterController extends Controller
     *** Function            : 課題情報の登録処理を行う。
     *** Return              : Task構造体
     ****************************************************************************/
+
     protected function Create(array $data)
     {
         return Task::create([ // 課題の登録処理

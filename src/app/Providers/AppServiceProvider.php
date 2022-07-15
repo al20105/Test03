@@ -8,7 +8,6 @@ class AppServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        //
     }
 
     // .envファイルの'APP_ENV'が'ngrok'ならhttps通信をする

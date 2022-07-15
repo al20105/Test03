@@ -26,12 +26,12 @@ use Illuminate\Support\Facades\Crypt;
 
 class EditController extends Controller
 {
-    use GetUser;
-    use TaskCheck;
-    use RedirectsUsers;
-    use TagController;
+    use GetUser; // 継承
+    use TaskCheck; // 継承
+    use RedirectsUsers; // 継承
+    use TagController; // 継承
 
-    protected $redirectTo = RouteServiceProvider::HOME; // homeのurlをリダイレクトパスに設定
+    protected $redirectTo = RouteServiceProvider::HOME; // homeのURLをリダイレクトパスに設定
 
 /****************************************************************************
 *** Function Name       : TaskEdit( Request $request )

@@ -1,4 +1,7 @@
 <?php
+
+namespace App\Http\Controllers\Task;
+
 /*******************************************************************
 ***  File Name		: DeleteController.php
 ***  Version		: V1.0
@@ -11,8 +14,6 @@
 *** Revision :
 *** V1.0 : 長尾 理生, 2022.06.13
 */
-
-namespace App\Http\Controllers\Task;
 
 use App\Models\Task;
 use Illuminate\Contracts\Encryption\DecryptException;
@@ -33,7 +34,8 @@ class DeleteController extends Controller
     *** Function            : 課題情報の削除処理を行う。
     *** Return              : リダイレクト
     ****************************************************************************/
-    public function TaskDelete($encrypted)
+    
+    public function TaskDelete( $encrypted ) // 
     { 
         $id = Crypt::decrypt($encrypted); // 暗号化された課題idを復号化
         Task::where('id', $id)->delete(); // 削除処理

@@ -25,22 +25,32 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $fillable = [
+    protected $fillable =
+    [
         'name',
         'email',
         'password',
     ];
 
-    protected $hidden = [
+    protected $hidden =
+    [
         'password',
         'remember_token',
     ];
 
-    protected $casts = [
+    protected $casts =
+    [
         'email_verified_at' => 'datetime',
     ];
 
-    // 課題の取得
+/****************************************************************************
+*** Function Name       : tasks()
+*** Designer            : 
+*** Date                : 
+*** Function            : 
+*** Return              : 
+****************************************************************************/
+
     public function tasks()
     {
         return $this->hasMany('App\Models\Task');

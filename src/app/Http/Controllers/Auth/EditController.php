@@ -37,7 +37,7 @@ class EditController extends Controller
 *** Function            : アカウント編集処理。
 *** Return              : リダイレクト
 ****************************************************************************/
-    public function userEdit(Request $request) 
+    public function userEdit(Request $request) // HTTPリクエスト
     {
         $auth = User::find($request->id);
         //バリデーション処理
@@ -69,7 +69,7 @@ class EditController extends Controller
 *** Function            : バリデーション処理。
 *** Return              : バリデーション結果
 ****************************************************************************/
-    protected function auth_validate(array $data)
+    protected function auth_validate(array $data) // 
     {
         //バリデーション処理
         return Validator::make($data, [
