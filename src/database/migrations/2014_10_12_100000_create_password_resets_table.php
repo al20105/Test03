@@ -1,11 +1,11 @@
 <?php
 
 /*******************************************************************
-***  File Name		: 2014_10_12_100000_create_password_resets_table.php
-***  Version		: V1.0
-***  Designer		: 平佐 竜也
-***  Date			: 2022.06.28
-***  Purpose       	: パスワードリセットのマイグレーションファイル
+*** File Name           : 2014_10_12_100000_create_password_resets_table.php
+*** Version             : V1.0
+*** Designer            : 平佐 竜也
+*** Date                : 2022.06.28
+*** Purpose             : パスワードリセットのマイグレーションファイル
 ***
 *******************************************************************/
 /*
@@ -23,7 +23,7 @@ return new class extends Migration
 *** Function Name       : up()
 *** Designer            : 平佐 竜也
 *** Date                : 2022.06.28
-*** Function            : データベースに新しいテーブルを追加する
+*** Function            : データベースにテーブルpassword_resetsを追加する
 *** Return              : なし
 ****************************************************************************/
 

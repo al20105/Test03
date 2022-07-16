@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Auth;
 *** Version             : V1.0
 *** Designer            : 里田 侑声
 *** Date                : 2022.06.28
-*** Purpose             : ログインを行う。
+*** Purpose             : ログインを行う
 ***
 *******************************************************************/
 /*
@@ -23,15 +23,15 @@ use Illuminate\Http\Request;
 class LoginController extends Controller
 {
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers; // 継承
 
-    protected $redirectTo = '/login'; // リダイレクト先
+    protected $redirectTo = '/login'; // リダイレクトパス
 
 /****************************************************************************
 *** Function Name       : __construct()
 *** Designer            : 里田 侑声
 *** Date                : 2022.06.28
-*** Function            : 新しいインスタンスを生成する。
+*** Function            : 新しいインスタンスを生成する
 *** Return              : なし
 ****************************************************************************/
 
@@ -44,11 +44,11 @@ class LoginController extends Controller
 *** Function Name       : loggedOut( Request $request )
 *** Designer            : 佐藤 駿介
 *** Date                : 2022.06.28
-*** Function            : ログイン画面を表示する。
+*** Function            : ログイン画面を表示する
 *** Return              : リダイレクト
 ****************************************************************************/
 
-    protected function loggedOut( Request $request ) // リクエスト
+    protected function loggedOut( Request $request ) // HTTPリクエスト
     {
         return redirect('/login');
     }

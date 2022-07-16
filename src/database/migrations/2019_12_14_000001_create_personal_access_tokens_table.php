@@ -1,11 +1,11 @@
 <?php
 
 /*******************************************************************
-***  File Name		: 2019_12_14_000001_create_personal_access_tokens_table.php
-***  Version		: V1.0
-***  Designer		: 平佐 竜也
-***  Date			: 2022.06.28
-***  Purpose       	: アクセストークンのマイグレーションファイル
+*** File Name           : 2019_12_14_000001_create_personal_access_tokens_table.php
+*** Version             : V1.0
+*** Designer            : 平佐 竜也
+*** Date                : 2022.06.28
+*** Purpose             : アクセストークンのマイグレーションファイル
 ***
 *******************************************************************/
 /*
@@ -24,7 +24,7 @@ return new class extends Migration
 *** Function Name       : up()
 *** Designer            : 平佐 竜也
 *** Date                : 2022.06.28
-*** Function            : データベースに新しいテーブルを追加する
+*** Function            : データベースにテーブルpersonal_access_tokensを追加する
 *** Return              : なし
 ****************************************************************************/
      

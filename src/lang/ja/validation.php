@@ -5,7 +5,7 @@
 *** Version             : V1.0
 *** Designer            : 里田 侑声
 *** Date                : 2022.06.28
-*** Purpose             : バリデーション実施後のエラーMを設定する。
+*** Purpose             : バリデーション実施後のエラーMの設定
 ***
 *******************************************************************/
 /*
@@ -97,7 +97,8 @@ return
     ],
 
     'mac_address' => 'The :attribute must be a valid MAC address.',
-    'max' => [
+    'max' =>
+    [
         'array' => ':attributeは:max以下の項目が必要です。',
         'file' => ':attributeは:value KB以下の必要があります。',
         'numeric' => ':attributeは:max以下の必要があります。',

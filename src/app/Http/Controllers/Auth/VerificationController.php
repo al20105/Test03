@@ -3,18 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 /*******************************************************************
-***  File Name		: VerificationController.php
-***  Version		: V1.0
-***  Designer		: 
-***  Date			: 
-***  Purpose       	:     | This controller is responsible for handling email verification for any
-    | user that recently registered with the application. Emails may also
-    | be re-sent if the user didn't receive the original email message.
+*** File Name           : VerificationController.php
+*** Version             : V1.0
+*** Designer            : なし(デフォルトのファイル)
+*** Date                : 2022.06.28 
+*** Purpose             : 電子メール認証の処理
 ***
 *******************************************************************/
 /*
 *** Revision :
-*** V1.0 : , 2022.06.13
+*** V1.0 : なし(デフォルトのファイル), 2022.06.28
 */
 
 use App\Http\Controllers\Controller;
@@ -26,12 +24,12 @@ class VerificationController extends Controller
 
     use VerifiesEmails; // 継承
 
-    protected $redirectTo = RouteServiceProvider::HOME; // homeのURLをリダイレクトパスに設定
+    protected $redirectTo = RouteServiceProvider::HOME; // リダイレクトパス
 
 /****************************************************************************
 *** Function Name       : __construct()
-*** Designer            : 
-*** Date                : 
+*** Designer            : なし(デフォルトのファイル)
+*** Date			    : 2022.06.28
 *** Function            : 新しいコントローラーのインスタンスを生成する
 *** Return              : なし
 ****************************************************************************/

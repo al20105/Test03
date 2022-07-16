@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 /*******************************************************************
-***  File Name		: ConfirmPasswordController.php
-***  Version		: V1.0
-***  Designer		: 
-***  Date			: 
-***  Purpose       	: This controller is responsible for handling password confirmations and uses a simple trait to include the behavior. You're free to explore this trait and override any functions that require customization.
+*** File Name           : ConfirmPasswordController.php
+*** Version             : V1.0
+*** Designer            : なし(デフォルトのファイル)
+*** Date                : 2022.06.28 
+*** Purpose             : パスワード確認の処理
 ***
 *******************************************************************/
 /*
 *** Revision :
-*** V1.0 : , 2022.06.13
+*** V1.0 : なし(デフォルトのファイル), 2022.06.28
 */
 
 use App\Http\Controllers\Controller;
@@ -23,12 +23,12 @@ class ConfirmPasswordController extends Controller
 {
     use ConfirmsPasswords; // 継承
 
-    protected $redirectTo = RouteServiceProvider::HOME; // homeのURLをリダイレクトパスに設定
+    protected $redirectTo = RouteServiceProvider::HOME; // リダイレクトパス
 
 /****************************************************************************
 *** Function Name       : __construct()
-*** Designer            : 
-*** Date                : 
+*** Designer            : なし(デフォルトのファイル)
+*** Date			    : 2022.06.28
 *** Function            : 新しいコントローラーのインスタンスを生成する
 *** Return              : なし
 ****************************************************************************/

@@ -3,16 +3,16 @@
 namespace App\Console;
 
 /*******************************************************************
-***  File Name		: Kernel.php
-***  Version		: V1.0
-***  Designer		: 
-***  Date			: 
-***  Purpose       	: 
+*** File Name           : Kernel.php
+*** Version             : V1.0
+*** Designer            : なし(デフォルトのファイル)
+*** Date                : 2022.06.28 
+*** Purpose             : コマンドに関する定義
 ***
 *******************************************************************/
 /*
 *** Revision :
-*** V1.0 : , 2022.06.13
+*** V1.0 : なし(デフォルトのファイル), 2022.06.28
 */
 
 use Illuminate\Console\Scheduling\Schedule;
@@ -23,20 +23,20 @@ class Kernel extends ConsoleKernel
 
 /****************************************************************************
 *** Function Name       : schedule( Schedule $schedule )
-*** Designer            : 
-*** Date                : 
+*** Designer            : なし(デフォルトのファイル)
+*** Date			    : 2022.06.28
 *** Function            : アプリケーションのコマンドスケジュールを定義する
 *** Return              : なし
 ****************************************************************************/
 
-    protected function schedule( Schedule $schedule ) // 
+    protected function schedule( Schedule $schedule ) // スケジュール
     {
     }
 
 /****************************************************************************
 *** Function Name       : commands()
-*** Designer            : 
-*** Date                : 
+*** Designer            : なし(デフォルトのファイル)
+*** Date			    : 2022.06.28
 *** Function            : アプリケーションのコマンドを登録する
 *** Return              : なし
 ****************************************************************************/

@@ -1,19 +1,20 @@
 <?php
 
-return [
+/*******************************************************************
+*** File Name           : pagination.php
+*** Version             : V1.0
+*** Designer            : なし(デフォルトのファイル)
+*** Date                : 2022.06.28 
+*** Purpose             : 単純なページネーションリンクの設定
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : なし(デフォルトのファイル), 2022.06.28
+*/
 
-    /*
-    |--------------------------------------------------------------------------
-    | Pagination Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used by the paginator library to build
-    | the simple pagination links. You are free to change them to anything
-    | you want to customize your views to better match your application.
-    |
-    */
-
+return
+[
     'previous' => '&laquo; Previous',
     'next' => 'Next &raquo;',
-
 ];

@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 /*******************************************************************
-***  File Name		: Controller.php
-***  Version		: V1.0
-***  Designer		: 
-***  Date			: 
-***  Purpose       	: 
+*** File Name           : Controller.php
+*** Version             : V1.0
+*** Designer            : なし(デフォルトのファイル)
+*** Date                : 2022.06.28 
+*** Purpose             : Controllerの設定
 ***
 *******************************************************************/
 /*
 *** Revision :
-*** V1.0 : , 2022.06.13
+*** V1.0 : なし(デフォルトのファイル), 2022.06.28
 */
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;

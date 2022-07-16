@@ -20,16 +20,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    use HasFactory; // 
+    use HasFactory; // 継承
 
-    protected $fillable = ['name']; // 
+    protected $fillable = // 代入を許可する変数
+    [
+        'name'
+    ];
 
 /****************************************************************************
 *** Function Name       : tasks()
-*** Designer            : 
-*** Date                : 
-*** Function            : 
-*** Return              : 
+*** Designer            : 秋葉 星輝
+*** Date                : 2022.07.04
+*** Function            : 課題情報を取得する
+*** Return              : タグ情報の所有者である課題情報
 ****************************************************************************/
 
     public function tasks()

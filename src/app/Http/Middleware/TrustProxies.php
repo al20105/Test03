@@ -3,16 +3,16 @@
 namespace App\Http\Middleware;
 
 /*******************************************************************
-***  File Name		: TrustProxies.php
-***  Version		: V1.0
-***  Designer		: 
-***  Date			: 
-***  Purpose       	: 
+*** File Name           : TrustProxies.php
+*** Version             : V1.0
+*** Designer            : なし(デフォルトのファイル)
+*** Date                : 2022.06.28 
+*** Purpose             : 信用するプロキシの設定
 ***
 *******************************************************************/
 /*
 *** Revision :
-*** V1.0 : , 2022.06.13
+*** V1.0 : なし(デフォルトのファイル), 2022.06.28
 */
 
 use Illuminate\Http\Middleware\TrustProxies as Middleware;
@@ -20,9 +20,9 @@ use Illuminate\Http\Request;
 
 class TrustProxies extends Middleware
 {
-    protected $proxies = '**'; // * The trusted proxies for this application.
+    protected $proxies = '**'; // このアプリケーションで信用されているプロキシ
 
-    protected $headers = // * The headers that should be used to detect proxies.
+    protected $headers = // プロキシを検出するために使用すべきヘッダ
         Request::HEADER_X_FORWARDED_FOR |
         Request::HEADER_X_FORWARDED_HOST |
         Request::HEADER_X_FORWARDED_PORT |
