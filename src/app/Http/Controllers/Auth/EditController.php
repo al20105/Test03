@@ -27,7 +27,7 @@ class EditController extends Controller
 {
 
 /****************************************************************************
-*** Function Name       : userEdit( Request $request )
+*** Function Name       : ShowEditForm( Request $request )
 *** Designer            : 佐藤 駿介
 *** Date                : 2022.06.28
 *** Function            : アカウント情報編集画面を表示する
