@@ -1,11 +1,11 @@
 <?php
 
 /*******************************************************************
-***  File Name		: 2022_06_21_165002_create_tags_table.php
-***  Version		: V1.0
-***  Designer		: 秋葉 星輝 
-***  Date			: 2022.06.28
-***  Purpose       	: タグ情報のマイグレーションファイル
+*** File Name           : 2022_06_21_165002_create_tags_table.php
+*** Version             : V1.0
+*** Designer            : 秋葉 星輝
+*** Date                : 2022.06.28
+*** Purpose             : タグ情報のマイグレーションフォルダ
 ***
 *******************************************************************/
 /*
@@ -22,15 +22,15 @@ return new class extends Migration
 
 /****************************************************************************
 *** Function Name       : up()
-*** Designer            : 秋葉 星輝 
+*** Designer            : 秋葉 星輝
 *** Date                : 2022.06.28
-*** Function            : データベースに新しいテーブルを追加する
+*** Function            : tagsテーブルを作成する
 *** Return              : なし
 ****************************************************************************/
 
     public function up()
     {
-        Schema::create('tags', function ( Blueprint $table ) // スキーマビルダ
+        Schema::create('tags', function (Blueprint $table) // ブループリント
         {
             $table->id();
             $table->string('name')->comment('課題名');
@@ -41,13 +41,13 @@ return new class extends Migration
 
 /****************************************************************************
 *** Function Name       : down()
-*** Designer            : 秋葉 星輝 
+*** Designer            : 秋葉 星輝
 *** Date                : 2022.06.28
-*** Function            : データベースを以前の状態に戻す
+*** Function            : tagsテーブルを削除する
 *** Return              : なし
 ****************************************************************************/
 
-     public function down()
+    public function down()
     {
         Schema::dropIfExists('tags');
     }

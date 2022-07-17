@@ -1,16 +1,16 @@
 <?php
 
 /*******************************************************************
-***  File Name		: 2019_08_19_000000_create_failed_jobs_table.php
-***  Version		: V1.0
-***  Designer		: 平佐 竜也
-***  Date			: 2022.06.28
-***  Purpose       	: 失敗したジョブのマイグレーションファイル
+*** File Name           : 2019_08_19_000000_create_failed_jobs_table.php
+*** Version             : V1.0
+*** Designer            : なし(デフォルト)
+*** Date                : 2022.06.28
+*** Purpose             : 登録失敗ジョブのマイグレーションフォルダ
 ***
 *******************************************************************/
 /*
 *** Revision :
-*** V1.0 : 平佐 竜也, 2022.06.28
+*** V1.0 : なし(デフォルト), 2022.06.28
 */
 
 use Illuminate\Database\Migrations\Migration;
@@ -19,17 +19,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+
 /****************************************************************************
 *** Function Name       : up()
-*** Designer            : 平佐 竜也
+*** Designer            : なし(デフォルト)
 *** Date                : 2022.06.28
-*** Function            : データベースに新しいテーブルを追加する
+*** Function            : failed_jobsテーブルを作成する
 *** Return              : なし
 ****************************************************************************/
 
     public function up()
     {
-        Schema::create('failed_jobs', function (Blueprint $table) // スキーマビルダ
+        Schema::create('failed_jobs', function (Blueprint $table) // ブループリント
         {
             $table->id();
             $table->string('uuid')->unique();
@@ -43,12 +44,12 @@ return new class extends Migration
 
 /****************************************************************************
 *** Function Name       : down()
-*** Designer            : 平佐 竜也
+*** Designer            : なし(デフォルト)
 *** Date                : 2022.06.28
-*** Function            : データベースを以前の状態に戻す
+*** Function            : failed_jobsテーブルを削除する
 *** Return              : なし
 ****************************************************************************/
-
+    
     public function down()
     {
         Schema::dropIfExists('failed_jobs');

@@ -1,16 +1,16 @@
 <?php
 
 /*******************************************************************
-***  File Name		: 2014_10_12_100000_create_password_resets_table.php
-***  Version		: V1.0
-***  Designer		: 平佐 竜也
-***  Date			: 2022.06.28
-***  Purpose       	: パスワードリセットのマイグレーションファイル
+*** File Name           : 2014_10_12_100000_create_password_resets_table.php
+*** Version             : V1.0
+*** Designer            : なし(デフォルト)
+*** Date                : 2022.06.28
+*** Purpose             : パスワードリセットのマイグレーションフォルダ
 ***
 *******************************************************************/
 /*
 *** Revision :
-*** V1.0 : 平佐 竜也, 2022.06.28
+*** V1.0 : なし(デフォルト), 2022.06.28
 */
 
 use Illuminate\Database\Migrations\Migration;
@@ -19,17 +19,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+
 /****************************************************************************
 *** Function Name       : up()
-*** Designer            : 平佐 竜也
+*** Designer            : なし(デフォルト)
 *** Date                : 2022.06.28
-*** Function            : データベースに新しいテーブルを追加する
+*** Function            : password_resetsテーブルを作成する
 *** Return              : なし
 ****************************************************************************/
 
     public function up()
     {
-        Schema::create('password_resets', function (Blueprint $table) // スキーマビルダ
+        Schema::create('password_resets', function (Blueprint $table) // ブループリント
         {
             $table->string('email')->index();
             $table->string('token');
@@ -39,9 +40,9 @@ return new class extends Migration
 
 /****************************************************************************
 *** Function Name       : down()
-*** Designer            : 平佐 竜也
+*** Designer            : なし(デフォルト)
 *** Date                : 2022.06.28
-*** Function            : データベースを以前の状態に戻す
+*** Function            : password_resetsテーブルを削除する
 *** Return              : なし
 ****************************************************************************/
 
