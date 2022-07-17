@@ -1,20 +1,4 @@
 <?php
-
-/*******************************************************************
-***  File Name		: .php
-***  Version		: V1.0
-***  Designer		: 
-***  Date			: 
-***  Purpose       	: 
-***
-*******************************************************************/
-/*
-*** Revision :
-*** V1.0 : , 2022.06.13
-*/
-
-use Laravel\Sanctum\Sanctum;
-
 /*******************************************************************
 *** File Name           : sanctum.php
 *** Version             : V1.0
@@ -27,6 +11,8 @@ use Laravel\Sanctum\Sanctum;
 *** Revision :
 *** V1.0 : なし(デフォルト), 2022.06.28
 */
+
+use Laravel\Sanctum\Sanctum;
 
 return
 [
