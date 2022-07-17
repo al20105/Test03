@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 /*******************************************************************
-*** File Name           : .php
+*** File Name           : Autheticate.php
 *** Version             : V1.0
 *** Designer            : なし(デフォルト)
 *** Date                : 2022.06.28
