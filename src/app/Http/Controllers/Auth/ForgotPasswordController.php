@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 /*******************************************************************
-***  File Name		: ForgotPasswordController.php
-***  Version		: V1.0
-***  Designer		: 
-***  Date			: 
-***  Purpose       	:  This controller is responsible for handling password reset emails and includes a trait which assists in sending these notifications from your application to your users. Feel free to explore this trait.
+*** File Name           : ForgotPasswordController.php
+*** Version             : V1.0
+*** Designer            : なし(デフォルト)
+*** Date                : 2022.06.28
+*** Purpose             : パスワードを忘れてしまった場合の処理を行う
 ***
 *******************************************************************/
 /*
 *** Revision :
-*** V1.0 : , 2022.06.13
+*** V1.0 : なし(デフォルト), 2022.06.28
 */
 
 use App\Http\Controllers\Controller;
