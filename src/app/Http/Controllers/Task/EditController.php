@@ -17,12 +17,9 @@ namespace App\Http\Controllers\Task;
 
 use App\Models\Task;
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Foundation\Auth\RedirectsUsers;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Crypt;
 
 class EditController extends Controller
 {

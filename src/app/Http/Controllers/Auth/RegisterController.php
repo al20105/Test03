@@ -42,7 +42,6 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-
 /****************************************************************************
 *** Function Name       : validator( array $data )
 *** Designer            : 長尾 理生
@@ -50,13 +49,13 @@ class RegisterController extends Controller
 *** Function            : バリデーション処理を行う
 *** Return              : バリデーション結果
 ****************************************************************************/
-    protected function validator( array $data ) // 入力データ
+    protected function validator( array $data ) // 入力データのバリデーション処理
     {
         return Validator::make($data, 
         [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => ['required', 'string', 'max:255'], // ユーザー名
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], // メール
+            'password' => ['required', 'string', 'min:8', 'confirmed'], // パスワード
         ]);
     }
 
@@ -67,13 +66,14 @@ class RegisterController extends Controller
 *** Function            : アカウント情報の生成を行う
 *** Return              : アカウント情報
 ****************************************************************************/
-    protected function create( array $data )
+
+    protected function create( array $data ) // 入力データ
     {
         return User::create(
         [
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'name' => $data['name'], // ユーザー名
+            'email' => $data['email'], // メール
+            'password' => Hash::make($data['password']), // パスワードのhash
         ]);
     }
 }
