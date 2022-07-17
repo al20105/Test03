@@ -2,6 +2,19 @@
 
 namespace App\Providers;
 
+/*******************************************************************
+*** File Name           : RouteServiceProvider.php
+*** Version             : V1.0
+*** Designer            : なし(デフォルト)
+*** Date                : 2022.06.28
+*** Purpose             : ルートのサービスプロバイダ設定を行う
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : なし(デフォルト), 2022.06.28
+*/
+
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -10,20 +23,16 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    /**
-     * The path to the "home" route for your application.
-     *
-     * Typically, users are redirected here after authentication.
-     *
-     * @var string
-     */
-    public const HOME = '/home';
+    public const HOME = '/home'; // 認証後のリダイレクトパス
 
-    /**
-     * Define your route model bindings, pattern filters, and other route configuration.
-     *
-     * @return void
-     */
+/****************************************************************************
+*** Function Name       : boot()
+*** Designer            : なし(デフォルト)
+*** Date                : 2022.06.28
+*** Function            : ルートモデルバインデイィングなどの定義を行う
+*** Return              : なし
+****************************************************************************/
+
     public function boot()
     {
         $this->configureRateLimiting();
@@ -39,17 +48,21 @@ class RouteServiceProvider extends ServiceProvider
         });
     }
 
-    /**
-     * Configure the rate limiters for the application.
-     *
-     * @return void
-     */
+/****************************************************************************
+*** Function Name       : configureRateLimiting()
+*** Designer            : なし(デフォルト)
+*** Date                : 2022.06.28
+*** Function            : レート制限の定義を行う
+*** Return              : なし
+****************************************************************************/
+
     protected function configureRateLimiting()
     {
-        RateLimiter::for('api', function (Request $request) {
+        RateLimiter::for('api', function ( Request $request ) // HTTPリクエストリクエスト
+        {
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
         });
     }
 
-    protected $namespace = 'App\\Http\\Controllers';
+    protected $namespace = 'App\\Http\\Controllers'; // 名前空間
 }
