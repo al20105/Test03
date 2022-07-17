@@ -1,16 +1,16 @@
 <?php
 
 /*******************************************************************
-***  File Name		: 2022_06_10_023441_create_tasks_table.php
-***  Version		: V1.0
-***  Designer		: 平佐 竜也
-***  Date			: 2022.06.28
-***  Purpose       	: 課題情報のマイグレーションファイル
+*** File Name           : 2022_06_10_023441_create_tasks_table.php
+*** Version             : V1.0
+*** Designer            : 秋葉 星輝
+*** Date                : 2022.06.28
+*** Purpose             : 課題情報のマイグレーションフォルダ
 ***
 *******************************************************************/
 /*
 *** Revision :
-*** V1.0 : 平佐 竜也, 2022.06.28
+*** V1.0 : 秋葉 星輝, 2022.06.28
 */
 
 use Illuminate\Database\Migrations\Migration;
@@ -22,15 +22,15 @@ return new class extends Migration
 
 /****************************************************************************
 *** Function Name       : up()
-*** Designer            : 平佐 竜也
+*** Designer            : 秋葉 星輝
 *** Date                : 2022.06.28
-*** Function            : データベースに新しいテーブルを追加する
+*** Function            : tasksテーブルを作成する
 *** Return              : なし
 ****************************************************************************/
 
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) // スキーマビルダ
+        Schema::create('tasks', function (Blueprint $table) // ブループリント
         {
             $table->id();
             $table->integer('user_id')->comment('課題の管理者の区別に用いる');
@@ -45,9 +45,9 @@ return new class extends Migration
 
 /****************************************************************************
 *** Function Name       : down()
-*** Designer            : 平佐 竜也
+*** Designer            : 秋葉 星輝
 *** Date                : 2022.06.28
-*** Function            : データベースを以前の状態に戻す
+*** Function            : tasksテーブルを削除する
 *** Return              : なし
 ****************************************************************************/
 

@@ -3,16 +3,16 @@
 namespace App\Http\Middleware;
 
 /*******************************************************************
-***  File Name		: RedirectIfAuthenticated.php
-***  Version		: V1.0
-***  Designer		: 
-***  Date			: 
-***  Purpose       	: 
+*** File Name           : RedirectIfAuthenticated.php
+*** Version             : V1.0
+*** Designer            : なし(デフォルト)
+*** Date                : 2022.06.28
+*** Purpose             : リクエスト処理を行う
 ***
 *******************************************************************/
 /*
 *** Revision :
-*** V1.0 : , 2022.06.13
+*** V1.0 : なし(デフォルト), 2022.06.28
 */
 
 use App\Providers\RouteServiceProvider;
@@ -22,21 +22,18 @@ use Illuminate\Support\Facades\Auth;
 
 class RedirectIfAuthenticated
 {
-/****************************************************************************
-*** Function Name       : handle( Request $request, Closure $next, ...$guards )
-*** Designer            : 
-*** Date                : 
-*** Function            : * Handle an incoming request.     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @param  string|null  ...$guards
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
 
-*** Return              : なし
+/****************************************************************************
+*** Function Name       : handle( Request $request, Closure $next, ...$guards)
+*** Designer            : なし(デフォルト)
+*** Date                : 2022.06.28
+*** Function            : リクエストの処理を行う
+*** Return              : レスポンス
 ****************************************************************************/
-    public function handle(Request $request, // 
-                           Closure $next, // 
-                           ...$guards) // 
+
+    public function handle( Request $request, // HTTPリクエスト
+                            Closure $next, // 無名関数
+                            ...$guards) // 複数のデータ
     {
         $guards = empty($guards) ? [null] : $guards;
 

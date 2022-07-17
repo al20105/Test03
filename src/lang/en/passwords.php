@@ -1,22 +1,23 @@
 <?php
 
-return [
+/*******************************************************************
+*** File Name           : passwords.php
+*** Version             : V1.0
+*** Designer            : なし(デフォルト)
+*** Date                : 2022.06.28
+*** Purpose             : パスワードに関する文字列設定
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : なし(デフォルト), 2022.06.28
+*/
 
-    /*
-    |--------------------------------------------------------------------------
-    | Password Reset Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are the default lines which match reasons
-    | that are given by the password broker for a password update attempt
-    | has failed, such as for an invalid token or invalid new password.
-    |
-    */
-
+return
+[
     'reset' => 'Your password has been reset!',
     'sent' => 'We have emailed your password reset link!',
     'throttled' => 'Please wait before retrying.',
     'token' => 'This password reset token is invalid.',
     'user' => "We can't find a user with that email address.",
-
 ];

@@ -1,18 +1,20 @@
 <?php
 
-return [
+/*******************************************************************
+*** File Name           : validation.php
+*** Version             : V1.0
+*** Designer            : なし(デフォルト)
+*** Date                : 2022.06.28
+*** Purpose             : バリデーションに関する文字列設定
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : なし(デフォルト), 2022.06.28
+*/
 
-    /*
-    |--------------------------------------------------------------------------
-    | Validation Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines contain the default error messages used by
-    | the validator class. Some of these rules have multiple versions such
-    | as the size rules. Feel free to tweak each of these messages here.
-    |
-    */
-
+return
+[
     'accepted' => 'The :attribute must be accepted.',
     'accepted_if' => 'The :attribute must be accepted when :other is :value.',
     'active_url' => 'The :attribute is not a valid URL.',
@@ -24,7 +26,8 @@ return [
     'array' => 'The :attribute must be an array.',
     'before' => 'The :attribute must be a date before :date.',
     'before_or_equal' => 'The :attribute must be a date before or equal to :date.',
-    'between' => [
+    'between' =>
+    [
         'array' => 'The :attribute must have between :min and :max items.',
         'file' => 'The :attribute must be between :min and :max kilobytes.',
         'numeric' => 'The :attribute must be between :min and :max.',
@@ -49,13 +52,15 @@ return [
     'exists' => 'The selected :attribute is invalid.',
     'file' => 'The :attribute must be a file.',
     'filled' => 'The :attribute field must have a value.',
-    'gt' => [
+    'gt' =>
+    [
         'array' => 'The :attribute must have more than :value items.',
         'file' => 'The :attribute must be greater than :value kilobytes.',
         'numeric' => 'The :attribute must be greater than :value.',
         'string' => 'The :attribute must be greater than :value characters.',
     ],
-    'gte' => [
+    'gte' =>
+    [
         'array' => 'The :attribute must have :value items or more.',
         'file' => 'The :attribute must be greater than or equal to :value kilobytes.',
         'numeric' => 'The :attribute must be greater than or equal to :value.',
@@ -69,20 +74,23 @@ return [
     'ipv4' => 'The :attribute must be a valid IPv4 address.',
     'ipv6' => 'The :attribute must be a valid IPv6 address.',
     'json' => 'The :attribute must be a valid JSON string.',
-    'lt' => [
+    'lt' =>
+    [
         'array' => 'The :attribute must have less than :value items.',
         'file' => 'The :attribute must be less than :value kilobytes.',
         'numeric' => 'The :attribute must be less than :value.',
         'string' => 'The :attribute must be less than :value characters.',
     ],
-    'lte' => [
+    'lte' =>
+    [
         'array' => 'The :attribute must not have more than :value items.',
         'file' => 'The :attribute must be less than or equal to :value kilobytes.',
         'numeric' => 'The :attribute must be less than or equal to :value.',
         'string' => 'The :attribute must be less than or equal to :value characters.',
     ],
     'mac_address' => 'The :attribute must be a valid MAC address.',
-    'max' => [
+    'max' =>
+    [
         'array' => 'The :attribute must not have more than :max items.',
         'file' => 'The :attribute must not be greater than :max kilobytes.',
         'numeric' => 'The :attribute must not be greater than :max.',
@@ -90,7 +98,8 @@ return [
     ],
     'mimes' => 'The :attribute must be a file of type: :values.',
     'mimetypes' => 'The :attribute must be a file of type: :values.',
-    'min' => [
+    'min' =>
+    [
         'array' => 'The :attribute must have at least :min items.',
         'file' => 'The :attribute must be at least :min kilobytes.',
         'numeric' => 'The :attribute must be at least :min.',
@@ -100,7 +109,8 @@ return [
     'not_in' => 'The selected :attribute is invalid.',
     'not_regex' => 'The :attribute format is invalid.',
     'numeric' => 'The :attribute must be a number.',
-    'password' => [
+    'password' =>
+    [
         'letters' => 'The :attribute must contain at least one letter.',
         'mixed' => 'The :attribute must contain at least one uppercase and one lowercase letter.',
         'numbers' => 'The :attribute must contain at least one number.',
@@ -122,7 +132,8 @@ return [
     'required_without' => 'The :attribute field is required when :values is not present.',
     'required_without_all' => 'The :attribute field is required when none of :values are present.',
     'same' => 'The :attribute and :other must match.',
-    'size' => [
+    'size' =>
+    [
         'array' => 'The :attribute must contain :size items.',
         'file' => 'The :attribute must be :size kilobytes.',
         'numeric' => 'The :attribute must be :size.',
@@ -136,34 +147,15 @@ return [
     'url' => 'The :attribute must be a valid URL.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
-    /*
-    |--------------------------------------------------------------------------
-    | Custom Validation Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | Here you may specify custom validation messages for attributes using the
-    | convention "attribute.rule" to name the lines. This makes it quick to
-    | specify a specific custom language line for a given attribute rule.
-    |
-    */
-
-    'custom' => [
-        'attribute-name' => [
+    'custom' =>
+    [
+        'attribute-name' =>
+        [
             'rule-name' => 'custom-message',
         ],
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Custom Validation Attributes
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used to swap our attribute placeholder
-    | with something more reader friendly such as "E-Mail Address" instead
-    | of "email". This simply helps us make our message more expressive.
-    |
-    */
-
-    'attributes' => [],
+    'attributes' => [
+    ],
 
 ];

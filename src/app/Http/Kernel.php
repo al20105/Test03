@@ -3,23 +3,23 @@
 namespace App\Http;
 
 /*******************************************************************
-***  File Name		: Kernel.php
-***  Version		: V1.0
-***  Designer		: 
-***  Date			: 
-***  Purpose       	: 
+*** File Name           : Kernel.php
+*** Version             : V1.0
+*** Designer            : なし(デフォルト)
+*** Date                : 2022.06.28
+*** Purpose             : アプリケーションのミドルウェア設定を行う
 ***
 *******************************************************************/
 /*
 *** Revision :
-*** V1.0 : , 2022.06.13
+*** V1.0 : なし(デフォルト), 2022.06.28
 */
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
-    protected $middleware = //      * The application's global HTTP middleware stack.These middleware are run during every request to your application.
+    protected $middleware = // グローバルHTTPミドルウェアのスタック
     [
         // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
@@ -30,8 +30,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
 
-    protected $middlewareGroups = //      * The application's route middleware groups.
-
+    protected $middlewareGroups = // ルートミドルウェアグループ
     [
         'web' =>
         [
@@ -51,7 +50,7 @@ class Kernel extends HttpKernel
         ],
     ];
 
-    protected $routeMiddleware = // The application's route middleware.These middleware may be assigned to groups or used individually.
+    protected $routeMiddleware = // ルートミドルウェア
     [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
