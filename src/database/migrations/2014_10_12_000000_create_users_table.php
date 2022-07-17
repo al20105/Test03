@@ -1,16 +1,16 @@
 <?php
 
 /*******************************************************************
-***  File Name		: 2014_10_12_000000_create_users_table.php
-***  Version		: V1.0
-***  Designer		: 平佐 竜也
-***  Date			: 2022.06.28
-***  Purpose       	: アカウント情報のマイグレーションファイル
+*** File Name           : 2014_10_12_000000_create_users_table.php
+*** Version             : V1.0
+*** Designer            : 秋葉 星輝
+*** Date                : 2022.06.28
+*** Purpose             : アカウント情報のマイグレーションフォルダ
 ***
 *******************************************************************/
 /*
 *** Revision :
-*** V1.0 : 平佐 竜也, 2022.06.28
+*** V1.0 : 秋葉 星輝, 2022.06.28
 */
 
 use Illuminate\Database\Migrations\Migration;
@@ -22,15 +22,15 @@ return new class extends Migration
 
 /****************************************************************************
 *** Function Name       : up()
-*** Designer            : 平佐 竜也
+*** Designer            : 秋葉 星輝
 *** Date                : 2022.06.28
-*** Function            : データベースに新しいテーブルを追加する
+*** Function            : usersテーブルを作成する
 *** Return              : なし
 ****************************************************************************/
 
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) // スキーマビルダ
+        Schema::create('users', function ( Blueprint $table ) // ブループリント
         {
             $table->id();
             $table->string('name');
@@ -44,9 +44,9 @@ return new class extends Migration
 
 /****************************************************************************
 *** Function Name       : down()
-*** Designer            : 平佐 竜也
+*** Designer            : 秋葉 星輝
 *** Date                : 2022.06.28
-*** Function            : データベースを以前の状態に戻す
+*** Function            : usersテーブルを削除する
 *** Return              : なし
 ****************************************************************************/
 

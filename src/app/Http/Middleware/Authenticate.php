@@ -3,33 +3,35 @@
 namespace App\Http\Middleware;
 
 /*******************************************************************
-***  File Name		: Authenticate.php
-***  Version		: V1.0
-***  Designer		: 
-***  Date			: 
-***  Purpose       	: 
+*** File Name           : .php
+*** Version             : V1.0
+*** Designer            : なし(デフォルト)
+*** Date                : 2022.06.28
+*** Purpose             : 認証されていない場合の画面遷移設定を行う
 ***
 *******************************************************************/
 /*
 *** Revision :
-*** V1.0 : , 2022.06.13
+*** V1.0 : なし(デフォルト), 2022.06.28
 */
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
 class Authenticate extends Middleware
 {
+
 /****************************************************************************
 *** Function Name       : redirectTo( $request )
-*** Designer            : 
-*** Date                : 
-*** Function            : Get the path the user should be redirected to when they are not authenticated.
-*** Return              : 文字列もしくはなし
+*** Designer            : なし(デフォルト)
+*** Date                : 2022.06.28
+*** Function            : 認証されていない場合のリダイレクトパスを取得する
+*** Return              : リダイレクトパス
 ****************************************************************************/
 
-protected function redirectTo( $request ) // 
+    protected function redirectTo( $request )
     {
-        if (! $request->expectsJson()) {
+        if (! $request->expectsJson())
+        {
             return route('login');
         }
     }

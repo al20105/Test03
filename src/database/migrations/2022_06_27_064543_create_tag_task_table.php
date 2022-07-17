@@ -1,12 +1,11 @@
 <?php
 
 /*******************************************************************
-***  File Name		: 2022_06_27_064543_create_tag_task_table.php
-***  Version		: V1.0
-***  Designer		: 秋葉 星輝 
-***  Date			: 2022.06.28
-***  Purpose       	: タグ情報と課題情報の中間テーブルの
-                      マイグレーションファイル
+*** File Name           : 2022_06_27_064543_create_tag_task_table.php
+*** Version             : V1.0
+*** Designer            : 秋葉 星輝
+*** Date                : 2022.06.28
+*** Purpose             : タグ情報と課題情報の中間テーブルマイグレーションフォルダ
 ***
 *******************************************************************/
 /*
@@ -23,15 +22,15 @@ return new class extends Migration
 
 /****************************************************************************
 *** Function Name       : up()
-*** Designer            : 秋葉 星輝 
+*** Designer            : 秋葉 星輝
 *** Date                : 2022.06.28
-*** Function            : データベースに新しいテーブルを追加する
+*** Function            : tag_taskテーブルを作成する
 *** Return              : なし
 ****************************************************************************/
 
     public function up()
     {
-        Schema::create('tag_task', function ( Blueprint $table ) // スキーマビルダ
+        Schema::create('tag_task', function (Blueprint $table) // ブループリント
         {
             $table->id();
             $table->unsignedBigInteger('task_id')->comment('課題id');
@@ -44,9 +43,9 @@ return new class extends Migration
 
 /****************************************************************************
 *** Function Name       : down()
-*** Designer            : 秋葉 星輝 
+*** Designer            : 秋葉 星輝
 *** Date                : 2022.06.28
-*** Function            : データベースを以前の状態に戻す
+*** Function            : tag_taskテーブルを削除する
 *** Return              : なし
 ****************************************************************************/
 

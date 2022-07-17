@@ -3,16 +3,16 @@
 namespace App\Providers;
 
 /*******************************************************************
-***  File Name		: EventServiceProvider.php
-***  Version		: V1.0
-***  Designer		: 
-***  Date			: 
-***  Purpose       	: 
+*** File Name           : EventServiceProvider.php
+*** Version             : V1.0
+*** Designer            : なし(デフォルト)
+*** Date                : 2022.06.28
+*** Purpose             : イベントのサービスプロバイダ設定を行う
 ***
 *******************************************************************/
 /*
 *** Revision :
-*** V1.0 : , 2022.06.13
+*** V1.0 : なし(デフォルト), 2022.06.28
 */
 
 use Illuminate\Auth\Events\Registered;
@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
-    protected $listen =
+    protected $listen = // 
     [
         Registered::class =>
         [
@@ -31,23 +31,25 @@ class EventServiceProvider extends ServiceProvider
     ];
 
 /****************************************************************************
-*** Function Name       :boot()
-*** Designer            : 
-*** Date                : 
-*** Function            : 
-*** Return              : 
+*** Function Name       : boot()
+*** Designer            : なし(デフォルト)
+*** Date                : 2022.06.28
+*** Function            : 何も行わない
+*** Return              : なし
 ****************************************************************************/
+
     public function boot()
     {
     }
 
 /****************************************************************************
-*** Function Name       :shouldDiscoverEvents()
-*** Designer            : 
-*** Date                : 
-*** Function            : 
-*** Return              : 
+*** Function Name       : shouldDiscoverEvents()
+*** Designer            : なし(デフォルト)
+*** Date                : 2022.06.28
+*** Function            : Falseを返す
+*** Return              : False
 ****************************************************************************/
+
     public function shouldDiscoverEvents()
     {
         return false;

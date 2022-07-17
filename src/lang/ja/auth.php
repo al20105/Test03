@@ -1,20 +1,21 @@
 <?php
 
-return [
+/*******************************************************************
+*** File Name           : auth.php
+*** Version             : V1.0
+*** Designer            : 里田 侑声
+*** Date                : 2022.06.28
+*** Purpose             : アカウント認証に関する文字列設定
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : なし(デフォルト), 2022.06.28
+*/
 
-    /*
-    |--------------------------------------------------------------------------
-    | Authentication Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used during authentication for various
-    | messages that we need to display to the user. You are free to modify
-    | these language lines according to your application's requirements.
-    |
-    */
-
-    'failed' => 'この資格情報は、こちらの記録と一致しません。',
+return
+[
+   'failed' => 'この資格情報は、こちらの記録と一致しません。',
     'password' => '入力されたパスワードが正しくありません。',
     'throttle' => 'ログインの試行回数が多すぎます。:second秒後に再試行してください。',
-
 ];

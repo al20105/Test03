@@ -1,18 +1,19 @@
 <?php
+
+namespace App\Http\Controllers\Task;
+
 /*******************************************************************
-***  File Name		: ShowListController.php
-***  Version		: V1.0
-***  Designer		: 平佐 竜也
-***  Date			: 2022.06.13
-***  Purpose       	: 一覧表示処理
+*** File Name           : ShowListController.php
+*** Version             : V1.0
+*** Designer            : 平佐 竜也
+*** Date                : 2022.06.28
+*** Purpose             : カレンダー・ToDoリスト画面表示を行う
 ***
 *******************************************************************/
 /*
 *** Revision :
-*** V1.0 : 平佐 竜也, 2022.06.13 作成
+*** V1.0 : 平佐 竜也, 2022.06.28
 */
-
-namespace App\Http\Controllers\Task;
 
 use App\Models\User;
 use App\Models\Task;
@@ -29,86 +30,88 @@ class ShowListController extends Controller
     use TagController; 
     use RedirectsUsers;
 
-    /****************************************************************************
-    *** Function Name       : ShowListWD(Request $request)
-    *** Designer            : 平佐 竜也
-    *** Date                : 2022.06.13
-    *** Function            : 課題情報の一覧表示処理を行う。
-    *** Return              : task, tags
-    ****************************************************************************/
-    public function ShowListWD(Request $request)
+/****************************************************************************
+*** Function Name       : ShowListWD( Request $request )
+*** Designer            : 平佐 竜也
+*** Date                : 2022.06.28
+*** Function            : 課題情報の一覧表示を行う
+*** Return              : 画面表示
+****************************************************************************/
+
+    public function ShowListWD( Request $request ) // HTTPリクエスト
     {
-        $tag_input = $request->input('tag'); // クエリパラメータのタグの入力を代入
-        $tag = Tag::where('name',$tag_input)->first(); // タグを取得
-        if ($tag != null) // タグが存在する場合
+        $tag_input = $request->input('tag'); // タグの入力
+        $tag = Tag::where('name',$tag_input)->first(); // タグ情報
+        if ($tag != null)
         { 
-            $tasks = $tag->tasks; // そのタグを持つすべての課題を絞り込む
-            $tasks = $tasks->where('user_id', $this->user->id); // 学生が持つ課題を取得
+            $tasks = $tag->tasks; // 課題情報の配列
+            $tasks = $tasks->where('user_id', $this->user->id);
         }
         else
         {
-            $tasks = $this->user->tasks; // 学生が持つすべての課題を取得
+            $tasks = $this->user->tasks; // 課題情報の配列
         }
-        $tags = $this->GetTags($this->user->tasks); // 課題がもつタグのリストを取得
-        return view('tasks.index',compact('tasks','tags')); // $tasks, $tagsを入力してsrc/resources/views/tasks/index.blade.phpを表示
+        $tags = $this->GetTags($this->user->tasks); // タグ情報の配列
+        return view('tasks.index',compact('tasks','tags'));
     }
 
-    protected $redirectTo = RouteServiceProvider::HOME; // リダイレクトパスにhomeを指定
+    protected $redirectTo = RouteServiceProvider::HOME; // リダイレクトパス
 
-    /****************************************************************************
-    *** Function Name       : TagEditIndex(Request $request)
-    *** Designer            : 平佐 竜也
-    *** Date                : 2022.06.30
-    *** Function            : 課題情報のタグの編集処理を行う。
-    *** Return              : リダイレクト
-    ****************************************************************************/
-    public function TagEditIndex(Request $request)
+/****************************************************************************
+*** Function Name       : TagEditIndex( Request $request )
+*** Designer            : 秋葉 星輝
+*** Date                : 2022.06.28
+*** Function            : タグ編集画面表示を行う
+*** Return              : リダイレクト
+****************************************************************************/
+    public function TagEditIndex( Request $request ) // HTTPリクエスト
     {
-        $tasks = null; // 空の変数を宣言
-        if ($request->has('approve')) // 編集ボタンが押された場合
+        $tasks = null; // 課題情報の配列
+        if ($request->has('approve'))
         {
-            if ($request->name!="") // nullでない場合
+            if ($request->name!="")
             {
-                $tag = Tag::where('name',$request->old)->first(); // 変更するタグを取得 
-                $tasks = $this->TagEdit($this->user->id,$tag->id,$request->name); // 編集処理
+                $tag = Tag::where('name',$request->old)->first(); // タグ情報 
+                $tasks = $this->TagEdit($this->user->id,$tag->id,$request->name);
             }
         }
 
-        if ($tasks!=null) // $tasksに値がある場合
+        if ($tasks!=null)
         {
-            $messageKey = 'successMessage'; // 成功
-            $flashMessage = __('flash.tag_edit_success'); // フラッシュメッセージを生成
+            $messageKey = 'successMessage'; // 成功メッセージ
+            $flashMessage = __('flash.tag_edit_success'); // フラッシュメッセージ
         }
         else
         {
-            $messageKey = 'errorMessage'; // 失敗
-            $flashMessage = __('flash.tag_edit_failed'); // フラッシュメッセージを生成
+            $messageKey = 'errorMessage'; // 失敗メッセージ
+            $flashMessage = __('flash.tag_edit_failed'); // フラッシュメッセージ
         }
-        return redirect($this->redirectPath())->with($messageKey, $flashMessage); // リダイレクトパスにリダイレクト
+        return redirect($this->redirectPath())->with($messageKey, $flashMessage);
     }
 
     
-    /****************************************************************************
-    *** Function Name       : TagDeleteIndex(Request $request)
-    *** Designer            : 平佐 竜也
-    *** Date                : 2022.06.30
-    *** Function            : 課題情報のタグの削除処理を行う。
-    *** Return              : リダイレクト
-    ****************************************************************************/
-    public function TagDeleteIndex(Request $request)
+/****************************************************************************
+*** Function Name       : TagDeleteIndex( Request $request )
+*** Designer            : 佐藤 駿介
+*** Date                : 2022.06.28
+*** Function            : タグ削除画面表示を行う
+*** Return              : リダイレクト
+****************************************************************************/
+
+    public function TagDeleteIndex( Request $request ) // HTTPリクエスト
     {
-        $task = null; // 空の変数を宣言
-        if ($request->has('approve')) // 削除ボタンが押された場合
+        $task = null; // 課題情報
+        if ($request->has('approve'))
         { 
-            $tag = Tag::where('name',$request->name)->first(); // 入力されたタグを取得
-            $task = $this->TagDelete($this->user->id,$tag->id); // 削除処理
+            $tag = Tag::where('name',$request->name)->first(); // タグ情報
+            $task = $this->TagDelete($this->user->id,$tag->id);
         }
 
-        if ($task) // $taskに値がある場合
+        if ($task)
         {
-            $messageKey = 'successMessage'; // 成功
-            $flashMessage = __('flash.tag_delete_success'); // フラッシュメッセージを生成
+            $messageKey = 'successMessage'; // 成功メッセージ
+            $flashMessage = __('flash.tag_delete_success'); // フラッシュメッセージ
         }
-        return redirect($this->redirectPath())->with($messageKey, $flashMessage); //リダイレクトパスにリダイレクト
+        return redirect($this->redirectPath())->with($messageKey, $flashMessage);
     }
 }

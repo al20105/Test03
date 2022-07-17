@@ -4,16 +4,16 @@
 <?php
 
 /*******************************************************************
-***  File Name        : index.blade.php
-***  Version        : V1.0
-***  Designer        : 平佐 竜也
-***  Date            : 2022.07.04
-***  Purpose           : 一覧表示処理のhtml部分
+*** File Name           : index.blade.php
+*** Version             : V1.0
+*** Designer            : 平佐 竜也
+*** Date                : 2022.06.28
+*** Purpose             : 一覧表示処理のhtml部分
 ***
 *******************************************************************/
 /*
 *** Revision :
-*** V1.0 : 平佐 竜也, 2022.07.04
+*** V1.0 : 平佐 竜也, 2022.06.28
 */
 
 date_default_timezone_set('Asia/Tokyo'); // タイムゾーンを設定

@@ -1,19 +1,23 @@
 <?php
 
+/*******************************************************************
+*** File Name           : api.php
+*** Version             : V1.0
+*** Designer            : なし(デフォルト)
+*** Date                : 2022.06.28
+*** Purpose             : APIのルート設定
+***
+*******************************************************************/
+/*
+*** Revision :
+*** V1.0 : なし(デフォルト), 2022.06.28
+*/
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) // HTTPリクエスト
+{
     return $request->user();
 });

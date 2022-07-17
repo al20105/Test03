@@ -1,18 +1,19 @@
 <?php
+
+namespace App\Http\Controllers\Auth;
+
 /*******************************************************************
-***  File Name		: ResisterController.php
-***  Version		: V1.0
-***  Designer		: 佐藤　駿介
-***  Date			: 2022.06.18
-***  Purpose       	: アカウント情報を登録する
+*** File Name           : RegisterController.php
+*** Version             : V1.0
+*** Designer            : 佐藤 駿介
+*** Date                : 2022.06.28
+*** Purpose             : アカウント情報登録を行う
 ***
 *******************************************************************/
 /*
 *** Revision :
-*** V1.0 : 佐藤　駿介, 2022.06.18
-
+*** V1.0 : 佐藤 駿介, 2022.06.28
 */
-namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -24,15 +25,15 @@ use Illuminate\Support\Facades\Validator;
 class RegisterController extends Controller
 {
 
-    use RegistersUsers;
+    use RegistersUsers; // 継承
 
-    protected $redirectTo = RouteServiceProvider::HOME; // homeのURLをリダイレクトパスに設定
+    protected $redirectTo = RouteServiceProvider::HOME; // リダイレクトパス
 
 /****************************************************************************
 *** Function Name       : __construct()
-*** Designer            : 
-*** Date                : 
-*** Function            : 新しいコントローラーのインスタンスを生成する
+*** Designer            : 佐藤 駿介
+*** Date                : 2022.06.28
+*** Function            : コントローラーのインスタンス生成を行う
 *** Return              : なし
 ****************************************************************************/
 
@@ -41,36 +42,38 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    /****************************************************************************
+/****************************************************************************
 *** Function Name       : validator( array $data )
 *** Designer            : 長尾 理生
 *** Date                : 2022.06.28
-*** Function            : バリデーション処理を行う。
+*** Function            : バリデーション処理を行う
 *** Return              : バリデーション結果
 ****************************************************************************/
-
-    protected function validator(array $data) // 
+    protected function validator( array $data ) // 入力データのバリデーション処理
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],//ユーザ名
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],//メールアドレス
-            'password' => ['required', 'string', 'min:8', 'confirmed'],//パスワード
+        return Validator::make($data, 
+        [
+            'name' => ['required', 'string', 'max:255'], // ユーザー名
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], // メール
+            'password' => ['required', 'string', 'min:8', 'confirmed'], // パスワード
         ]);
     }
 
-    /****************************************************************************
-*** Function Name       : create(array $data)
+/****************************************************************************
+*** Function Name       : create( array $data )
 *** Designer            : 佐藤 駿介
 *** Date                : 2022.06.28
-*** Function            : ユーザ情報の構造を作成。
-*** Return              : 構造体
+*** Function            : アカウント情報の生成を行う
+*** Return              : アカウント情報
 ****************************************************************************/
-    protected function create(array $data) // /
+
+    protected function create( array $data ) // 入力データ
     {
-        return User::create([
-            'name' => $data['name'],//ユーザ名
-            'email' => $data['email'],//メールアドレス
-            'password' => Hash::make($data['password']),//パスワード
+        return User::create(
+        [
+            'name' => $data['name'], // ユーザー名
+            'email' => $data['email'], // メール
+            'password' => Hash::make($data['password']), // パスワードのhash
         ]);
     }
 }

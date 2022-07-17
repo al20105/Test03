@@ -1,18 +1,22 @@
 <?php
 
-use Illuminate\Support\Facades\Broadcast;
-
+/*******************************************************************
+*** File Name           : channels.php
+*** Version             : V1.0
+*** Designer            : なし(デフォルト)
+*** Date                : 2022.06.28
+*** Purpose             : チャンネルのルート設定
+***
+*******************************************************************/
 /*
-|--------------------------------------------------------------------------
-| Broadcast Channels
-|--------------------------------------------------------------------------
-|
-| Here you may register all of the event broadcasting channels that your
-| application supports. The given channel authorization callbacks are
-| used to check if an authenticated user can listen to the channel.
-|
+*** Revision :
+*** V1.0 : なし(デフォルト), 2022.06.28
 */
 
-Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
+use Illuminate\Support\Facades\Broadcast;
+
+Broadcast::channel('App.Models.User.{id}', function ($user, // アカウント情報
+                                                     $id)  // アカウントID
+{
     return (int) $user->id === (int) $id;
 });
